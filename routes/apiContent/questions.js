@@ -25,16 +25,6 @@ router.get('/:id', (req, res) => {
 });
 
 
-
-// @route GET api/questions
-// @description add/save questions
-// @access Public
-router.post('/', (req, res) => {
-  Question.create(req.body)
-    .then(questions => res.json({ msg: 'question added successfully' }))
-    .catch(err => res.status(400).json({ error: 'Unable to add this questions' }));
-});
-
 // @route GET api/questions/:id
 // @description Delete question by id
 // @access Public
