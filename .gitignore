@@ -4,4 +4,4 @@
 yarn.lock
 node_modules/
 /nbproject/private/
-/config/default.js
+config/default.js

@@ -1,0 +1,4 @@
+{
+    "mongoURI":
+     "mongodb+srv://mimouni:manager2017@cluster0.j5yri.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+     }
