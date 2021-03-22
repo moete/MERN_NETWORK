@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./nav.css";
 import {
   Button,
   Dropdown,
@@ -76,7 +77,7 @@ class BelowHeader extends Component {
     const { locale, navCollapsed } = this.props;
 
     return (
-      <div className="gx-header-horizontal gx-header-horizontal-dark gx-below-header-horizontal">
+      <div className="mynav">
         <div className="gx-header-horizontal-top">
           <div className="gx-container">
             <div className="gx-header-horizontal-top-flex">
@@ -105,13 +106,13 @@ class BelowHeader extends Component {
                 to="/"
                 className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
               >
-                <img alt="" src={require("assets/images/w-logo.png")} />
+                <img alt="" src={require("assets/images/net-logo.png")} />
               </Link>
               <Link
                 to="/"
                 className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
               >
-                <img alt="" src={require("assets/images/logo.png")} />
+                <img alt="" src={require("assets/images/net-logo.png")} />
               </Link>
 
               <ul className="gx-header-notifications gx-ml-auto">
