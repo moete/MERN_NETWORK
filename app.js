@@ -6,6 +6,11 @@ const connectDB = require('./config/db');
 var questionRouter = require('./routes/apiContent/questions');
 const app = express();
 
+// Use Cors
+
+app.use(cors());
+app.use(express.json());
+
 // Connect Database
 connectDB();
 
