@@ -18,12 +18,12 @@ const Question = props => (
         By <span class="gx-link">{props.question.owner}</span>
       </h5>
      
-      <p class="gx-mb-1"> {props.question.contentText}</p>
+      <p   class="gx-mb-1"> {props.question.contentText}</p>
       <ul class="gx-list-inline gx-btn-list">
         <li>
           <span class="gx-link gx-meta-like">
             <i class="icon icon-like-o gx-text-red"></i>
-            {props.question.views} views
+            {props.question.votes} votes
           </span>
         </li>
         <li>
@@ -38,13 +38,12 @@ const Question = props => (
             {props.question.tags} 
           </span>
         </li>
-        <li>
-          <span><Link to={"/question/edit-question/"+props.question._id}>edit</Link></span>
-        </li>
+        
       </ul>
     </div>
   </div>
 );
+var x =2
 export default class ShowAllQuestions extends Component {
   constructor(props) {
     super(props);
@@ -65,6 +64,7 @@ export default class ShowAllQuestions extends Component {
   }
   questionList() {
     return this.state.questions.map(currentquestion => {
+      if (currentquestion.confirm =="true")
       return <Question question={currentquestion} />;
     });
   }

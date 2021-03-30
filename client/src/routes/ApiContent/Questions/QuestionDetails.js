@@ -1,90 +1,109 @@
-import React, { Component } from 'react'
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { Card, Tag, BackTop } from "antd";
 
-const Question = props => (
-    <div class="gx-user-list">
-      <img
-        alt="avatar"
-        src="https://via.placeholder.com/150x150"
-        class="gx-avatar-img gx-avatar-img-lg gx-border-0"
-      />
-      <div class="gx-description">
-  
-        <span> <Link to={"/question/question-details/"}>  <h3>{props.question.title} </h3></Link></span>
-        <h5>
-          By <span class="gx-link">{props.question.owner}</span>
-        </h5>
-       
-        <p class="gx-mb-1"> {props.question.contentText}</p>
-        <ul class="gx-list-inline gx-btn-list">
-          <li>
-            <span class="gx-link gx-meta-like">
-              <i class="icon icon-like-o gx-text-red"></i>
-              {props.question.views} views
-            </span>
-          </li>
-          <li>
-            <span class="gx-link gx-meta-comment">
-              <i class="icon icon-chat-new"></i>
-              {props.question.answers} comments
-            </span>
-          </li>
-          <li>
-            <span class="gx-link gx-meta-tags">
-            <i class="icon icon-alert"></i>
-              {props.question.tags} 
-            </span>
-          </li>
-          <li>
-            <span><Link to={"/question-list/edit-question/"+props.question._id}>edit</Link></span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
+const AnswersList= props => (
+  <div className="text-comentarios">    
+  {props.questions.answers.map((comment, commentIndex) =>
+   <p key={commentIndex}>{comment}</p> )}       
+ </div>
+);
 
 export class QuestionDetails extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            
-            question:''
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      contentText: '',
+      tags: '',
+      answers: [],
+      questions: []
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(`http://localhost:5000/question/6061e98c65765b29545280fc`)
+      .then(response => {
+        this.setState({
+          title: response.data.title,
+          contentText: response.data.contentText,
+          tags: response.data.tags,
+          answers: response.data.answers,
+          votes: response.data.votes
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+   AnswersList(props) {
+    const answers =this.state.answers.map();
+    const listItems = answers.map((answer) =>
+      <li>{answer}</li>
+    );
+    return (
+      <ul>{listItems}</ul>
+    );
+  }
+  
+  render() {
+    return (
+      <div class="gx-user-list">
+        <img
+          alt="avatar"
+          src="https://via.placeholder.com/150x150"
+          class="gx-avatar-img gx-avatar-img-lg gx-border-0"
+        />
+        <div class="gx-description">
+          <span>
+            {" "}
+            <Link to={"/question/question-details/"}>
+              {" "}
+              <h3>{this.state.title} </h3>
+            </Link>
+          </span>
+          <h5>
+            By <span class="gx-link">{this.state.owner}</span>
+          </h5>
+          <Tag color="#87d068">{this.state.tags}</Tag>
+          <Card
+            title={this.state.owner}
+            bordered={false}
+           
+          >
+            <div class="gx-mb-1"> {this.state.contentText}</div>
+          </Card>
+          <ul class="gx-list-inline gx-btn-list">
+            <li>
+              <span class="gx-link gx-meta-like">
+                <i class="icon icon-like-o gx-text-red"></i>
+                {this.state.votes} votes
+              </span>
+            </li>
+            <li>
+              <span class="gx-link gx-meta-comment">
+                <i class="icon icon-chat-new"></i>
+                {this.state.answers.length} comments
+              </span>
+            </li>
+          </ul>
          
-        };
-      }
-      componentDidMount() {
-        axios.get('http://localhost:5000/question/'+this.props.match.params.id)
-          .then(response => {
-            this.setState({
-              title: response.data.title,
-              contentText: response.data.contentText,
-              tags: response.data.tags
-            })   
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-        }   
-        
-        questionDetails() {
-            
-              return <Question question />;
-            
-          }
-    render() {
-        return (
-            <div>
-                 <div className="form-group"> 
-          <label>Title: </label>
-          {this.questionDetails()}
-              
-            
+          <Card
+            id="components-back-top-demo-custom"
+            title="Custom"
+            className="gx-card"
+            style={{ width: 600 }}
+          >
+            <BackTop>
+
+            </BackTop>
+            {this.state.answers}
+          </Card>{" "}
         </div>
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }
 
-export default QuestionDetails
+export default QuestionDetails;

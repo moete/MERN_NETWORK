@@ -65,7 +65,7 @@ export class CreateQuestion extends Component {
         axios.post('http://localhost:5000/question/add', question)
           .then(res => console.log(res.data));
     
-        window.location = '/question/question-list';
+        window.location = '/question/my-posts';
       }
     render() {
          return (

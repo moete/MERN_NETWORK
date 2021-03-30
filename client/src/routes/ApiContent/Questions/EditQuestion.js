@@ -82,7 +82,7 @@ export class UpdateQuestion extends Component {
       )
       .then(res => console.log(res.data));
 
-    window.location = "/question-list/question-list";
+    window.location = "question/my-posts";
   }
 
   render() {

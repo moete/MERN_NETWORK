@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Col, Row, Card} from "antd";
+import {Col, Card} from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Question = props => (

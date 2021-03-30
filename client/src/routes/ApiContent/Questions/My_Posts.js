@@ -8,25 +8,42 @@ import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
 import _ from "lodash";
 import { Link } from "react-router-dom";
-const menus =  (
-    <Menu>
-      <Menu.Item>
-       <Link to={"/question/edit-question/"}>
-        Edit
-        </Link>
-      </Menu.Item>
-      <Menu.Item icon="" disabled>
-      <Link to={"/question/edit-question/"}>
-        Delete
-        </Link>
-      </Menu.Item>
-    </Menu>
-  );
+
+const menus =  props =>(
+  <Menu>
+    <Menu.Item>
+      <Link to={"/question/edit-question/"}>Edit</Link>
+    </Menu.Item>
+    <Menu.Item icon="" disabled>
+      <a
+        href="#"
+        onClick={() => {
+        //  props.deleteQuestion(props.questions._id)
+     //   props. deleteQuestion(props.questions.id)
+        }}
+      >
+        delete
+      </a>
+    </Menu.Item>
+  </Menu>
+);
 const Question = props => (
   <div className="gx-contact-item">
     <div className="gx-module-list-icon">
       <div className="gx-d-none gx-d-sm-flex" onClick="">
-        <i className="gx-icon-btn icon icon-star-o" />
+      {
+            (props.questions.confirm) == "true" ? 
+            <div className="gx-icon-views">
+            <i className="icon icon-check-cricle"/>
+           
+          </div>
+            :
+
+            <div className="gx-icon-views">
+            <i className="icon icon-close-circle"/>
+           
+          </div>
+            }
       </div>
       <div className="gx-ml-2 gx-d-none gx-d-sm-flex"></div>
     </div>
@@ -39,7 +56,9 @@ const Question = props => (
           </span>
           <span className="gx-toolbar-separator">&nbsp;</span>
           <span className="gx-text-truncate gx-job-title">
-            {props.questions.tags}
+          <i class="icon icon-alert">
+            {    props.questions.tags}</i>
+           
           </span>
         </p>
 
@@ -48,20 +67,17 @@ const Question = props => (
             {props.questions.views} views ,
           </span>
           <span className="gx-phone gx-d-inline-block">
-            {props.questions.vote} votes  
-          </span> | published on :
+            {props.questions.vote} votes
+          </span>{" "}
+          | requested on :
           <span className="gx-phone gx-d-inline-block">
-            {props.questions.question_date.substring(0,10)} 
+            {props.questions.question_date.substring(0, 10)}
           </span>
         </div>
       </div>
 
       <div className="gx-module-contact-right">
-        <Dropdown
-          overlay={menus}
-          placement="bottomRight"
-          trigger={["click"]}
-        >
+        <Dropdown overlay={menus} placement="bottomRight" trigger={["click"]}>
           <i className="gx-icon-btn icon icon-ellipse-v" />
         </Dropdown>
       </div>
@@ -82,20 +98,10 @@ const filterOptions = [
 ];
 
 class MyPosts extends Component {
-  onContactClose = () => {
-    this.setState({ addContactState: false });
-  };
-  onDeleteContact = () => {
-    this.setState({ addContactState: false });
-    this.props.onDeleteContact(this.props.id);
-  };
-  onEditContact = () => {
-    this.setState({ addContactState: true });
-  };
-  
-
   constructor(props) {
     super(props);
+    this.deleteQuestion = this.deleteQuestion.bind(this);
+
     this.state = {
       noContentFoundMessage: "No Posts found",
       alertMessage: "",
@@ -122,9 +128,17 @@ class MyPosts extends Component {
         console.log(error);
       });
   }
+  deleteQuestion(id) {
+    axios.delete('http://localhost:5000/question/'+id)
+      .then(response => { console.log(response.data)});
+
+    this.setState({
+      questions: this.state.questions.filter(el => el._id !== id)
+    })
+  }
   questionList() {
     return this.state.questions.map(currentquestion => {
-      return <Question questions={currentquestion} />;
+      return <Question questions={currentquestion} deleteQuestion={this.deleteQuestion} key={currentquestion._id}/>;
     });
   }
 
