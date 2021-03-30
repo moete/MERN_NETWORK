@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import {Col, Card} from "antd";
+import {Col, Card,Row} from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Question = props => (
+
+<Col span={8} >
+  <Card title= { <i class="icon icon-alert">{props.question.tags} </i>} extra={<span className="gx-link">More</span>}
+   style={{ width: 390 , height: 300 }}>
+  
     <div class="gx-user-list">
       <img
         alt="avatar"
@@ -30,18 +35,11 @@ const Question = props => (
               {props.question.answers} comments
             </span>
           </li>
-          <li>
-            <span class="gx-link gx-meta-tags">
-            <i class="icon icon-alert"></i>
-              {props.question.tags} 
-            </span>
-          </li>
-          <li>
-            <span><Link to={"/question/edit-question/"+props.question._id}>edit</Link></span>
-          </li>
         </ul>
       </div>
     </div>
+
+ </Card> </Col>
   );
 export class FiltreByTags extends Component {
     constructor(props) {
@@ -69,11 +67,10 @@ export class FiltreByTags extends Component {
       }
     render() {
         return (
-            <Col span={8}>
-           <Card title="Basic card" extra={<span className="gx-link">More</span>}>
+          <Row gutter={16}>
+         
            {this.questionList()}
-          </Card>
-          </Col>
+           </Row>
         );
     }
 }

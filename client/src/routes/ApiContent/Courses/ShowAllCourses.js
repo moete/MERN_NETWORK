@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { Col, Row } from "antd";
-import ItemFirst from "../../customViews/extras/pricingTable/ItemFirst";
-import ItemSecond from "../../customViews/extras/pricingTable/ItemSecond";
-import ItemThird from "../../customViews/extras/pricingTable/ItemThird";
 import axios from "axios";
 
 const Course = props => (
