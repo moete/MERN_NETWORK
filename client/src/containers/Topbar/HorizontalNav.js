@@ -103,18 +103,23 @@ class HorizontalNav extends Component {
             title={
               <span>
                 <i className="icon icon-all-contacts" />
-                <IntlMessages id="sidebar.components.general" />
+                <IntlMessages id="Questions" />
               </span>
             }
           >
-            <Menu.Item key="components/general/button">
-              <Link to="/components/general/button">
-                <IntlMessages id="sidebar.general.button" />
+            <Menu.Item key="/question">
+              <Link to="/question/question-list">
+                <IntlMessages id="All Questions" />
               </Link>
             </Menu.Item>
-            <Menu.Item key="components/general/icon">
-              <Link to="/components/general/icon">
-                <IntlMessages id="sidebar.general.icon" />
+            <Menu.Item key="Tags">
+              <Link to="/question/filtre-tags">
+                <IntlMessages id="Tags & Technologies" />
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="My_Posts">
+              <Link to="/question/my-posts">
+                <IntlMessages id="My Posts" />
               </Link>
             </Menu.Item>
           </SubMenu>

@@ -9,7 +9,7 @@ import InBuiltApps from "./inBuiltApps/index";
 import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
-
+import QuestionsViews from "./ApiContent/Questions/index"
 const App = ({match}) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -21,6 +21,7 @@ const App = ({match}) => (
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps}/>
       <Route path={`${match.url}social-apps`} component={SocialApps}/>
       <Route path={`${match.url}documents`} component={Documents}/>
+      <Route path={`${match.url}question`} component={QuestionsViews}/>
     </Switch>
   </div>
 );
