@@ -1,4 +1,4 @@
 {
     "mongoURI":
-     "mongodb+srv://taz:K0WXDsm16ROSargQ@cluster0.j5yri.mongodb.net/Contentdb?retryWrites=true&w=majority"
+     "mongodb+srv://taz:K0WXDsm16ROSargQ@cluster0.j5yri.mongodb.net/NetworkyDB?retryWrites=true&w=majority"
 }

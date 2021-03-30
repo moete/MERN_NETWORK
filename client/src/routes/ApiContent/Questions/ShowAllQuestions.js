@@ -43,7 +43,6 @@ const Question = props => (
     </div>
   </div>
 );
-var x =2
 export default class ShowAllQuestions extends Component {
   constructor(props) {
     super(props);
@@ -64,8 +63,8 @@ export default class ShowAllQuestions extends Component {
   }
   questionList() {
     return this.state.questions.map(currentquestion => {
-      if (currentquestion.confirm =="true")
-      return <Question question={currentquestion} />;
+      if (currentquestion.confirm ==="true"){
+      return <Question question={currentquestion} />;}
     });
   }
 

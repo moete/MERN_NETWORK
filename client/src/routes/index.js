@@ -10,6 +10,7 @@ import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
 import QuestionsViews from "./ApiContent/Questions/index"
+import CoursesViews from "./ApiContent/Courses/index"
 const App = ({match}) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -22,6 +23,8 @@ const App = ({match}) => (
       <Route path={`${match.url}social-apps`} component={SocialApps}/>
       <Route path={`${match.url}documents`} component={Documents}/>
       <Route path={`${match.url}question`} component={QuestionsViews}/>
+      <Route path={`${match.url}courses`} component={CoursesViews}/>
+      
     </Switch>
   </div>
 );

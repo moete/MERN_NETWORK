@@ -95,7 +95,7 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="components"
-          title={<IntlMessages id="sidebar.components" />}
+          title={<IntlMessages id="Questions & Posts" />}
         >
           <SubMenu
             className="gx-menu-horizontal"
@@ -441,35 +441,14 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="extraComponents"
-          title={<IntlMessages id="sidebar.extraComponents" />}
+          title={<IntlMessages id="Improve your skills" />}
         >
-          <SubMenu
-            className="gx-menu-horizontal"
-            key="editor"
-            title={
-              <span>
-                <i className="icon icon-editor" />
-                <IntlMessages id="sidebar.editors" />
-              </span>
-            }
-          >
-            <Menu.Item key="extra-components/editor/ck">
-              <Link to="/extra-components/editor/ck">
-                <IntlMessages id="sidebar.editors.CKEditor" />
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="extra-components/editor/wysiswyg">
-              <Link to="/extra-components/editor/wysiswyg">
-                <IntlMessages id="sidebar.editors.WYSISWYGEditor" />
-              </Link>
-            </Menu.Item>
-          </SubMenu>
 
-          <Menu.Item key="extra-components/color-picker">
-            <Link to="/extra-components/color-picker">
+          <Menu.Item key="/courses/courses-list">
+            <Link to="/courses/courses-list">
               <i className="icon icon-picker" />
 
-              <IntlMessages id="sidebar.pickers.colorPickers" />
+              <IntlMessages id="Courses for you" />
             </Link>
           </Menu.Item>
 
