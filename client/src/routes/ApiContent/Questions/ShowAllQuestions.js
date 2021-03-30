@@ -29,7 +29,7 @@ const Question = props => (
         <li>
           <span class="gx-link gx-meta-comment">
             <i class="icon icon-chat-new"></i>
-            {props.question.answers} comments
+            {props.question.answers.length} comments
           </span>
         </li>
         <li>

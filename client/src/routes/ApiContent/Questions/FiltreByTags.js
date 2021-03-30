@@ -31,8 +31,8 @@ const Question = props => (
           </li>
           <li>
             <span class="gx-link gx-meta-comment">
-              <i class="icon icon-chat-new"></i>
-              {props.question.answers} comments
+              <i class="icon icon-chat-new"/>
+              {props.question.answers.length} comments
             </span>
           </li>
         </ul>
@@ -62,9 +62,10 @@ export class FiltreByTags extends Component {
       }
       questionList() {
         return this.state.questions.map(currentquestion => {
-          return <Question question={currentquestion} />;
-        });
-      }
+          if (currentquestion.confirm ==="true"){
+            return <Question question={currentquestion} />;}
+          });
+        }
     render() {
         return (
           <Row gutter={16}>
