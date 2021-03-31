@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< HEAD
 import { Route, Switch } from "react-router-dom";
+=======
+import {Route, Switch} from "react-router-dom";
+>>>>>>> origin/content
 
 import Components from "./components/index";
 import CustomViews from "./customViews/index";
@@ -10,6 +14,10 @@ import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
 import QuestionsViews from "./ApiContent/Questions/index"
+<<<<<<< HEAD
+=======
+import CoursesViews from "./ApiContent/Courses/index"
+>>>>>>> origin/content
 const App = ({match}) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -22,6 +30,11 @@ const App = ({match}) => (
       <Route path={`${match.url}social-apps`} component={SocialApps}/>
       <Route path={`${match.url}documents`} component={Documents}/>
       <Route path={`${match.url}question`} component={QuestionsViews}/>
+<<<<<<< HEAD
+=======
+      <Route path={`${match.url}courses`} component={CoursesViews}/>
+      
+>>>>>>> origin/content
     </Switch>
   </div>
 );

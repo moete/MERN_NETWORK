@@ -1,20 +1,34 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import URLSearchParams from "url-search-params";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { LocaleProvider } from "antd";
 import { IntlProvider } from "react-intl";
+=======
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import URLSearchParams from 'url-search-params'
+import {Redirect, Route, Switch} from "react-router-dom";
+import {LocaleProvider} from "antd";
+import {IntlProvider} from "react-intl";
+>>>>>>> origin/content
 
 import AppLocale from "lngProvider";
 import MainApp from "./MainApp";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
+<<<<<<< HEAD
 import { setInitUrl } from "appRedux/actions/Auth";
 import {
   onLayoutTypeChange,
   onNavStyleChange,
   setThemeType
 } from "appRedux/actions/Setting";
+=======
+import {setInitUrl} from "appRedux/actions/Auth";
+import {onLayoutTypeChange, onNavStyleChange, setThemeType} from "appRedux/actions/Setting";
+>>>>>>> origin/content
 
 import {
   LAYOUT_TYPE_BOXED,
@@ -27,6 +41,7 @@ import {
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL
 } from "../../constants/ThemeSetting";
 
+<<<<<<< HEAD
 const RestrictedRoute = ({ component: Component, authUser, ...rest }) => (
   <Route
     {...rest}
@@ -75,16 +90,67 @@ class App extends Component {
     } else {
       document.body.classList.remove("full-scroll");
       document.body.classList.remove("horizontal-layout");
+=======
+const RestrictedRoute = ({component: Component, authUser, ...rest}) =>
+  <Route
+    {...rest}
+    render={props =>
+      authUser
+        ? <Component {...props} />
+        : <Redirect
+          to={{
+            pathname: '/signin',
+            state: {from: props.location}
+          }}
+        />}
+  />;
+
+
+class App extends Component {
+
+  setLayoutType = (layoutType) => {
+    if (layoutType === LAYOUT_TYPE_FULL) {
+      document.body.classList.remove('boxed-layout');
+      document.body.classList.remove('framed-layout');
+      document.body.classList.add('full-layout');
+    } else if (layoutType === LAYOUT_TYPE_BOXED) {
+      document.body.classList.remove('full-layout');
+      document.body.classList.remove('framed-layout');
+      document.body.classList.add('boxed-layout');
+    } else if (layoutType === LAYOUT_TYPE_FRAMED) {
+      document.body.classList.remove('boxed-layout');
+      document.body.classList.remove('full-layout');
+      document.body.classList.add('framed-layout');
+    }
+  };
+
+  setNavStyle = (navStyle) => {
+    if (navStyle === NAV_STYLE_DEFAULT_HORIZONTAL ||
+      navStyle === NAV_STYLE_DARK_HORIZONTAL ||
+      navStyle === NAV_STYLE_INSIDE_HEADER_HORIZONTAL ||
+      navStyle === NAV_STYLE_ABOVE_HEADER ||
+      navStyle === NAV_STYLE_BELOW_HEADER) {
+      document.body.classList.add('full-scroll');
+      document.body.classList.add('horizontal-layout');
+    } else {
+      document.body.classList.remove('full-scroll');
+      document.body.classList.remove('horizontal-layout');
+>>>>>>> origin/content
     }
   };
 
   componentWillMount() {
+<<<<<<< HEAD
     if (this.props.initURL === "") {
+=======
+    if (this.props.initURL === '') {
+>>>>>>> origin/content
       this.props.setInitUrl(this.props.history.location.pathname);
     }
     const params = new URLSearchParams(this.props.location.search);
 
     if (params.has("theme")) {
+<<<<<<< HEAD
       this.props.setThemeType(params.get("theme"));
     }
     if (params.has("nav-style")) {
@@ -92,10 +158,20 @@ class App extends Component {
     }
     if (params.has("layout-type")) {
       this.props.onLayoutTypeChange(params.get("layout-type"));
+=======
+      this.props.setThemeType(params.get('theme'));
+    }
+    if (params.has("nav-style")) {
+      this.props.onNavStyleChange(params.get('nav-style'));
+    }
+    if (params.has("layout-type")) {
+      this.props.onLayoutTypeChange(params.get('layout-type'));
+>>>>>>> origin/content
     }
   }
 
   render() {
+<<<<<<< HEAD
     const {
       match,
       location,
@@ -113,6 +189,17 @@ class App extends Component {
         return <Redirect to={"/social-apps/wall"} />;
       } else {
         return <Redirect to={initURL} />;
+=======
+    const {match, location, layoutType, navStyle, locale, authUser, initURL} = this.props;
+
+    if (location.pathname === '/') {
+      if (authUser === null) {
+        return ( <Redirect to={'/signin'}/> );
+      } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
+        return ( <Redirect to={'/main/dashboard/crypto'}/> );
+      } else {
+        return ( <Redirect to={initURL}/> );
+>>>>>>> origin/content
       }
     }
     this.setLayoutType(layoutType);
@@ -124,6 +211,7 @@ class App extends Component {
       <LocaleProvider locale={currentAppLocale.antd}>
         <IntlProvider
           locale={currentAppLocale.locale}
+<<<<<<< HEAD
           messages={currentAppLocale.messages}
         >
           <Switch>
@@ -152,3 +240,25 @@ export default connect(mapStateToProps, {
   onNavStyleChange,
   onLayoutTypeChange
 })(App);
+=======
+          messages={currentAppLocale.messages}>
+
+          <Switch>
+            <Route exact path='/signin' component={SignIn}/>
+            <Route exact path='/signup' component={SignUp}/>
+            <RestrictedRoute path={`${match.url}`} authUser={authUser}
+                             component={MainApp}/>
+          </Switch>
+        </IntlProvider>
+      </LocaleProvider>
+    )
+  }
+}
+
+const mapStateToProps = ({settings, auth}) => {
+  const {locale, navStyle, layoutType} = settings;
+  const {authUser, initURL} = auth;
+  return {locale, navStyle, layoutType, authUser, initURL}
+};
+export default connect(mapStateToProps, {setInitUrl, setThemeType, onNavStyleChange, onLayoutTypeChange})(App);
+>>>>>>> origin/content

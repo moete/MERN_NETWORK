@@ -44,12 +44,15 @@ class HorizontalNav extends Component {
           key="in-built-apps"
           title="in-built-apps"
         >
+<<<<<<< HEAD
           <Menu.Item key="in-built-apps/landing">
             <Link to="/landing">
               <i className="  icon icon-chat-bubble -flex-column-reverse" />
               Landing
             </Link>
           </Menu.Item>
+=======
+>>>>>>> origin/content
           <Menu.Item key="in-built-apps/chat">
             <Link to="/in-built-apps/chat">
               <i className="  icon icon-chat-bubble -flex-column-reverse" />
@@ -101,7 +104,11 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="components"
+<<<<<<< HEAD
           title={<IntlMessages id="sidebar.components" />}
+=======
+          title={<IntlMessages id="Questions & Posts" />}
+>>>>>>> origin/content
         >
           <SubMenu
             className="gx-menu-horizontal"
@@ -447,6 +454,7 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="extraComponents"
+<<<<<<< HEAD
           title={<IntlMessages id="sidebar.extraComponents" />}
         >
           <SubMenu
@@ -476,6 +484,16 @@ class HorizontalNav extends Component {
               <i className="icon icon-picker" />
 
               <IntlMessages id="sidebar.pickers.colorPickers" />
+=======
+          title={<IntlMessages id="Improve your skills" />}
+        >
+
+          <Menu.Item key="/courses/courses-list">
+            <Link to="/courses/courses-list">
+              <i className="icon icon-picker" />
+
+              <IntlMessages id="Courses for you" />
+>>>>>>> origin/content
             </Link>
           </Menu.Item>
 

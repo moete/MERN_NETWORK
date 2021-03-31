@@ -1,7 +1,13 @@
 //global style variables
+<<<<<<< HEAD
 @dark-theme-primary-color: #38424b;
 @dark-theme-secondary-color: lighten(@dark-theme-primary-color, 10%);
 @dark-theme-text-color: #e0e0e0;
+=======
+@dark-theme-primary-color: #38424B;
+@dark-theme-secondary-color: lighten(@dark-theme-primary-color, 10%);
+@dark-theme-text-color: #E0E0E0;
+>>>>>>> origin/content
 @dark-theme-heading-color: lighten(@dark-theme-text-color, 5%);
 @dark-theme-sidebar-dark-bg: darken(@dark-theme-primary-color, 2%);
 @dark-theme-component-background: #434f5a;
@@ -43,6 +49,7 @@ body.dark-theme {
     }
   }
 
+<<<<<<< HEAD
   & h1,
   & h2,
   & h3,
@@ -70,6 +77,15 @@ body.dark-theme {
   & .ant-modal .h4,
   & .ant-modal .h5,
   & .ant-modal .h6 {
+=======
+  & h1, & h2, & h3, & h4, & h5, & h6,
+  & .h1, & .h2, & .h3, & .h4, & .h5, & .h6 {
+    color: @dark-theme-heading-color;
+  }
+
+  & .ant-modal h1, & .ant-modal h2, & .ant-modal h3, & .ant-modal h4, & .ant-modal h5, & .ant-modal h6,
+  & .ant-modal .h1, & .ant-modal .h2, & .ant-modal .h3, & .ant-modal .h4, & .ant-modal .h5, & .ant-modal .h6 {
+>>>>>>> origin/content
     color: @dark-theme-primary-color;
   }
 
@@ -120,14 +136,19 @@ body.dark-theme {
       background: lighten(@dark-theme-primary-color, 5%);
     }
 
+<<<<<<< HEAD
     &
       .@{class-prefix}-header-search
       .@{class-prefix}-lt-icon-search-bar-lg
       input[type="search"] {
+=======
+    & .@{class-prefix}-header-search .@{class-prefix}-lt-icon-search-bar-lg input[type="search"] {
+>>>>>>> origin/content
       border-color: @border-color;
     }
   }
 
+<<<<<<< HEAD
   &
     .@{class-prefix}-above-header-horizontal
     .@{class-prefix}-header-horizontal-nav-curve {
@@ -186,10 +207,31 @@ body.dark-theme {
       .ant-menu-horizontal
       > .ant-menu-submenu-open
       > .ant-menu-submenu-title:before {
+=======
+  & .@{class-prefix}-above-header-horizontal .@{class-prefix}-header-horizontal-nav-curve {
+
+    & .ant-menu-horizontal > .ant-menu-item:hover > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu:hover > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-open > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-open > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-selected > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-selected > .ant-menu-submenu-title:before {
+      color: darken(@dark-theme-primary-color, 5%);
+    }
+
+    & .ant-menu-horizontal > .ant-menu-submenu:hover > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-open > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-open > .ant-menu-submenu-title:before {
+>>>>>>> origin/content
       color: @menu-dark-highlight-color;
     }
   }
 
+<<<<<<< HEAD
   &
     .@{class-prefix}-below-header-horizontal
     .@{class-prefix}-header-horizontal-nav-curve,
@@ -251,6 +293,27 @@ body.dark-theme {
       .ant-menu-horizontal
       > .ant-menu-submenu-open
       > .ant-menu-submenu-title:before {
+=======
+  & .@{class-prefix}-below-header-horizontal .@{class-prefix}-header-horizontal-nav-curve,
+  & .@{class-prefix}-inside-header-horizontal .@{class-prefix}-header-horizontal-nav-curve {
+
+    & .ant-menu-horizontal > .ant-menu-item:hover > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu:hover > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-open > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-open > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-selected > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-selected > .ant-menu-submenu-title:before {
+      color: @dark-theme-primary-color;
+    }
+
+    & .ant-menu-horizontal > .ant-menu-submenu:hover > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-active > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-item-open > .ant-menu-submenu-title:before,
+    & .ant-menu-horizontal > .ant-menu-submenu-open > .ant-menu-submenu-title:before {
+>>>>>>> origin/content
       color: @menu-dark-highlight-color;
     }
   }
@@ -303,11 +366,15 @@ body.dark-theme {
     }
   }
 
+<<<<<<< HEAD
   &
     .ant-menu-dark
     .ant-menu-submenu-selected
     .ant-menu-sub
     .ant-menu-submenu-title {
+=======
+  & .ant-menu-dark .ant-menu-submenu-selected .ant-menu-sub .ant-menu-submenu-title {
+>>>>>>> origin/content
     color: @dark-theme-text-color;
 
     &:hover {
@@ -349,12 +416,17 @@ body.dark-theme {
   }
 
   & .ant-menu-dark.ant-menu-submenu-popup .ant-menu-sub {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & .ant-menu-submenu-title:hover .ant-menu-submenu-arrow:after,
     & .ant-menu-submenu-title:hover .ant-menu-submenu-arrow:before {
       background: @white-color;
     }
   }
 
+<<<<<<< HEAD
   &
     .ant-menu-submenu-popup.ant-menu-light
     .ant-menu-submenu-open
@@ -365,6 +437,10 @@ body.dark-theme {
     .ant-menu-submenu-open
     > .ant-menu-submenu-title
     .ant-menu-submenu-arrow::after {
+=======
+  & .ant-menu-submenu-popup.ant-menu-light .ant-menu-submenu-open > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+  & .ant-menu-submenu-popup.ant-menu-light .ant-menu-submenu-open > .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
+>>>>>>> origin/content
     background: @menu-dark-highlight-color;
   }
 
@@ -408,6 +484,7 @@ body.dark-theme {
     color: @dark-theme-text-color;
   }
 
+<<<<<<< HEAD
   &
     .ant-layout-sider
     .ant-menu:not(.ant-menu-horizontal)
@@ -419,6 +496,13 @@ body.dark-theme {
     .ant-layout-sider.@{class-prefix}-mini-custom-sidebar
     .ant-menu:not(.ant-menu-horizontal)
     .ant-menu-item-selected {
+=======
+  & .ant-layout-sider .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: fade(@white-color, 12%);
+  }
+
+  & .ant-layout-sider.@{class-prefix}-mini-custom-sidebar .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+>>>>>>> origin/content
     background-color: transparent;
 
     & > a:hover {
@@ -483,6 +567,7 @@ body.dark-theme {
     }
   }
 
+<<<<<<< HEAD
   &
     .ant-menu-submenu-vertical
     > .ant-menu-submenu-title
@@ -515,6 +600,16 @@ body.dark-theme {
     .ant-menu-submenu-inline
     > .ant-menu-submenu-title
     .ant-menu-submenu-arrow::after {
+=======
+  & .ant-menu-submenu-vertical > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+  & .ant-menu-submenu-vertical-left > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+  & .ant-menu-submenu-vertical-right > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+  & .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+  & .ant-menu-submenu-vertical > .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+  & .ant-menu-submenu-vertical-left > .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+  & .ant-menu-submenu-vertical-right > .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+  & .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
+>>>>>>> origin/content
     background: @white-color;
   }
 
@@ -533,6 +628,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-task-list-item {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     &:not(:last-child) {
       border-bottom-color: @dark-theme-border-color;
     }
@@ -543,6 +642,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-card-ticketlist .@{class-prefix}-task-list-item {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     &:hover {
       background-color: transparent;
 
@@ -582,6 +685,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-revenu {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     &-total {
       border-bottom-color: @dark-theme-border-color;
     }
@@ -632,6 +739,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-app-social-block {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & .@{class-prefix}-social-link span {
       border-color: @dark-theme-primary-color;
       color: @dark-theme-primary-color;
@@ -722,10 +833,14 @@ body.dark-theme {
     }
 
     &-grid {
+<<<<<<< HEAD
       box-shadow: 1px 0 0 0 @dark-theme-border-color,
         0 1px 0 0 @dark-theme-border-color, 1px 1px 0 0 @dark-theme-border-color,
         1px 0 0 0 @dark-theme-border-color inset,
         0 1px 0 0 @dark-theme-border-color inset;
+=======
+      box-shadow: 1px 0 0 0 @dark-theme-border-color, 0 1px 0 0 @dark-theme-border-color, 1px 1px 0 0 @dark-theme-border-color, 1px 0 0 0 @dark-theme-border-color inset, 0 1px 0 0 @dark-theme-border-color inset;
+>>>>>>> origin/content
 
       &:hover {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -743,7 +858,11 @@ body.dark-theme {
 
   & .@{class-prefix}-card-metrics,
   & .@{class-prefix}-card-widget {
+<<<<<<< HEAD
     .box-shadow(0 1px 4px 0 rgba(0, 0, 0, 0.15));
+=======
+    .box-shadow(0 1px 4px 0 rgba(0, 0, 0, .15));
+>>>>>>> origin/content
   }
 
   & .@{class-prefix}-icon-views:hover {
@@ -752,6 +871,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-search-bar {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & input[type="search"] {
       background: fade(@grey-2, 10%);
 
@@ -766,12 +889,20 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-chat-search-bar {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & input[type="search"]:focus {
       background-color: @dark-theme-component-background;
     }
   }
 
   & .@{class-prefix}-user-list {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     &.@{class-prefix}-card-list {
       background: @dark-theme-component-background;
     }
@@ -790,6 +921,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-table {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & th,
     & td {
       border-top-color: @dark-theme-border-color;
@@ -1004,9 +1139,13 @@ body.dark-theme {
 
     &-split .ant-list-item,
     &-split .ant-list-header,
+<<<<<<< HEAD
     &-something-after-last-item
       .ant-spin-container
       > .ant-list-item:last-child {
+=======
+    &-something-after-last-item .ant-spin-container > .ant-list-item:last-child {
+>>>>>>> origin/content
       border-bottom-color: @dark-theme-border-color;
     }
 
@@ -1067,6 +1206,7 @@ body.dark-theme {
       border-color: @dark-theme-border-color;
     }
 
+<<<<<<< HEAD
     &-small
       > .ant-table-content
       > .ant-table-header
@@ -1131,6 +1271,16 @@ body.dark-theme {
       > .ant-table-thead
       > tr
       > th {
+=======
+    &-small > .ant-table-content > .ant-table-header > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-body > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-scroll > .ant-table-header > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-fixed-left > .ant-table-header > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-fixed-right > .ant-table-header > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-fixed-left > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-thead > tr > th,
+    &-small > .ant-table-content > .ant-table-fixed-right > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-thead > tr > th {
+>>>>>>> origin/content
       background: lighten(@dark-theme-component-background, 5%);
       border-bottom-color: @dark-theme-border-color;
     }
@@ -1295,7 +1445,11 @@ body.dark-theme {
     }
 
     &-count {
+<<<<<<< HEAD
       .box-shadow(0 0 0 1px rgba(0, 0, 0, 0.15));
+=======
+      .box-shadow(0 0 0 1px rgba(0, 0, 0, .15));
+>>>>>>> origin/content
     }
   }
 
@@ -1511,9 +1665,13 @@ body.dark-theme {
     }
 
     &-tree li .ant-select-tree-node-content-wrapper:hover,
+<<<<<<< HEAD
     &-tree
       li
       .ant-select-tree-node-content-wrapper.ant-select-tree-node-selected {
+=======
+    &-tree li .ant-select-tree-node-content-wrapper.ant-select-tree-node-selected {
+>>>>>>> origin/content
       background-color: lighten(@dark-theme-component-background, 5%);
     }
 
@@ -1715,19 +1873,27 @@ body.dark-theme {
 
     & .ant-calendar-ok-btn {
       color: @dark-theme-border-color !important;
+<<<<<<< HEAD
       background-color: lighten(
         @dark-theme-component-background,
         25%
       ) !important;
+=======
+      background-color: lighten(@dark-theme-component-background, 25%) !important;
+>>>>>>> origin/content
       border-color: lighten(@dark-theme-component-background, 25%) !important;
 
       &:hover,
       &:focus {
         color: @dark-theme-primary-color !important;
+<<<<<<< HEAD
         background-color: lighten(
           @dark-theme-component-background,
           35%
         ) !important;
+=======
+        background-color: lighten(@dark-theme-component-background, 35%) !important;
+>>>>>>> origin/content
         border-color: @dark-theme-primary-color !important;
       }
     }
@@ -1740,6 +1906,7 @@ body.dark-theme {
       background: lighten(@dark-theme-component-background, 7%);
     }
 
+<<<<<<< HEAD
     &-week-number
       .ant-calendar-body
       tr
@@ -1750,6 +1917,10 @@ body.dark-theme {
       tr
       .ant-calendar-selected-day:hover
       .ant-calendar-date,
+=======
+    &-week-number .ant-calendar-body tr .ant-calendar-selected-day .ant-calendar-date,
+    &-week-number .ant-calendar-body tr .ant-calendar-selected-day:hover .ant-calendar-date,
+>>>>>>> origin/content
     &-time .ant-calendar-footer .ant-calendar-time-picker-btn-disabled {
       color: @dark-theme-text-color;
     }
@@ -1775,17 +1946,25 @@ body.dark-theme {
 
     &-fullscreen .ant-fullcalendar-month:hover,
     &-fullscreen .ant-fullcalendar-date:hover,
+<<<<<<< HEAD
     &-fullscreen
       .ant-fullcalendar-month-panel-selected-cell
       .ant-fullcalendar-month,
+=======
+    &-fullscreen .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-month,
+>>>>>>> origin/content
     &-fullscreen .ant-fullcalendar-selected-day .ant-fullcalendar-date {
       background: lighten(@dark-theme-component-background, 5%);
       color: @dark-theme-text-color;
     }
 
+<<<<<<< HEAD
     &-fullscreen
       .ant-fullcalendar-month-panel-current-cell
       .ant-fullcalendar-month,
+=======
+    &-fullscreen .ant-fullcalendar-month-panel-current-cell .ant-fullcalendar-month,
+>>>>>>> origin/content
     &-fullscreen .ant-fullcalendar-today .ant-fullcalendar-date {
       border-top-color: lighten(@dark-theme-component-background, 8%);
     }
@@ -1809,9 +1988,13 @@ body.dark-theme {
       background: lighten(@dark-theme-component-background, 25%);
     }
 
+<<<<<<< HEAD
     &-fullscreen
       .ant-fullcalendar-month-panel-selected-cell
       .ant-fullcalendar-value,
+=======
+    &-fullscreen .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value,
+>>>>>>> origin/content
     &-fullscreen .ant-fullcalendar-selected-day .ant-fullcalendar-value {
       color: @dark-theme-text-color;
       background-color: transparent;
@@ -1945,10 +2128,14 @@ body.dark-theme {
       }
 
       &-checked:before {
+<<<<<<< HEAD
         background-color: lighten(
           @dark-theme-component-background,
           20%
         ) !important;
+=======
+        background-color: lighten(@dark-theme-component-background, 20%) !important;
+>>>>>>> origin/content
       }
     }
   }
@@ -1992,28 +2179,40 @@ body.dark-theme {
 
       &:hover,
       &:focus {
+<<<<<<< HEAD
         background-color: darken(
           @dark-theme-component-background,
           12%
         ) !important;
+=======
+        background-color: darken(@dark-theme-component-background, 12%) !important;
+>>>>>>> origin/content
         border-color: darken(@dark-theme-component-background, 12%) !important;
       }
 
       &.disabled,
       &:disabled {
+<<<<<<< HEAD
         background-color: darken(
           @dark-theme-component-background,
           10%
         ) !important;
+=======
+        background-color: darken(@dark-theme-component-background, 10%) !important;
+>>>>>>> origin/content
         border-color: darken(@dark-theme-component-background, 10%) !important;
       }
 
       &:not([disabled]):not(.disabled):active,
       &:not([disabled]):not(.disabled).active {
+<<<<<<< HEAD
         background-color: darken(
           @dark-theme-component-background,
           12%
         ) !important;
+=======
+        background-color: darken(@dark-theme-component-background, 12%) !important;
+>>>>>>> origin/content
         border-color: darken(@dark-theme-component-background, 12%) !important;
       }
     }
@@ -2033,15 +2232,20 @@ body.dark-theme {
 
     &-background-ghost {
       &.ant-btn-primary {
+<<<<<<< HEAD
         background-color: darken(
           @dark-theme-component-background,
           8%
         ) !important;
+=======
+        background-color: darken(@dark-theme-component-background, 8%) !important;
+>>>>>>> origin/content
         border-color: darken(@dark-theme-component-background, 8%) !important;
         color: @white-color !important;
 
         &:hover,
         &:focus {
+<<<<<<< HEAD
           background-color: darken(
             @dark-theme-component-background,
             12%
@@ -2050,6 +2254,10 @@ body.dark-theme {
             @dark-theme-component-background,
             12%
           ) !important;
+=======
+          background-color: darken(@dark-theme-component-background, 12%) !important;
+          border-color: darken(@dark-theme-component-background, 12%) !important;
+>>>>>>> origin/content
           color: @white-color !important;
         }
       }
@@ -2160,11 +2368,16 @@ body.dark-theme {
       color: @dark-theme-text-color;
     }
 
+<<<<<<< HEAD
     &-menu-submenu.ant-dropdown-menu-submenu-disabled
       .ant-dropdown-menu-submenu-title,
     &-menu-submenu.ant-dropdown-menu-submenu-disabled
       .ant-dropdown-menu-submenu-title
       .ant-dropdown-menu-submenu-arrow::after {
+=======
+    &-menu-submenu.ant-dropdown-menu-submenu-disabled .ant-dropdown-menu-submenu-title,
+    &-menu-submenu.ant-dropdown-menu-submenu-disabled .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow::after {
+>>>>>>> origin/content
       color: darken(@dark-theme-text-color, 20%);
     }
   }
@@ -2334,6 +2547,10 @@ body.dark-theme {
   }
 
   & .ant-tag {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     &-checkable {
       color: @dark-theme-text-color;
     }
@@ -2387,6 +2604,7 @@ body.dark-theme {
   & .@{class-prefix}-map-content {
     color: darken(@dark-theme-text-color, 60%);
 
+<<<<<<< HEAD
     & h1,
     & h2,
     & h3,
@@ -2399,11 +2617,18 @@ body.dark-theme {
     & .h4,
     & .h5,
     & .h6 {
+=======
+    & h1, & h2, & h3, & h4, & h5, & h6, & .h1, & .h2, & .h3, & .h4, & .h5, & .h6 {
+>>>>>>> origin/content
       color: darken(@dark-theme-text-color, 60%);
     }
   }
 
   & .@{class-prefix}-module-side {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     @media screen and (max-width: @screen-md-max) {
       background-color: @white-color;
     }
@@ -2416,6 +2641,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-module-nav {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & li .@{class-prefix}-link {
       color: @dark-theme-text-color;
     }
@@ -2571,6 +2800,10 @@ body.dark-theme {
   }
 
   & .@{class-prefix}-chat-item {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/content
     & .@{class-prefix}-bubble {
       background-color: lighten(@dark-theme-component-background, 2%);
       border-color: @dark-theme-border-color;
@@ -2783,11 +3016,15 @@ body.dark-theme {
     color: @dark-theme-text-color;
   }
 
+<<<<<<< HEAD
   &
     .@{class-prefix}-header-horizontal-main
     .@{class-prefix}-header-notifications
     li
     > span {
+=======
+  & .@{class-prefix}-header-horizontal-main .@{class-prefix}-header-notifications li > span {
+>>>>>>> origin/content
     color: @dark-theme-text-color;
   }
 
@@ -2911,6 +3148,7 @@ body.dark-theme {
     }
   }
 
+<<<<<<< HEAD
   .dark-theme
     .ant-card-bordered.@{class-prefix}-card-full
     .@{class-prefix}-table-responsive
@@ -2921,6 +3159,13 @@ body.dark-theme {
   .dark-theme
     .@{class-prefix}-timeline-center
     .@{class-prefix}-timeline-inverted:before {
+=======
+  .dark-theme .ant-card-bordered.@{class-prefix}-card-full .@{class-prefix}-table-responsive .ant-table {
+    border-bottom-color: @dark-theme-border-color;
+  }
+
+  .dark-theme .@{class-prefix}-timeline-center .@{class-prefix}-timeline-inverted:before {
+>>>>>>> origin/content
     border-left-color: @dark-theme-border-color;
   }
 }

@@ -103,7 +103,11 @@ class HorizontalDark extends Component {
                 to="/"
                 className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
               >
+<<<<<<< HEAD
                 <img alt="" src={require("assets/images/net-logo.png")} />
+=======
+                <img alt="" src={require("assets/images/w-logo.png")} />
+>>>>>>> origin/content
               </Link>
               <Link
                 to="/"

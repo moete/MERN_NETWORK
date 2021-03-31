@@ -74,7 +74,11 @@ router.delete('/:id', (req, res) => {
       })
       .catch(err => res.status(400).json('Error: ' + err));
   });
+<<<<<<< HEAD
   router.route('/veridied/:id').post((req, res) => {
+=======
+  router.route('/verified/:id').post((req, res) => {
+>>>>>>> origin/content
     Question.findById(req.params.id)
       .then(qst => {
         qst.confirm = "true";

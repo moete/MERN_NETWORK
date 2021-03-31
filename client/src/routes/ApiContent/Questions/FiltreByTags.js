@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import {Col, Card} from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Question = props => (
+=======
+import {Col, Card,Row} from "antd";
+import axios from "axios";
+import { Link } from "react-router-dom";
+const Question = props => (
+
+<Col span={8} >
+  <Card title= { <i class="icon icon-alert">{props.question.tags} </i>} extra={<span className="gx-link">More</span>}
+   style={{ width: 390 , height: 300 }}>
+  
+>>>>>>> origin/content
     <div class="gx-user-list">
       <img
         alt="avatar"
@@ -26,6 +38,7 @@ const Question = props => (
           </li>
           <li>
             <span class="gx-link gx-meta-comment">
+<<<<<<< HEAD
               <i class="icon icon-chat-new"></i>
               {props.question.answers} comments
             </span>
@@ -42,6 +55,17 @@ const Question = props => (
         </ul>
       </div>
     </div>
+=======
+              <i class="icon icon-chat-new"/>
+              {props.question.answers} comments
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+ </Card> </Col>
+>>>>>>> origin/content
   );
 export class FiltreByTags extends Component {
     constructor(props) {
@@ -64,6 +88,7 @@ export class FiltreByTags extends Component {
       }
       questionList() {
         return this.state.questions.map(currentquestion => {
+<<<<<<< HEAD
           return <Question question={currentquestion} />;
         });
       }
@@ -74,6 +99,18 @@ export class FiltreByTags extends Component {
            {this.questionList()}
           </Card>
           </Col>
+=======
+          if (currentquestion.confirm ==="true"){
+            return <Question question={currentquestion} />;}
+          });
+        }
+    render() {
+        return (
+          <Row gutter={16}>
+         
+           {this.questionList()}
+           </Row>
+>>>>>>> origin/content
         );
     }
 }

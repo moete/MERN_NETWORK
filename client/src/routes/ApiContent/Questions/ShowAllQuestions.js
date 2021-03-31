@@ -43,7 +43,10 @@ const Question = props => (
     </div>
   </div>
 );
+<<<<<<< HEAD
 var x =2
+=======
+>>>>>>> origin/content
 export default class ShowAllQuestions extends Component {
   constructor(props) {
     super(props);
@@ -64,8 +67,13 @@ export default class ShowAllQuestions extends Component {
   }
   questionList() {
     return this.state.questions.map(currentquestion => {
+<<<<<<< HEAD
       if (currentquestion.confirm =="true")
       return <Question question={currentquestion} />;
+=======
+      if (currentquestion.confirm ==="true"){
+      return <Question question={currentquestion} />;}
+>>>>>>> origin/content
     });
   }
 
