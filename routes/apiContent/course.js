@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Course = require ('../../models/course.model');
+const Course = require ('../../../models/course.model');
 
 // @route GET api/course
 // @description Get all courses
