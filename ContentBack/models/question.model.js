@@ -5,7 +5,7 @@ var QuestionSchema = new Schema({
     views :{ type: Number },
     votes : { type: String},
     answered : { type: Boolean, default: false },
-    verified : { type: String },
+    confirm : { type: String, default: "false" },
     title : { type: String, required: true },
     contentText : { type: String, required: true },
     tags : { type: String, required: true },
