@@ -2,11 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-<<<<<<< HEAD
-const Course = require ('../../../models/course.model');
-=======
 const Course = require ('../../models/course.model');
->>>>>>> origin/content
 
 // @route GET api/course
 // @description Get all courses
