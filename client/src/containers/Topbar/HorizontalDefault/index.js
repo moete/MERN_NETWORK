@@ -24,7 +24,6 @@ import {
   switchLanguage,
   toggleCollapsedSideNav
 } from "../../../appRedux/actions/Setting";
-import IntlMessages from "../../../util/IntlMessages";
 
 const { Header } = Layout;
 const Option = Select.Option;
@@ -48,23 +47,6 @@ class HorizontalDefault extends Component {
   state = {
     searchText: ""
   };
-
-  languageMenu = () => (
-    <CustomScrollbars className="gx-popover-lang-scroll">
-      <ul className="gx-sub-popover">
-        {languageData.map(language => (
-          <li
-            className="gx-media gx-pointer"
-            key={JSON.stringify(language)}
-            onClick={e => this.props.switchLanguage(language)}
-          >
-            <i className={`flag flag-24 gx-mr-2 flag-${language.icon}`} />
-            <span className="gx-language-text">{language.name}</span>
-          </li>
-        ))}
-      </ul>
-    </CustomScrollbars>
-  );
 
   updateSearchChatUser = evt => {
     this.setState({

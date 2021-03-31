@@ -44,6 +44,12 @@ class HorizontalNav extends Component {
           key="in-built-apps"
           title="in-built-apps"
         >
+          <Menu.Item key="in-built-apps/landing">
+            <Link to="/landing">
+              <i className="  icon icon-chat-bubble -flex-column-reverse" />
+              Landing
+            </Link>
+          </Menu.Item>
           <Menu.Item key="in-built-apps/chat">
             <Link to="/in-built-apps/chat">
               <i className="  icon icon-chat-bubble -flex-column-reverse" />

@@ -6,7 +6,8 @@
   flex: 1;
 
   @media screen and (max-width: @screen-xs-max) {
-    margin: -(@layout-main-content-padding-res + 5px) -@layout-main-content-padding-res 0;
+    margin: -(@layout-main-content-padding-res + 5px) -@layout-main-content-padding-res
+      0;
   }
 
   .@{class-prefix}-container-wrap & {
@@ -120,7 +121,7 @@
   z-index: 2;
   .flex-display(flex, column, nowrap);
   .flex(1, 1, auto);
-  max-width: calc(100%~"-"@app-sidebar-width + 1px);
+  max-width: calc(100%~ "-" @app-sidebar-width + 1px);
 
   @media screen and (max-width: @screen-md-max) {
     max-width: 100%;
@@ -327,7 +328,7 @@
   height: calc(100vh ~"-" 201px) !important;
 
   .framed-layout & {
-    height: calc(100vh~"-"201px + 2 * @framed-layout-base) !important;
+    height: calc(100vh~ "-" 201px + 2 * @framed-layout-base) !important;
   }
 
   @media screen and (max-width: @screen-md-max) {
@@ -347,7 +348,7 @@
   height: calc(100vh ~"-" 266px) !important;
 
   .framed-layout & {
-    height: calc(100vh~"-"266px + 2 * @framed-layout-base) !important;
+    height: calc(100vh~ "-" 266px + 2 * @framed-layout-base) !important;
   }
 
   @media screen and (max-width: @screen-md-max) {
@@ -371,7 +372,7 @@
   height: calc(100vh ~"-" 319px) !important;
 
   .framed-layout & {
-    height: calc(100vh~"-"319px + 2 * @framed-layout-base) !important;
+    height: calc(100vh~ "-" 319px + 2 * @framed-layout-base) !important;
   }
 
   @media screen and (max-width: @screen-md-max) {
@@ -405,7 +406,7 @@
     height: calc(100vh ~"-" 266px) !important;
 
     .framed-layout & {
-      height: calc(100vh~"-"266px + 2 * @framed-layout-base) !important;
+      height: calc(100vh~ "-" 266px + 2 * @framed-layout-base) !important;
     }
 
     @media screen and (max-width: @screen-md-max) {
@@ -425,7 +426,7 @@
     height: calc(100vh ~"-" 122px) !important;
 
     .framed-layout & {
-      height: calc(100vh~"-"122px + 2 * @framed-layout-base) !important;
+      height: calc(100vh~ "-" 122px + 2 * @framed-layout-base) !important;
     }
 
     @media screen and (max-width: @screen-md-max) {
@@ -459,4 +460,3 @@
     padding-left: 0;
   }
 }
-
