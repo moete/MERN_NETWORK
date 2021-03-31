@@ -6,7 +6,7 @@ import { LocaleProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
 import AppLocale from "lngProvider";
-import MainApp from "./MainApp";
+import MainApp from "./MainApp" 
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import { setInitUrl } from "appRedux/actions/Auth";

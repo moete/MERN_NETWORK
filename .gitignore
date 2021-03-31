@@ -5,4 +5,10 @@
 yarn.lock
 node_modules/
 /nbproject/private/
+<<<<<<< HEAD
+config/default.json
+package-lock.json
+package.json
+=======
 config/default.js
+>>>>>>> origin/content
