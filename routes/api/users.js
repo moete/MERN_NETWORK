@@ -45,7 +45,7 @@ router.post(
       user = new User({
         name,
         email,
-        avatar, 
+        avatar,
         password,
       });
       //encrypt password
@@ -57,8 +57,8 @@ router.post(
       //return jsonwebtoken
 
       const payload = {
-        user : {
-          id: user.id
+        user: {
+          id: user.id,
         },
       };
       jwt.sign(
@@ -67,10 +67,9 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ user, token });
         }
       );
-      
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

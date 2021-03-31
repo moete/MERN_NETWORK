@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
-const jwt = require('jsonwebtoken'); config = require('config');
+const jwt = require('jsonwebtoken');
+config = require('config');
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator/check');
 
@@ -23,6 +24,7 @@ router.get('/', auth, async (req, res) => {
 // @access      Public
 router.post(
   '/',
+
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Password is required').exists(),
   async (req, res) => {
@@ -52,8 +54,8 @@ router.post(
       //return jsonwebtoken
 
       const payload = {
-        user : {
-          id: user.id
+        user: {
+          id: user.id,
         },
       };
       jwt.sign(
@@ -62,10 +64,9 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ user, token });
         }
       );
-      
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

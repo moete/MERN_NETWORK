@@ -9,7 +9,7 @@ class UserInfo extends Component {
     const userMenuOptions = (
       <ul className="gx-user-popover">
         <Link to="/social-apps/profile">
-          <li>My Acount</li>
+          <li>My Account</li>
         </Link>
 
         <li>Connections</li>
