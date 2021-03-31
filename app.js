@@ -2,8 +2,6 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const app = express();
-const cors = require('cors');
-
 // Use Cors
 
 app.use(cors());
@@ -29,8 +27,8 @@ app.use('/api/profile', require('./routes/api/profile'));
 
 const port = process.env.PORT || 5000;
 //routes
-const QuestionsRouter = require('./ContentBack/routes/apiContent/question');
-const CoursesRouter = require('./ContentBack/routes/apiContent/course');
+const QuestionsRouter = require('./routes/apiContent/question');
+const CoursesRouter = require('./routes/apiContent/course');
 
 app.use('/question', QuestionsRouter);
 app.use('/course', CoursesRouter)
