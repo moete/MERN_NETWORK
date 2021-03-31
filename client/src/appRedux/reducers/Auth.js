@@ -10,7 +10,6 @@ import {
   SIGNIN_TWITTER_USER_SUCCESS,
   SIGNIN_USER_SUCCESS,
   SIGNOUT_USER_SUCCESS,
-<<<<<<< HEAD
   SIGNOUT_USER,
   SIGNUP_USER_SUCCESS,
   USER_LOADED,
@@ -106,63 +105,22 @@ export default (state = INIT_STATE, action) => {
         isAuthenticated: true,
         authUser: localStorage.getItem("user_id")
       };
-=======
-  SIGNUP_USER_SUCCESS
-} from "constants/ActionTypes";
-
-const INIT_STATE = {
-  loader: false,
-  alertMessage: '',
-  showMessage: false,
-  initURL: '',
-  authUser: localStorage.getItem('user_id'),
-};
-
-
-export default (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case SIGNUP_USER_SUCCESS: {
-      return {
-        ...state,
-        loader: false,
-        authUser: action.payload
-      }
-    }
-    case SIGNIN_USER_SUCCESS: {
-      return {
-        ...state,
-        loader: false,
-        authUser: action.payload
-      }
->>>>>>> origin/content
     }
     case INIT_URL: {
       return {
         ...state,
-<<<<<<< HEAD
         initURL: payload
       };
-=======
-        initURL: action.payload
-      }
->>>>>>> origin/content
     }
     case SIGNOUT_USER_SUCCESS: {
       return {
         ...state,
-<<<<<<< HEAD
         token: localStorage.removeItem("token"),
         authUser: null,
         initURL: "/",
         loader: false,
         isAuthenticated: false
       };
-=======
-        authUser: null,
-        initURL: '/',
-        loader: false
-      }
->>>>>>> origin/content
     }
 
     case SHOW_MESSAGE: {
@@ -171,26 +129,15 @@ export default (state = INIT_STATE, action) => {
         alertMessage: action.payload,
         showMessage: true,
         loader: false
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     case HIDE_MESSAGE: {
       return {
         ...state,
-<<<<<<< HEAD
         alertMessage: "",
         showMessage: false,
         loader: false
       };
-=======
-        alertMessage: '',
-        showMessage: false,
-        loader: false
-      }
->>>>>>> origin/content
     }
 
     case SIGNIN_GOOGLE_USER_SUCCESS: {
@@ -198,70 +145,42 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loader: false,
         authUser: action.payload
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     case SIGNIN_FACEBOOK_USER_SUCCESS: {
       return {
         ...state,
         loader: false,
         authUser: action.payload
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     case SIGNIN_TWITTER_USER_SUCCESS: {
       return {
         ...state,
         loader: false,
         authUser: action.payload
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     case SIGNIN_GITHUB_USER_SUCCESS: {
       return {
         ...state,
         loader: false,
         authUser: action.payload
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     case ON_SHOW_LOADER: {
       return {
         ...state,
         loader: true
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     case ON_HIDE_LOADER: {
       return {
         ...state,
         loader: false
-<<<<<<< HEAD
       };
-=======
-      }
->>>>>>> origin/content
     }
     default:
       return state;
   }
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> origin/content

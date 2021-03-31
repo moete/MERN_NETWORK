@@ -44,15 +44,6 @@ class HorizontalNav extends Component {
           key="in-built-apps"
           title="in-built-apps"
         >
-<<<<<<< HEAD
-          <Menu.Item key="in-built-apps/landing">
-            <Link to="/landing">
-              <i className="  icon icon-chat-bubble -flex-column-reverse" />
-              Landing
-            </Link>
-          </Menu.Item>
-=======
->>>>>>> origin/content
           <Menu.Item key="in-built-apps/chat">
             <Link to="/in-built-apps/chat">
               <i className="  icon icon-chat-bubble -flex-column-reverse" />
@@ -104,11 +95,7 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="components"
-<<<<<<< HEAD
-          title={<IntlMessages id="sidebar.components" />}
-=======
           title={<IntlMessages id="Questions & Posts" />}
->>>>>>> origin/content
         >
           <SubMenu
             className="gx-menu-horizontal"
@@ -454,37 +441,6 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="extraComponents"
-<<<<<<< HEAD
-          title={<IntlMessages id="sidebar.extraComponents" />}
-        >
-          <SubMenu
-            className="gx-menu-horizontal"
-            key="editor"
-            title={
-              <span>
-                <i className="icon icon-editor" />
-                <IntlMessages id="sidebar.editors" />
-              </span>
-            }
-          >
-            <Menu.Item key="extra-components/editor/ck">
-              <Link to="/extra-components/editor/ck">
-                <IntlMessages id="sidebar.editors.CKEditor" />
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="extra-components/editor/wysiswyg">
-              <Link to="/extra-components/editor/wysiswyg">
-                <IntlMessages id="sidebar.editors.WYSISWYGEditor" />
-              </Link>
-            </Menu.Item>
-          </SubMenu>
-
-          <Menu.Item key="extra-components/color-picker">
-            <Link to="/extra-components/color-picker">
-              <i className="icon icon-picker" />
-
-              <IntlMessages id="sidebar.pickers.colorPickers" />
-=======
           title={<IntlMessages id="Improve your skills" />}
         >
 
@@ -493,7 +449,6 @@ class HorizontalNav extends Component {
               <i className="icon icon-picker" />
 
               <IntlMessages id="Courses for you" />
->>>>>>> origin/content
             </Link>
           </Menu.Item>
 

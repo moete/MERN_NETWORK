@@ -12,15 +12,10 @@ import {
   SIGNIN_GOOGLE_USER_SUCCESS,
   SIGNIN_TWITTER_USER,
   SIGNIN_TWITTER_USER_SUCCESS,
-<<<<<<< HEAD
-=======
-  SIGNIN_USER,
->>>>>>> origin/content
   SIGNIN_USER_SUCCESS,
   SIGNOUT_USER,
   SIGNOUT_USER_SUCCESS,
   SIGNUP_USER,
-<<<<<<< HEAD
   SIGNUP_USER_SUCCESS,
   USER_LOADED,
   AUTH_ERROR
@@ -134,44 +129,22 @@ export const signUserUp = userInfo => async dispatch => {
 };
 
 export const userSignUp = user => {
-=======
-  SIGNUP_USER_SUCCESS
-} from "constants/ActionTypes";
-
-export const userSignUp = (user) => {
->>>>>>> origin/content
   return {
     type: SIGNUP_USER,
     payload: user
   };
 };
-<<<<<<< HEAD
 
 export const userSignOut = () => dispatch => {
   dispatch({ type: SIGNOUT_USER });
 };
 export const userSignUpSuccess = authUser => {
-=======
-export const userSignIn = (user) => {
-  return {
-    type: SIGNIN_USER,
-    payload: user
-  };
-};
-export const userSignOut = () => {
-  return {
-    type: SIGNOUT_USER
-  };
-};
-export const userSignUpSuccess = (authUser) => {
->>>>>>> origin/content
   return {
     type: SIGNUP_USER_SUCCESS,
     payload: authUser
   };
 };
 
-<<<<<<< HEAD
 export const userSignInSuccess = authUser => {
   return {
     type: SIGNIN_USER_SUCCESS,
@@ -185,41 +158,18 @@ export const userSignOutSuccess = () => {
 };
 
 export const showAuthMessage = message => {
-=======
-export const userSignInSuccess = (authUser) => {
-  return {
-    type: SIGNIN_USER_SUCCESS,
-    payload: authUser
-  }
-};
-export const userSignOutSuccess = () => {
-  return {
-    type: SIGNOUT_USER_SUCCESS,
-  }
-};
-
-export const showAuthMessage = (message) => {
->>>>>>> origin/content
   return {
     type: SHOW_MESSAGE,
     payload: message
   };
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/content
 export const userGoogleSignIn = () => {
   return {
     type: SIGNIN_GOOGLE_USER
   };
 };
-<<<<<<< HEAD
 export const userGoogleSignInSuccess = authUser => {
-=======
-export const userGoogleSignInSuccess = (authUser) => {
->>>>>>> origin/content
   return {
     type: SIGNIN_GOOGLE_USER_SUCCESS,
     payload: authUser
@@ -230,21 +180,13 @@ export const userFacebookSignIn = () => {
     type: SIGNIN_FACEBOOK_USER
   };
 };
-<<<<<<< HEAD
 export const userFacebookSignInSuccess = authUser => {
-=======
-export const userFacebookSignInSuccess = (authUser) => {
->>>>>>> origin/content
   return {
     type: SIGNIN_FACEBOOK_USER_SUCCESS,
     payload: authUser
   };
 };
-<<<<<<< HEAD
 export const setInitUrl = url => {
-=======
-export const setInitUrl = (url) => {
->>>>>>> origin/content
   return {
     type: INIT_URL,
     payload: url
@@ -255,11 +197,7 @@ export const userTwitterSignIn = () => {
     type: SIGNIN_TWITTER_USER
   };
 };
-<<<<<<< HEAD
 export const userTwitterSignInSuccess = authUser => {
-=======
-export const userTwitterSignInSuccess = (authUser) => {
->>>>>>> origin/content
   return {
     type: SIGNIN_TWITTER_USER_SUCCESS,
     payload: authUser
@@ -270,11 +208,7 @@ export const userGithubSignIn = () => {
     type: SIGNIN_GITHUB_USER
   };
 };
-<<<<<<< HEAD
 export const userGithubSignInSuccess = authUser => {
-=======
-export const userGithubSignInSuccess = (authUser) => {
->>>>>>> origin/content
   return {
     type: SIGNIN_GITHUB_USER_SUCCESS,
     payload: authUser
@@ -282,29 +216,17 @@ export const userGithubSignInSuccess = (authUser) => {
 };
 export const showAuthLoader = () => {
   return {
-<<<<<<< HEAD
     type: ON_SHOW_LOADER
-=======
-    type: ON_SHOW_LOADER,
->>>>>>> origin/content
   };
 };
 
 export const hideMessage = () => {
   return {
-<<<<<<< HEAD
     type: HIDE_MESSAGE
-=======
-    type: HIDE_MESSAGE,
->>>>>>> origin/content
   };
 };
 export const hideAuthLoader = () => {
   return {
-<<<<<<< HEAD
     type: ON_HIDE_LOADER
-=======
-    type: ON_HIDE_LOADER,
->>>>>>> origin/content
   };
 };
