@@ -158,7 +158,7 @@ class HorizontalDefault extends Component {
                   <Popover
                     overlayClassName="gx-popover-horizantal"
                     placement="bottomRight"
-                    content={this.languageMenu()}
+                    // content={this.languageMenu()}
                     trigger="click"
                   >
                     <span className="gx-pointer gx-flex-row gx-align-items-center">
