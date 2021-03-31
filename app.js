@@ -13,8 +13,8 @@ connectDB();
 
 const port = process.env.PORT || 5000;
 //routes
-const QuestionsRouter = require('./ContentBack/routes/apiContent/question');
-const CoursesRouter = require('./ContentBack/routes/apiContent/course');
+const QuestionsRouter = require('./routes/apiContent/question');
+const CoursesRouter = require('./routes/apiContent/course');
 
 app.use('/question', QuestionsRouter);
 app.use('/course', CoursesRouter)
