@@ -12,12 +12,13 @@ import {
   THEME_COLOR_SELECTION,
   THEME_COLOR_SELECTION_PRESET,
   THEME_TYPE,
+  NAV_STYLE_DEFAULT_HORIZONTAL,
   THEME_TYPE_SEMI_DARK
 } from "../../constants/ThemeSetting";
 
 const initialSettings = {
   navCollapsed: true,
-  navStyle: NAV_STYLE_BELOW_HEADER,
+  navStyle: NAV_STYLE_DEFAULT_HORIZONTAL,
   layoutType: LAYOUT_TYPE_FULL,
   themeType: THEME_TYPE_SEMI_DARK,
   colorSelection: THEME_COLOR_SELECTION_PRESET,

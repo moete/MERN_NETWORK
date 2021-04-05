@@ -35,6 +35,11 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 
+//profile
+export const GET_PROFILE = "GET_PROFILE";
+export const PROFILE_ERROR = "PROFILE_ERROR";
+export const CLEAR_PROFILE = "CLEAR_PROFILE";
+
 //Sticky
 export const GET_STICKY = "GET_STICKY";
 export const NOTES_UPDATE = "NOTES_UPDATE";

@@ -95,7 +95,7 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="components"
-          title={<IntlMessages id="Questions & Posts" />}
+          title={"Questions & Posts"}
         >
           <SubMenu
             className="gx-menu-horizontal"
@@ -103,24 +103,18 @@ class HorizontalNav extends Component {
             title={
               <span>
                 <i className="icon icon-all-contacts" />
-                <IntlMessages id="Questions" />
+                Questions
               </span>
             }
           >
             <Menu.Item key="/question">
-              <Link to="/question/question-list">
-                <IntlMessages id="All Questions" />
-              </Link>
+              <Link to="/question/question-list">All Question</Link>
             </Menu.Item>
             <Menu.Item key="Tags">
-              <Link to="/question/filtre-tags">
-                <IntlMessages id="Tags & Technologies" />
-              </Link>
+              <Link to="/question/filtre-tags">Tags & Technologies</Link>
             </Menu.Item>
             <Menu.Item key="My_Posts">
-              <Link to="/question/my-posts">
-                <IntlMessages id="My Posts" />
-              </Link>
+              <Link to="/question/my-posts">My Posts</Link>
             </Menu.Item>
           </SubMenu>
 
@@ -441,14 +435,12 @@ class HorizontalNav extends Component {
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="extraComponents"
-          title={<IntlMessages id="Improve your skills" />}
+          title={"Improve your skills"}
         >
-
           <Menu.Item key="/courses/courses-list">
             <Link to="/courses/courses-list">
               <i className="icon icon-picker" />
-
-              <IntlMessages id="Courses for you" />
+              Courses for you
             </Link>
           </Menu.Item>
 
