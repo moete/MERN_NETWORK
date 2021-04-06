@@ -171,7 +171,6 @@ class HorizontalDefault extends Component {
                     </span>
                   </Popover>
                 </li>
-
                 <li className="gx-user-nav">
                   {!loader && (
                     <Fragment>

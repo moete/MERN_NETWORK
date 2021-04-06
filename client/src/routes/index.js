@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-
+import GroupsViews from "./groupsUi/Groups/index";
+import invitationsViews from "./groupsUi/Invitations/index";
 import Components from "./components/index";
 import CustomViews from "./customViews/index";
 import Extensions from "./extensions/index";

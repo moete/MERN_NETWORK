@@ -41,26 +41,38 @@ class HorizontalNav extends Component {
       >
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
-          key="in-built-apps"
-          title="in-built-apps"
+          key="group"
+          title="Groups"
         >
-          <Menu.Item key="in-built-apps/chat">
-            <Link to="/in-built-apps/chat">
-              <i className="  icon icon-chat-bubble -flex-column-reverse" />
-              <IntlMessages id="sidebar.chatApp" />
+          <Menu.Item key="in-built-apps/notes">
+            <Link to="/in-built-apps/notes">
+              <i className="icon icon-copy" />
+              <IntlMessages id="Notifications" />
             </Link>
           </Menu.Item>
-          <Menu.Item key="in-built-apps/contacts">
-            <Link to="/in-built-apps/contacts">
+          <Menu.Item key="/group">
+            <Link to="/group/group-list">
+              <i className="  icon icon-chat-bubble -flex-column-reverse" />
+              <IntlMessages id="My Groups" />
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="/invitation">
+            <Link to="/invitation/add-invitation">
               <i className="icon icon-contacts" />
-              <IntlMessages id="sidebar.contactsApp" />
+              <IntlMessages id="Invite" />
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="/invitation">
+            <Link to="/invitation/invitation-list">
+              <i className="icon icon-contacts" />
+              <IntlMessages id="My Sent Invitations" />
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="in-built-apps/chat">
-            <Link to="/in-built-apps/chat">
-              <i className="icon icon-chat-bubble -flex-column-reverse" />
-              <IntlMessages id="sidebar.chatApp" />
+          <Menu.Item key="extra-components/sweet-alert">
+            <Link to="/extra-components/sweet-alert">
+              <i className="icon icon-sweet-alert" />
+              <IntlMessages id="Remove" />
             </Link>
           </Menu.Item>
 
@@ -78,12 +90,7 @@ class HorizontalNav extends Component {
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="in-built-apps/notes">
-            <Link to="/in-built-apps/notes">
-              <i className="icon icon-copy" />
-              <IntlMessages id="sidebar.notes" />
-            </Link>
-          </Menu.Item>
+          
 
           <Menu.Item key="in-built-apps/firebase-crud">
             <Link to="/in-built-apps/firebase-crud">

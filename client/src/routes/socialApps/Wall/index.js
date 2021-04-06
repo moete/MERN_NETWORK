@@ -7,9 +7,11 @@ import Interests from "components/wall/Interests/index";
 import Photos from "components/wall/Photos/index";
 import Friends from "components/wall/Friends/index";
 import CustomScrollbars from "util/CustomScrollbars";
+import { Link } from "react-router-dom";
 import RecentActivity from "components/dashboard/CRM/RecentActivity";
 import {communitiesList, friendList, interestList, photoList, postList, recentActivity, user, userInfo} from "./data"
 import Communities from "../../../components/wall/Communities/index";
+import Allgroups from "../../groupsUi/Groups/Allgroups";
 
 
 class Wall extends Component {
@@ -38,8 +40,9 @@ class Wall extends Component {
           </Col>
           <Col xl={6} lg={8} md={6} sm={24} xs={24} className="gx-d-none gx-d-lg-block">
             <CustomScrollbars className="gx-wall-scroll">
-              <Communities communitiesList={communitiesList}/>
-              <span className="gx-text-primary gx-fs-md gx-pointer gx-d-block gx-mb-4">See All Communities <i
+              
+              <span className="gx-text-primary gx-fs-md gx-pointer gx-d-block gx-mb-4"><Link to={"/group/group-list/"}> 
+              <h1>Available Groups</h1> </Link> <i 
                 className={`icon icon-long-arrow-right gx-fs-xxl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle`}/></span>
               <RecentActivity recentList={recentActivity} shape="square"/>
             </CustomScrollbars>
