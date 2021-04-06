@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.myreg {
+  height: 100vh;
+  background-position: 50% 55.5126px;
+  background: linear-gradient(1deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../assets/images/back.jpg") no-repeat center center/cover;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.hide {
+  visibility: collapse;
+}
+.responsive {
+  max-width: 320px;
+  max-height: 400px;
+  height: 100%;
+}
+
+.animation {
+  transition: transform 0.3s;
+}
+.animation:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+.mytitle {
+  text-align: justify;
+  font-size: 47px;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+}

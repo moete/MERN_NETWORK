@@ -1,23 +1,30 @@
+// app.js
+
 const express = require('express');
 const connectDB = require('./config/db');
+var cors = require('cors');
 
+// routes
+const company = require('./routes/company.routes');
+const jobType = require ('./routes/job_type.routes');
 
 const app = express();
 
 // Connect Database
+connectDB();
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://taz:<B967C73C>@cluster0.j5yri.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+// cors
+app.use(cors({ origin: true, credentials: true }));
 
-
+// Init Middleware
+app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.send('Hello world!'));
+
+// use Routes
+app.use('/company', company);
+app.use('/JobType',jobType);
+
 
 const port = process.env.PORT || 8082;
 
