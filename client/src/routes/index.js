@@ -30,6 +30,8 @@ const App = ({ match }) => (
       <Route path={`${match.url}question`} component={QuestionsViews} />
       <Route path={`${match.url}courses`} component={CoursesViews} />
       <Route path="/create-profile" component={createprofile} />
+      <Route path={`${match.url}group`} component={GroupsViews} />
+      <Route path={`${match.url}invitation`} component={invitationsViews} />
     </Switch>
   </div>
 );
