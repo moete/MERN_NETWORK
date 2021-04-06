@@ -98,8 +98,8 @@ export default (state = INIT_STATE, action) => {
         ...state,
         isAuthenticated: true,
         loader: false,
-        authUser: localStorage.getItem("user_id"),
-        token: localStorage.getItem("token"),
+        authUser: payload.user,
+        user: payload.user,
         initURL: "/social-apps/wall"
       };
     }

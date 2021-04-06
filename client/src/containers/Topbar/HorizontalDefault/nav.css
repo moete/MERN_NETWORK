@@ -9,3 +9,14 @@
   display: block;
   text-indent: -9999px;
 }
+.logonetworky {
+  background: url("/path") no-repeat;
+  width: 175px;
+  height: auto;
+  display: block;
+}
+.logonetworkymini {
+  background: url("/path") no-repeat;
+  height: auto;
+  display: block;
+}

@@ -24,7 +24,11 @@ import {
 import axios from "axios";
 import setAuthToken from "../../util/setAuthToken";
 import { compareSync } from "bcryptjs";
-import { LOGIN_FAIL, REGISTER_FAIL } from "../../constants/ActionTypes";
+import {
+  ADMIN_LOGIN,
+  LOGIN_FAIL,
+  REGISTER_FAIL
+} from "../../constants/ActionTypes";
 const setUser = payload => ({ type: "SIGNIN_USER_SUCCESS", payload });
 
 // Load User
@@ -64,6 +68,11 @@ export const fetchUser = userInfo => async dispatch => {
       type: SIGNIN_USER_SUCCESS,
       payload: res.data
     });
+    /*if (res.data.user.role === "admin") {
+      dispatch({
+        type: ADMIN_LOGIN
+      });
+    }*/
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {

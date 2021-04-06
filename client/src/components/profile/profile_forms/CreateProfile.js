@@ -1,16 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, Fragment, useState } from "react";
+import { connect } from "react-redux";
+import {
+  createProfile,
+  getCurrentProfile
+} from "../../../appRedux/actions/profile";
+import { showAuthLoader } from "../../../appRedux/actions/Auth";
 import {
   Button,
   Card,
   Form,
   Icon,
+  Row,
+  Col,
   InputNumber,
   Radio,
   Rate,
   Select,
+  Input,
   Slider,
   Switch,
-  Upload
+  Upload,
+  AutoComplete
 } from "antd";
 
 import "./otherFormControls.less";
@@ -19,155 +29,214 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
-
+const AutoCompleteOption = AutoComplete.Option;
 class CreateProfile extends Component {
+  state = {
+    confirmDirty: false,
+    autoCompleteResult: [],
+    expand: false
+  };
+
+  toggle = () => {
+    const { expand } = this.state;
+    this.setState({ expand: !expand });
+  };
+  myFunction = () => {
+    const { expand } = this.state;
+    this.setState({ expand: !expand });
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        this.props.showAuthLoader();
+        this.props.createProfile(values);
+        if (this.props.profile !== null) {
+          this.props.history.push("/social-apps/profile");
+        }
       }
     });
   };
-  normFile = e => {
-    console.log("Upload event:", e);
-    if (Array.isArray(e)) {
-      return e;
+  handleWebsiteChange = value => {
+    let autoCompleteResult;
+    if (!value) {
+      autoCompleteResult = [];
+    } else {
+      autoCompleteResult = [".com", ".org", ".net"].map(
+        domain => `${value}${domain}`
+      );
     }
-    return e && e.fileList;
+    this.setState({ autoCompleteResult });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { autoCompleteResult } = this.state;
     const formItemLayout = {
       labelCol: { xs: 24, sm: 6 },
       wrapperCol: { xs: 24, sm: 14 }
     };
+    const websiteOptions = autoCompleteResult.map(website => (
+      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
+    ));
     return (
-      <Card className="gx-card" title="Other Form Controls">
+      <Card className="gx-card" title="Edit Your Profile">
         <Form onSubmit={this.handleSubmit}>
-          <FormItem {...formItemLayout} label="Plain Text">
-            <span className="ant-form-text">China</span>
-          </FormItem>
-          <FormItem {...formItemLayout} label="Select" hasFeedback>
-            {getFieldDecorator("select", {
+          <FormItem {...formItemLayout} label="Status" hasFeedback>
+            {getFieldDecorator("status", {
               rules: [
-                { required: true, message: "Please select your country!" }
+                { required: true, message: "Please select Professional Status" }
               ]
             })(
-              <Select placeholder="Please select a country">
-                <Option value="china">China</Option>
-                <Option value="use">U.S.A</Option>
+              <Select placeholder="Please select Professional Status">
+                <Option value="Developer">Developer</Option>
+                <Option value="Junior Developer">Junior Developer</Option>
+                <Option value="Senior Developer">Senior Developer</Option>
+                <Option value="Manager">Manager</Option>
+                <Option value="Student or Learning">Student or Learning</Option>
+                <Option value="Instructor">Instructor or Teacher</Option>
+                <Option value="Intern">Intern</Option>
+                <Option value="Other">Other</Option>
               </Select>
             )}
           </FormItem>
-
-          <FormItem {...formItemLayout} label="Select[multiple]">
-            {getFieldDecorator("select-multiple", {
+          <FormItem {...formItemLayout} label="Company">
+            {getFieldDecorator("company", {
+              rules: [{ required: false, message: "Please input Company!" }]
+            })(
+              <Input placeholder="Could be your own company or one you work for" />
+            )}
+          </FormItem>
+          <FormItem {...formItemLayout} label="Website">
+            {getFieldDecorator("website", {
+              rules: [{ required: false, message: "Please input Website!" }]
+            })(
+              <AutoComplete
+                dataSource={websiteOptions}
+                onChange={this.handleWebsiteChange}
+              >
+                <Input placeholder="Could be your own or a company website" />
+              </AutoComplete>
+            )}
+          </FormItem>
+          <FormItem {...formItemLayout} label="Location">
+            {getFieldDecorator("location", {
+              rules: [{ required: false, message: "Please input Location!" }]
+            })(<Input placeholder="City & state suggested (eg. Boston, MA)" />)}
+          </FormItem>
+          <FormItem {...formItemLayout} label="Skills">
+            {getFieldDecorator("skills", {
               rules: [
                 {
                   required: true,
-                  message: "Please select your favourite colors!",
-                  type: "array"
+                  message:
+                    "Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)"
                 }
               ]
             })(
-              <Select
-                mode="multiple"
-                placeholder="Please select favourite colors"
-              >
-                <Option value="red">Red</Option>
-                <Option value="green">Green</Option>
-                <Option value="blue">Blue</Option>
-              </Select>
+              <Input placeholder="Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)" />
             )}
           </FormItem>
-
-          <FormItem {...formItemLayout} label="InputNumber">
-            {getFieldDecorator("input-number", { initialValue: 3 })(
-              <InputNumber min={1} max={10} />
-            )}
-            <span className="ant-form-text"> machines</span>
-          </FormItem>
-
-          <FormItem {...formItemLayout} label="Switch">
-            {getFieldDecorator("switch", { valuePropName: "checked" })(
-              <Switch />
-            )}
-          </FormItem>
-
-          <FormItem {...formItemLayout} label="Slider">
-            {getFieldDecorator("slider")(
-              <Slider
-                marks={{ 0: "A", 20: "B", 40: "C", 60: "D", 80: "E", 100: "F" }}
+          <FormItem {...formItemLayout} label="GithubUsername">
+            {getFieldDecorator("githubusername", {
+              rules: [
+                { required: false, message: "Please input GithubUsername!" }
+              ]
+            })(
+              <Input
+                placeholder="If you want your latest repos and a Github link, include your
+            username"
               />
             )}
           </FormItem>
-
-          <FormItem {...formItemLayout} label="Radio.Group">
-            {getFieldDecorator("radio-group")(
-              <RadioGroup>
-                <Radio value="a">item 1</Radio>
-                <Radio value="b">item 2</Radio>
-                <Radio value="c">item 3</Radio>
-              </RadioGroup>
-            )}
+          <FormItem {...formItemLayout} label="Bio">
+            {getFieldDecorator("bio", {
+              rules: [
+                { required: true, message: "Tell us a little about yourself" }
+              ]
+            })(<Input placeholder="A short bio of yourself" />)}
           </FormItem>
-
-          <FormItem {...formItemLayout} label="Radio.Button">
-            {getFieldDecorator("radio-button")(
-              <RadioGroup>
-                <RadioButton value="a">item 1</RadioButton>
-                <RadioButton value="b">item 2</RadioButton>
-                <RadioButton value="c">item 3</RadioButton>
-              </RadioGroup>
-            )}
-          </FormItem>
-
-          <FormItem {...formItemLayout} label="Rate">
-            {getFieldDecorator("rate", {
-              initialValue: 3.5
-            })(<Rate />)}
-          </FormItem>
-
-          <FormItem
-            {...formItemLayout}
-            label="Upload"
-            extra="longgggggggggggggggggggggggggggggggggg"
-          >
-            {getFieldDecorator("upload", {
-              valuePropName: "fileList",
-              getValueFromEvent: this.normFile
-            })(
-              <Upload name="logo" action="/upload.do" listType="picture">
-                <Button>
-                  <Icon type="upload" /> Click to upload
-                </Button>
-              </Upload>
-            )}
-          </FormItem>
-
-          <FormItem {...formItemLayout} label="Dragger">
-            <div className="dropbox">
-              {getFieldDecorator("dragger", {
-                valuePropName: "fileList",
-                getValueFromEvent: this.normFile
+          <Row>
+            <Col span={20} className="gx-text-right">
+              <Button
+                type="dashed"
+                className="gx-link gx-btn-link gx-ml-2"
+                onClick={this.myFunction}
+              >
+                Add Social Network Links{" "}
+                <Icon type={this.state.expand ? "up" : "down"} />
+              </Button>
+            </Col>
+          </Row>
+          <div id="myDIV" style={{ display: "none" }}>
+            <FormItem {...formItemLayout} label="Twitter">
+              {getFieldDecorator("twitter", {
+                rules: [{ required: false }]
               })(
-                <Upload.Dragger name="files" action="/upload.do">
-                  <p className="ant-upload-drag-icon">
-                    <Icon type="inbox" />
-                  </p>
-                  <p className="ant-upload-text">
-                    Click or drag file to this area to upload
-                  </p>
-                  <p className="ant-upload-hint">
-                    Support for a single or bulk upload.
-                  </p>
-                </Upload.Dragger>
+                <AutoComplete
+                  dataSource={websiteOptions}
+                  onChange={this.handleWebsiteChange}
+                >
+                  <Input placeholder="Twitter URL" />
+                </AutoComplete>
               )}
-            </div>
-          </FormItem>
-
+            </FormItem>
+            <FormItem {...formItemLayout} label="Instagram">
+              {getFieldDecorator("instagram", {
+                rules: [{ required: false }]
+              })(
+                <AutoComplete
+                  dataSource={websiteOptions}
+                  onChange={this.handleWebsiteChange}
+                >
+                  <Input placeholder="Instagram URL" />
+                </AutoComplete>
+              )}
+            </FormItem>
+            <FormItem {...formItemLayout} label="Facebook">
+              {getFieldDecorator("facebook", {
+                rules: [{ required: false }]
+              })(
+                <AutoComplete
+                  dataSource={websiteOptions}
+                  onChange={this.handleWebsiteChange}
+                >
+                  <Input placeholder="Facebook URL" />
+                </AutoComplete>
+              )}
+            </FormItem>
+            <FormItem {...formItemLayout} label="LinkedIn">
+              {getFieldDecorator("linkedin", {
+                rules: [{ required: false }]
+              })(
+                <AutoComplete
+                  dataSource={websiteOptions}
+                  onChange={this.handleWebsiteChange}
+                >
+                  <Input placeholder="LinkedIn URL" />
+                </AutoComplete>
+              )}
+            </FormItem>
+            <FormItem {...formItemLayout} label="Youtube">
+              {getFieldDecorator("youtube", {
+                rules: [{ required: false }]
+              })(
+                <AutoComplete
+                  dataSource={websiteOptions}
+                  onChange={this.handleWebsiteChange}
+                >
+                  <Input placeholder="Youtube URL" />
+                </AutoComplete>
+              )}
+            </FormItem>
+          </div>
           <FormItem wrapperCol={{ xs: 24, sm: { span: 14, offset: 6 } }}>
             <Button type="primary" htmlType="submit">
               Submit
@@ -179,6 +248,14 @@ class CreateProfile extends Component {
   }
 }
 
-const WrappedDemo = Form.create()(CreateProfile);
+const WrappedCreateProfile = Form.create()(CreateProfile);
+const mapStateToProps = state => ({
+  authUser: state.auth,
+  profile: state.profile
+});
 
-export default WrappedDemo;
+export default connect(mapStateToProps, {
+  createProfile,
+  getCurrentProfile,
+  showAuthLoader
+})(WrappedCreateProfile);

@@ -34,6 +34,7 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const ADMIN_LOGIN = "ADMIN_LOGIN";
 
 //profile
 export const GET_PROFILE = "GET_PROFILE";

@@ -1,7 +1,8 @@
 import {
   SWITCH_LANGUAGE,
   TOGGLE_COLLAPSED_NAV,
-  WINDOW_WIDTH
+  WINDOW_WIDTH,
+  ADMIN_LOGIN
 } from "constants/ActionTypes";
 import {
   LAYOUT_TYPE,
@@ -36,6 +37,11 @@ const initialSettings = {
 
 const settings = (state = initialSettings, action) => {
   switch (action.type) {
+    case ADMIN_LOGIN:
+      return {
+        ...state,
+        navStyle: NAV_STYLE_FIXED
+      };
     case "@@router/LOCATION_CHANGE":
       return {
         ...state,

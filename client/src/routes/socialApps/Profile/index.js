@@ -1,9 +1,14 @@
 import React, { Component, Fragment, useEffect } from "react";
 import { Col, Row } from "antd";
+import Education from "../../../components/profile/Education/index";
 import About from "../../../components/profile/About/index";
-import Biography from "../../../components/profile/Biography/index";
-import Events from "../../../components/profile/Events/index";
+import Experience from "../../../components/profile/Experience/index";
+
 import Contact from "../../../components/profile/Contact/index";
+import { Avatar, Button } from "antd";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { getCurrentProfile } from "../../../appRedux/actions/profile";
 
 import { friendList } from "./data";
 import { photoList } from "../Wall/data";
@@ -14,35 +19,57 @@ import ProfileHeader from "../../../components/profile/ProfileHeader/index";
 
 import Spinner from "../../../components/Spinner";
 
-const Profile = () => {
+const Profile = ({
+  getCurrentProfile,
+  auth: { authUser, user },
+  profile: { profile, loader }
+}) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, []);
   return (
     <Fragment>
-      <Auxiliary>
-        <ProfileHeader />
-        <div className="gx-profile-content">
-          <Row>
-            <Col xl={16} lg={14} md={14} sm={24} xs={24}>
-              <About />
-              <Biography />
-              <Events />
-            </Col>
+      {profile !== null ? (
+        <Auxiliary>
+          <ProfileHeader />
+          <div className="gx-profile-content">
+            <Row>
+              <Col xl={16} lg={14} md={14} sm={24} xs={24}>
+                <About profile={profile} />
+                <Experience />
+                <Education />
+              </Col>
 
-            <Col xl={8} lg={10} md={10} sm={24} xs={24}>
-              <Contact />
-              <Row>
-                <Col xl={24} lg={24} md={24} sm={12} xs={24}>
-                  <Friends friendList={friendList} />
-                </Col>
-                <Col xl={24} lg={24} md={24} sm={12} xs={24}>
-                  <Photos photoList={photoList} />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
-      </Auxiliary>
+              <Col xl={8} lg={10} md={10} sm={24} xs={24}>
+                <Photos photoList={photoList} />
+
+                <Row>
+                  <Col xl={24} lg={24} md={24} sm={12} xs={24}>
+                    <Contact socials={profile.social} />
+                  </Col>
+                  <Col xl={24} lg={24} md={24} sm={12} xs={24}>
+                    <Friends friendList={friendList} />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
+        </Auxiliary>
+      ) : (
+        <Fragment>
+          <p>you have not yet setup a profile , please add some info</p>
+          <Button type="dashed">
+            <Link to="/create-profile" className="gx-link">
+              Create Profile
+            </Link>
+          </Button>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
-
-export default Profile;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
+export default connect(mapStateToProps, { getCurrentProfile })(Profile);
