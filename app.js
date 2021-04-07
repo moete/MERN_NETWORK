@@ -31,7 +31,7 @@ const QuestionsRouter = require('./routes/apiContent/question');
 const CoursesRouter = require('./routes/apiContent/course');
 
 app.use('/question', QuestionsRouter);
-app.use('/course', CoursesRouter)
+app.use('/course', CoursesRouter);
 
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

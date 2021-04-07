@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 const Question = props => (
 
 <Col span={8} >
-  <Card title= { <i class="icon icon-alert">{props.question.tags} </i>} extra={<span className="gx-link">More</span>}
-   style={{ width: 390 , height: 300 }}>
+  <Card title= { <i class="icon icon-alert">{props.question.tags} </i>} 
+  extra={<span className="gx-link"><Link to={"/question/question-details/"+props.question._id}>
+     More</Link></span>}
+   style={{ width: 390 }}>
   
     <div class="gx-user-list">
       <img
@@ -32,7 +34,7 @@ const Question = props => (
           <li>
             <span class="gx-link gx-meta-comment">
               <i class="icon icon-chat-new"/>
-              {props.question.answers} comments
+              {props.question.answers.length} comments
             </span>
           </li>
         </ul>
@@ -62,8 +64,8 @@ export class FiltreByTags extends Component {
       }
       questionList() {
         return this.state.questions.map(currentquestion => {
-          if (currentquestion.confirm ==="true"){
-            return <Question question={currentquestion} />;}
+         
+            return <Question question={currentquestion} />;
           });
         }
     render() {
