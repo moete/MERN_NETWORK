@@ -24,7 +24,9 @@ const UserInfo = ({
           <Link to="/social-apps/profile">
             <li>My Account</li>
           </Link>
-
+          <Link to="job-save/JobSave">
+            <li> Favoris </li>
+          </Link>
           <li>Connections</li>
           <li onClick={() => userSignOut()}>Logout</li>
         </ul>
