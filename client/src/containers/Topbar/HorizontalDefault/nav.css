@@ -1,0 +1,22 @@
+.mynav {
+  background: linear-gradient(1deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../../assets/images/back.jpg") no-repeat center center/cover;
+}
+.logo {
+  background: url("/path") no-repeat;
+  width: 100px;
+  height: 100px;
+  display: block;
+  text-indent: -9999px;
+}
+.logonetworky {
+  background: url("/path") no-repeat;
+  width: 175px;
+  height: auto;
+  display: block;
+}
+.logonetworkymini {
+  background: url("/path") no-repeat;
+  height: auto;
+  display: block;
+}
