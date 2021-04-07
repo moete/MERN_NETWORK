@@ -1,11 +1,8 @@
 import React from "react";
-import {BackTop, Card} from "antd";
+import { BackTop, Card } from "antd";
 
 const Back = () => {
-  return (
-      <BackTop/>
-
-  );
+  return <BackTop />;
 };
 
 export default Back;

@@ -14,8 +14,12 @@ Platform:
   win32 x64
 
 Trace: 
+<<<<<<< HEAD
   Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
       at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
+=======
+  Error: EBUSY: resource busy or locked, copyfile 'C:\Users\nature\AppData\Local\Yarn\Cache\v6\npm-antd-3.26.20-f3f570efaaa5950a144942f21eb2aaaa088e9407-integrity\node_modules\antd\es\input\ClearableLabeledInput.d.ts' -> 'C:\Users\nature\Desktop\socialnetwork\MERN_NETWORK\client\node_modules\antd\es\input\ClearableLabeledInput.d.ts'
+>>>>>>> main
 
 npm manifest: 
   {

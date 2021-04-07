@@ -110,7 +110,7 @@ class App extends Component {
       if (authUser === null) {
         return <Redirect to={"/signin"} />;
       } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
-        return <Redirect to={"/social-apps/wall"} />;
+        return <Redirect to={"/question/question-list"} />;
       } else {
         return <Redirect to={initURL} />;
       }

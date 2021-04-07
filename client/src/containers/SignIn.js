@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "./bg_register.css";
 import { Col, Row } from "antd";
 import land from "../assets/images/landing.jpg";
-import BelowHeader from "./Topbar/BelowHeader";
 import {
   hideMessage,
   showAuthLoader,
@@ -75,7 +74,6 @@ class SignIn extends React.Component {
                   className="gx-app-login-container"
                   style={{
                     width: "fit-content",
-                    marginLeft: "0",
                     marginRight: "auto"
                   }}
                 >
@@ -210,7 +208,7 @@ class SignIn extends React.Component {
             </Col>
             <Col
               style={{
-                marginTop: "70px"
+                marginTop: "75px"
               }}
               xs={24}
               xl={12}

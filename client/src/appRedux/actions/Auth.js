@@ -18,11 +18,17 @@ import {
   SIGNUP_USER,
   SIGNUP_USER_SUCCESS,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  CLEAR_PROFILE
 } from "constants/ActionTypes";
 import axios from "axios";
 import setAuthToken from "../../util/setAuthToken";
-import { LOGIN_FAIL, REGISTER_FAIL } from "../../constants/ActionTypes";
+import { compareSync } from "bcryptjs";
+import {
+  ADMIN_LOGIN,
+  LOGIN_FAIL,
+  REGISTER_FAIL
+} from "../../constants/ActionTypes";
 const setUser = payload => ({ type: "SIGNIN_USER_SUCCESS", payload });
 
 // Load User
@@ -44,29 +50,6 @@ export const loadUser = () => async dispatch => {
   }
 };
 export const logUserOut = () => ({ type: "LOG_OUT" });
-/*export const fetchUser = userInfo => dispatch => {
-  fetch(`http://localhost:5000/api/auth`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify(userInfo)
-  })
-    .then(res => res.json())
-    .then(data => {
-      // data sent back will in the format of
-      // {
-      //     user: {},
-      //.    token: "aaaaa.bbbbb.bbbbb"
-      // }
-
-      localStorage.setItem("token", data.token);
-
-      dispatch(setUser(data.user));
-    })
-    
-};*/
 export const fetchUser = userInfo => async dispatch => {
   const config = {
     headers: {
@@ -84,6 +67,11 @@ export const fetchUser = userInfo => async dispatch => {
       type: SIGNIN_USER_SUCCESS,
       payload: res.data
     });
+    /*if (res.data.user.role === "admin") {
+      dispatch({
+        type: ADMIN_LOGIN
+      });
+    }*/
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -135,6 +123,7 @@ export const userSignUp = user => {
 };
 
 export const userSignOut = () => dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: SIGNOUT_USER });
 };
 export const userSignUpSuccess = authUser => {
