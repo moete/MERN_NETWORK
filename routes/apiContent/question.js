@@ -60,15 +60,11 @@ router.post("/add", upload.single("image"), async (req, res) => {
 // @route GET api/question/:id
 // @description Get single question by id
 // @access Public
-
-router.get("/:id", (req, res) => {
+router.route('/:id').get((req, res) => {
   Question.findById(req.params.id)
-    .then((questions) => res.json(questions))
-    .catch((err) =>
-      res.status(404).json({ noquestionsfound: "No questions found" })
-    );
+  .then(question => res.json(question))
+  .catch(err => res.status(400).json('Error: ' +err));
 });
-
 // @route GET api/question/:id
 // @description Delete question by id
 // @access Public
@@ -83,7 +79,9 @@ router.delete("/:id", (req, res) => {
 // @description Update question by id
 // @access Public
 
-router.post("/update/:id", upload.single("image"), (req, res) => {
+router.post("/update/:id", 
+upload.single("image"), 
+(req, res) => {
   Question.findById(req.params.id)
     .then((qst) => {
       qst.title = req.body.title;
@@ -95,7 +93,6 @@ router.post("/update/:id", upload.single("image"), (req, res) => {
       qst
         .save()
         .then(() => res.json("Question updated!"))
-        .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });

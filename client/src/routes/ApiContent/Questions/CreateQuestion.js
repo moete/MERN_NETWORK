@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card, Form, Input, Button, Upload, Icon } from "antd";
+import { Card, Form, Input, Button, Upload, Icon, Alert } from "antd";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -23,7 +23,7 @@ export class CreateQuestion extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeTile = this.onChangeTile.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeContentText = this.onChangeContentText.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
     this.onChangeFile = this.onChangeFile.bind(this);
@@ -41,7 +41,7 @@ export class CreateQuestion extends Component {
       originalname: e.target.files[0]
     });
   }
-  onChangeTile(e) {
+  onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
@@ -77,6 +77,7 @@ export class CreateQuestion extends Component {
       .then(res => console.log(res.data));
 
     window.location = "/question/my-posts";
+  
   }
 
   render() {
@@ -89,16 +90,15 @@ export class CreateQuestion extends Component {
               label="Title"
               hasFeedback
               value={this.state.title}
-              onChange={this.onChangeTile}
+              onChange={this.onChangeTitle}
               //   validateStatus="success"
             >
-              <Input placeholder="I'm the title" id="success" />
+              <Input placeholder="I'm the title" />
             </FormItem>
             <FormItem
               {...formItemLayout}
               label="Body"
               hasFeedback
-              validateStatus="success"
               value={this.state.contentText}
               onChange={this.onChangeContentText}
             >
@@ -112,7 +112,6 @@ export class CreateQuestion extends Component {
               {...formItemLayout}
               label="Tags"
               hasFeedback
-              validateStatus="success"
               value={this.state.tags}
               onChange={this.onChangeTags}
             >
@@ -143,6 +142,7 @@ export class CreateQuestion extends Component {
           <Button type="primary" htmlType="submit" onClick={this.onSubmit}>
             Post your question
           </Button>
+          
         </Card>
       </>
     );

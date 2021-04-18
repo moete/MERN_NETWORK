@@ -9,24 +9,6 @@ import IntlMessages from "util/IntlMessages";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
-const menus =  props =>(
-  <Menu>
-    <Menu.Item>
-      <Link to={"/question/edit-question/"}>Edit</Link>
-    </Menu.Item>
-    <Menu.Item icon="" disabled>
-      <a
-        href="#"
-        onClick={() => {
-        //  props.deleteQuestion(props.questions._id)
-     //   props. deleteQuestion(props.questions.id)
-        }}
-      >
-        delete
-      </a>
-    </Menu.Item>
-  </Menu>
-);
 const Question = props => (
   <div className="gx-contact-item">
     <div className="gx-module-list-icon">
@@ -75,11 +57,13 @@ const Question = props => (
           </span>
         </div>
       </div>
-
       <div className="gx-module-contact-right">
-        <Dropdown overlay={menus} placement="bottomRight" trigger={["click"]}>
-          <i className="gx-icon-btn icon icon-ellipse-v" />
-        </Dropdown>
+      <a href="#" onClick={() => 
+        { props.deleteQuestion(props.questions._id) }}>Delete</a>
+
+      </div>
+      <div className="gx-module-contact-right">
+      <Link to={"/question/edit-question/"+props.questions._id}>Edit</Link>
       </div>
     </div>
   </div>

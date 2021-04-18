@@ -324,33 +324,14 @@ const User = props => (
 );
 const { Search } = Input;
 
-const Searchh =  props =>(
-/*<Space direction="vertical">
-<Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
-<Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-<Search placeholder="input search text" onSearch={onSearch} enterButton />
-<Search
-  placeholder="input search text"
-  allowClear
-  enterButton="Search"
-  size="large"
-  onSearch={onSearch}
-/>
-
-</Space>
-*/
-<Search placeholder="Search ..." onSearch={onSearch} />
-
-);
-
-const onSearch = value => console.log(value);
 export class AllPosts extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       questions: [],
-      courses: []
+      courses: [],
+      search: ''
     };
   }
   componentDidMount() {
@@ -372,8 +353,29 @@ export class AllPosts extends Component {
       });
   }
   questionList() {
-    return this.state.questions.map(currentquestion => {
+    let filtredPosts = this.state.questions.filter(
+      (currentquestion) => {
+        return currentquestion.title.toLowerCase().indexOf(
+          this.state.search.toLowerCase()) !== -1;
+      }
+    );
+    if(filtredPosts.length > 0){
+    return filtredPosts.map(currentquestion => {
       return <Question question={currentquestion} />;
+    });
+  }
+    else return <Card>
+   <div align= "center">
+  <h1><i className="icon icon-search-new"/></h1> 
+   <h2>We couldn't find anything for <a>{this.state.search}</a></h2>
+   <h3>
+Try different or less specific keywords.</h3> 
+    </div>
+    </Card>
+  }
+  onSearch(event) {
+    this.setState({
+      search: event.target.value.substr(0, 20)
     });
   }
   CoursesList() {
@@ -394,21 +396,20 @@ export class AllPosts extends Component {
   User(){
     return <User />
   }
-  Search (){
-    return <Search />
-  }
   render() {
     return (
       <div className="gx-main-content">
        
         <Row gutter={24}>
           <Col className="gutter-row" span={6}>
-            
              {this.User()}
-           
           </Col>
           <Col className="gutter-row" span={12}>
-          <Row>{this.Search()}</Row>
+          <Row>
+          <Search placeholder="Search ..."
+      value={this.state.search}
+      onChange= {this.onSearch.bind(this)} />
+          </Row>
             <div className="gx-module-add-task">
             <div className="gx-testimonial-bg gx-standard gx-slide-item gx-text-left">
       <div className="gx-media">
