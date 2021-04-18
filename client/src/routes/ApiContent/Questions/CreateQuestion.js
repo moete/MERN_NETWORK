@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Form, Input, Button, Upload, Icon, Alert } from "antd";
+import { message } from "antd/lib/index";
+import { Link } from "react-router-dom";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -58,29 +60,36 @@ export class CreateQuestion extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      console.log("values", values);
+      if (!err) {
+        const formData = new FormData();
 
-    const formData = new FormData();
-
-    formData.append("title", this.state.title);
-    formData.append("contentText", this.state.contentText);
-    formData.append("tags", this.state.tags);
-    formData.append("image", this.state.originalname);
-
-    console.log(formData);
-    const config = {
-      headers: {
-          'content-type': 'multipart/form-data'
+        formData.append("title", this.state.title);
+        formData.append("contentText", this.state.contentText);
+        formData.append("tags", this.state.tags);
+        formData.append("image", this.state.originalname);
+    
+        console.log(formData);
+        const config = {
+          headers: {
+              'content-type': 'multipart/form-data'
+          }
+      };
+        axios
+          .post("http://localhost:5000/question/add", formData,config)
+          .then(res => console.log(res.data));
+    
+        window.location = "/question/my-posts";
       }
-  };
-    axios
-      .post("http://localhost:5000/question/add", formData,config)
-      .then(res => console.log(res.data));
-
-    window.location = "/question/my-posts";
+    });
+  
   
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
+    const { showMessage, loader, alertMessage } = this.props;
     return (
       <>
         <Card className="gx-card" title="Ask a question">
@@ -91,9 +100,16 @@ export class CreateQuestion extends Component {
               hasFeedback
               value={this.state.title}
               onChange={this.onChangeTitle}
-              //   validateStatus="success"
             >
-              <Input placeholder="I'm the title" />
+               {getFieldDecorator("title", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Title is missing !"
+                      }
+                    ]
+                  })(
+              <Input placeholder="I'm the title" />)}
             </FormItem>
             <FormItem
               {...formItemLayout}
@@ -102,11 +118,22 @@ export class CreateQuestion extends Component {
               value={this.state.contentText}
               onChange={this.onChangeContentText}
             >
+                {getFieldDecorator("Body", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "content text is missing !",
+                        min : 6,
+                        message :"contentText must have 6+ characters long"
+                      }
+                    ]
+                  })(
               <TextArea
                 rows={6}
                 placeholder="I'm the content text"
                 id="success"
               />
+              )}
             </FormItem>
             <FormItem
               {...formItemLayout}
@@ -115,7 +142,15 @@ export class CreateQuestion extends Component {
               value={this.state.tags}
               onChange={this.onChangeTags}
             >
-              <Input placeholder="Tags & technologies" id="success" />
+                {getFieldDecorator("tags", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Please enter at least one tag !"
+                      }
+                    ]
+                  })(
+              <Input placeholder="Tags & technologies" id="success" />)}
             </FormItem>
           
         <FormItem
@@ -123,6 +158,14 @@ export class CreateQuestion extends Component {
             label="Screenshot"
             onChange={this.onChangeFile}
           >
+            {getFieldDecorator("image", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Screenshot is missing !"
+                      }
+                    ]
+                  })(
             <div className="dropbox">
               {(
                 <Upload.Dragger name="files" action="/upload.do" listType="picture">
@@ -134,7 +177,9 @@ export class CreateQuestion extends Component {
                 </Upload.Dragger>
               )}
             </div>
-          </FormItem>
+         
+                  )}
+                  </FormItem>
 
         
           </Form>
@@ -149,4 +194,4 @@ export class CreateQuestion extends Component {
   }
 }
 
-export default CreateQuestion;
+export default Form.create()(CreateQuestion);

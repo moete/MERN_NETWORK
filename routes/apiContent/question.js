@@ -3,7 +3,11 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const { check, validationResult } = require('express-validator/check');
+const {validateFile} = require('../../middleware/validator');
+
 const Question = require("../../models/question.model");
+
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./client/public/uploads/");
@@ -42,7 +46,21 @@ router.get('/mari', function(req, res, next) {
 // @route GET api/question/add
 // @description Get all questions
 // @access Public
-router.post("/add", upload.single("image"), async (req, res) => {
+router.post("/add",
+   upload.single("image"), 
+   validateFile,
+
+[
+  check('title', 'title is required').not().isEmpty(),
+  check('contentText', 'contentText is required').not().isEmpty(),
+  check('contentText', 'contentText must have 6+ characters long').isLength({ min: 6 }),
+  check('tags', 'tags is required').not().isEmpty()
+ 
+ ] , async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
   const newQuestion = new Question({
     title: req.body.title,
     question_date:new Date(),
