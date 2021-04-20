@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise ;
 
-const JobSchema = new mongoose.Schema({
+let Schema = mongoose.Schema
+const JobSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -16,7 +18,6 @@ const JobSchema = new mongoose.Schema({
   },
   start_date: {
     type: Date,
-    required: true
   },
   employees_needed: {
     type: Number
@@ -26,7 +27,7 @@ const JobSchema = new mongoose.Schema({
   },
   company_id: {
     type: Schema.Types.ObjectId,
-    ref: 'Company',
+    ref: 'company',
     required: true
  },
   date_process_started: {
@@ -35,14 +36,6 @@ const JobSchema = new mongoose.Schema({
   }
 });
 
-JobSchema.virtual('jobposted_on', {
-  ref: 'Posted_on', //The Model to use
-  localField: '_id', //Find in Model, where localField 
-  foreignField: 'job_id', // is equal to foreignField
-});
 
-// Set Object and Json property to true. Default is set to false
-JobSchema.set('toObject', { virtuals: true });
-JobSchema.set('toJSON', { virtuals: true });
 
 module.exports = Job = mongoose.model('job', JobSchema);

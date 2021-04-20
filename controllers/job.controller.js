@@ -9,9 +9,9 @@ const Job = require('../models/Job');
 // @description Get all Jobs
 // @access Public
 const getAllJobs = async (req, res) => {
-    Job.find()
+    Job.find().populate('company_id',{company_name:1})
       .then(Jobs => res.json(Jobs))
-      .catch(err => res.status(404).json({ noJobsfound: 'No Jobies found' }));
+      .catch(err => res.status(404).json({ noJobsfound: 'No Jobs found' }));
   };
 
 

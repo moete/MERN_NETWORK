@@ -3,7 +3,7 @@ import {Card, Icon, Input, Tag, Tooltip} from "antd";
 
 class Dynamic extends React.Component {
   state = {
-    tags: ['Unremovable', 'Tag 2', 'Tag 3'],
+    tags: ['FullStackJs', 'DataScience', 'Intership' , 'Remote'],
     inputVisible: false,
     inputValue: '',
   };
@@ -42,7 +42,7 @@ class Dynamic extends React.Component {
   render() {
     const {tags, inputVisible, inputValue} = this.state;
     return (
-      <Card title="Dynamic" className="gx-card">
+      <Card title="Search by tags" className="gx-card">
         {tags.map((tag, index) => {
           const isLongTag = tag.length > 20;
           const tagElem = (

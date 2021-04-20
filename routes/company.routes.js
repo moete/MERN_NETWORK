@@ -5,11 +5,12 @@ const {
     createCompany,
     updateCompanyById,
     deleteCompany,
+  
 } = require("../controllers/company.controller");
 
 const router = new express.Router();
 
-router.post("/create", createCompany);
+router.post("/", createCompany);
 router.get("/showcompanies", getAllCompanies);
 router.get("/showbyId", getCompanyById);
 router.patch("/updatecompany/:id", updateCompanyById);

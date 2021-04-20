@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+let Schema = mongoose.Schema ;
+mongoose.Promise = global.Promise ;
 
-const PostedOnSchema = new mongoose.Schema({
+const PostedOnSchema = new Schema({
   description: {
     type: String,
     required: true
@@ -16,4 +18,4 @@ const PostedOnSchema = new mongoose.Schema({
  }
 });
 
-module.exports = Company = mongoose.model('postedOn', PostedOnSchema);
+module.exports = postedon = mongoose.model('postedOn', PostedOnSchema);

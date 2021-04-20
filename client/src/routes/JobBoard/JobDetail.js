@@ -1,19 +1,20 @@
 import React, { Component, useState } from "react";
-import "antd/dist/antd.css";
 import {
   PageHeader,
-  Menu,
-  Dropdown,
+
   Button,
   Tag,
   Typography,
   Row,
-  Card
+  Card,
+  Descriptions,
+  Badge 
 } from "antd";
-import "../../styles/jobs/job.css";
 
 import Basic from "../components/navigation/Breadcrumb/Basic";
-export default function jobDetail({ match }) {
+export default function jobDetail(props,{ match }) {
+  const { menu, jobs } = props;
+
   const { Paragraph } = Typography;
 
   const IconLink = ({ src, text }) => (
@@ -46,12 +47,13 @@ export default function jobDetail({ match }) {
 
   const Content = ({ children }) => (
     <Row>
-      <div style={{ flex: 4 }}>{children}</div>
+      <div style={{ flex: 6 }}>{children}</div>
     </Row>
   );
+  if(jobs.length > 0) {
   return (
     <div  className="gx-main-content gx-pb-sm-4">
-      <Card className="gx-card" title="Search for your next Job">
+      <Card className="gx-card" title="Get More Info for your next Job">
         <Basic> </Basic>
         <PageHeader
           title="Full stack Enginner "
@@ -71,7 +73,27 @@ export default function jobDetail({ match }) {
         </PageHeader>
         ,
       </Card>
+    <Descriptions title="Job Info" bordered>
+    <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
+    <Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
+    <Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
+    <Descriptions.Item label="Order time">2018-04-24 18:00:00</Descriptions.Item>
+    <Descriptions.Item label="Usage Time" span={2}>
+      2019-04-24 18:00:00
+    </Descriptions.Item>
+    <Descriptions.Item label="Status" span={3}>
+      <Badge status="processing" text="Actievly recruiting" />
+    </Descriptions.Item>
+    <Descriptions.Item label="Negotiated Amount">$80.00</Descriptions.Item>
+    <Descriptions.Item label="Discount">$20.00</Descriptions.Item>
+    <Descriptions.Item label="Official Receipts">$60.00</Descriptions.Item>
+   
+  </Descriptions>,
 
     </div>
   );
+        }
+        else {
+            return     ( <h1> No Details</h1>)
+              }
 }

@@ -1,5 +1,5 @@
 import { PageHeader, Menu, Dropdown, Button, Tag, Typography, Row,Card,Popconfirm ,message} from 'antd';
-import { EllipsisOutlined } from '@ant-design/icons';
+//import { EllipsisOutlined } from '@ant-design/icons';
 import '../../styles/jobs/job.css';
 import './index.css'
 import React from 'react' ;
@@ -43,12 +43,8 @@ const DropdownMenu = () => (
         padding: 0,
       }}
     >
-      <EllipsisOutlined
-        style={{
-          fontSize: 20,
-          verticalAlign: 'top',
-        }}
-      />
+      
+    
     </Button>
   </Dropdown>
 );

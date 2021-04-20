@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
-const CompanySchema = new mongoose.Schema({
+mongoose.Promise = global.Promise ;
+let Schema = mongoose.Schema
+const CompanySchema = new Schema({
   company_name: {
     type: String,
     required: true
@@ -9,15 +10,6 @@ const CompanySchema = new mongoose.Schema({
    type: String
   }
 });
-/*
-CompanySchema.virtual('companyid', {
-    ref: 'Job', //The Model to use
-    localField: '_id', //Find in Model, where localField 
-    foreignField: 'company_id', // is equal to foreignField
- });
- 
- // Set Object and Json property to true. Default is set to false
- CompanySchema.set('toObject', { virtuals: true });
- CompanySchema.set('toJSON', { virtuals: true });
-*/
-module.exports = Company = mongoose.model('company', CompanySchema);
+
+
+module.exports = company = mongoose.model('company', CompanySchema);
