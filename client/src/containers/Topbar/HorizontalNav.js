@@ -68,34 +68,6 @@ class HorizontalNav extends Component {
               <IntlMessages id="My Sent Invitations" />
             </Link>
           </Menu.Item>
-
-          <Menu.Item key="extra-components/sweet-alert">
-            <Link to="/extra-components/sweet-alert">
-              <i className="icon icon-sweet-alert" />
-              <IntlMessages id="Remove" />
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item key="social-apps/profile">
-            <Link to="/social-apps/profile">
-              <i className="icon icon-profile2" />
-              <IntlMessages id="sidebar.extensions.profile" />
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item key="social-apps/wall">
-            <Link to="/social-apps/wall">
-              <i className="icon icon-avatar -flex-column-reverse" />
-              <IntlMessages id="sidebar.wall" />
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item key="in-built-apps/firebase-crud">
-            <Link to="/in-built-apps/firebase-crud">
-              <i className="icon icon-icon" />
-              <IntlMessages id="sidebar.crud" />
-            </Link>
-          </Menu.Item>
         </SubMenu>
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}

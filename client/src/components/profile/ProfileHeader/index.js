@@ -1,16 +1,22 @@
 import React, { Fragment, useEffect } from "react";
-import { Avatar, Button } from "antd";
+import { Avatar, Button, Icon } from "antd";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCurrentProfile } from "../../../appRedux/actions/profile";
+import {
+  deleteAccount,
+  getCurrentProfile
+} from "../../../appRedux/actions/profile";
 const ProfileHeader = ({
+  deleteAccount,
   getCurrentProfile,
   auth: { authUser, user },
-  profile: { profile, loader }
+  profile: { profile, loader },
+  social: { instagram, twitter, facebook, youtube, linkedin }
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
+
   return (
     <div className="gx-profile-banner">
       <div className="gx-profile-container">
@@ -27,12 +33,52 @@ const ProfileHeader = ({
                 {profile.status}
               </p>
               <Button type="default">
-                <Link to="/create-profile" className="gx-link">
+                <Link to="/edit-profile" className="gx-link">
                   Edit Profile
                 </Link>
               </Button>
-              <Button type="ghost"> Add Experience</Button>
-              <Button type="ghost"> Add Education</Button>
+              <Button type="ghost">
+                <Link to="/profile/Add-Experience" className="gx-link">
+                  Add Experience
+                </Link>
+              </Button>
+              <Button type="ghost">
+                <Link to="/profile/Add-Education" className="gx-link">
+                  Add Education
+                </Link>
+              </Button>
+              <Button type="danger" ghost onClick={() => deleteAccount()}>
+                Delete My Account
+              </Button>
+              <h3>Socials :</h3>
+              <ul className=" gx-social-link ">
+                {instagram ? (
+                  <li>
+                    <Icon type="instagram" />
+                  </li>
+                ) : null}
+                {linkedin ? (
+                  <li>
+                    <Icon type="linkedin" />
+                  </li>
+                ) : null}
+
+                {twitter ? (
+                  <li>
+                    <Icon type="twitter" />
+                  </li>
+                ) : null}
+                {facebook ? (
+                  <li>
+                    <Icon type="facebook" />
+                  </li>
+                ) : null}
+                {youtube ? (
+                  <li>
+                    <Icon type="youtube" />
+                  </li>
+                ) : null}
+              </ul>
             </div>
           </div>
           <div className="gx-profile-banner-top-right">
@@ -53,23 +99,7 @@ const ProfileHeader = ({
           </div>
         </div>
         <div className="gx-profile-banner-bottom">
-          <div className="gx-tab-list">
-            <ul className="gx-navbar-nav">
-              <li>
-                <span className="gx-link">Timeline</span>
-              </li>
-              <li>
-                <span className="gx-link">About</span>
-              </li>
-              <li>
-                <span className="gx-link">Photos</span>
-              </li>
-
-              <li>
-                <span className="gx-link">More</span>
-              </li>
-            </ul>
-          </div>
+          <div className="gx-tab-list"></div>
         </div>
       </div>
     </div>
@@ -77,6 +107,9 @@ const ProfileHeader = ({
 };
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  social: state.profile.profile.social
 });
-export default connect(mapStateToProps, { getCurrentProfile })(ProfileHeader);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  ProfileHeader
+);

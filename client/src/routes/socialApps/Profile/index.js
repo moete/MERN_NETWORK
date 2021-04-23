@@ -1,8 +1,10 @@
 import React, { Component, Fragment, useEffect } from "react";
 import { Col, Row } from "antd";
 import Education from "../../../components/profile/Education/index";
+import Event from "../../../components/profile/Events/index";
 import About from "../../../components/profile/About/index";
 import Experience from "../../../components/profile/Experience/index";
+import ProfileGithub from "../../../components/profile/ProfileGithub/index";
 
 import Contact from "../../../components/profile/Contact/index";
 import { Avatar, Button } from "antd";
@@ -41,12 +43,10 @@ const Profile = ({
               </Col>
 
               <Col xl={8} lg={10} md={10} sm={24} xs={24}>
-                <Photos photoList={photoList} />
-
+                {profile.githubusername && (
+                  <ProfileGithub username={profile.githubusername} />
+                )}
                 <Row>
-                  <Col xl={24} lg={24} md={24} sm={12} xs={24}>
-                    <Contact socials={profile.social} />
-                  </Col>
                   <Col xl={24} lg={24} md={24} sm={12} xs={24}>
                     <Friends friendList={friendList} />
                   </Col>
