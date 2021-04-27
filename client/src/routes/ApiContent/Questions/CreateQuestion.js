@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Form, Input, Button, Upload, Icon, Alert } from "antd";
-import { message } from "antd/lib/index";
-import { Link } from "react-router-dom";
+
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -79,8 +78,8 @@ export class CreateQuestion extends Component {
         axios
           .post("http://localhost:5000/question/add", formData,config)
           .then(res => console.log(res.data));
-    
-        window.location = "/question/my-posts";
+          this.props.history.push("/question/my-posts")
+      //  window.location = "/question/my-posts";
       }
     });
   

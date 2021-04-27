@@ -1,60 +1,71 @@
 import React, { Component } from "react";
 import { Col, Row } from "antd";
 import axios from "axios";
-
+import { Avatar, Image } from "antd";
+import { Link } from "react-router-dom";
 const Course = props => (
-    <Col xl={8} lg={24} md={8} xs={24}>
-  <div class="gx-package">
-    <div class="gx-package-header gx-bg-yellow gx-text-black">
-      <h2 class="gx-price">
-        <i class="icon icon-halfstar"></i>25
-      </h2>
-      <p class="gx-letter-spacing-base gx-text-white gx-text-uppercase gx-mb-0">
-        <span>PERSONAL</span>
-      </p>
-    </div>
-    <div class="gx-package-body">
-      <ul class="gx-package-items">
-        <li>
-          <i class="icon icon-translation"></i>
-          <span>
-            <h3><span>{props.course.title}</span></h3>
-          </span>
-        </li>
-        <li>
-        <i className="icon icon-graduation"/>
-          <span>
-            <span>{props.course.description}</span>
-          </span>
-        </li>
-       
-        <li>
-        <i className="icon icon-attachment"/>
-          <span>
-            <span>Requirments : {props.course.requirments} </span>
-          </span>
-        </li>
-        <li>
-        <i className="icon icon-custom-view"/>
-          <span>
-            <span>Number of chapters  :{props.course.chapters.length}</span>
-          </span>
-        </li>
-        <li>
-        <i className="icon icon-chat"/>
-          <span>
-            <span>Chapters : {props.course.chapters}</span>
-          </span>
-        </li>
-      </ul>
-      <div class="gx-package-footer">
-        <button type="button" class="ant-btn gx-btn-block ant-btn-primary">
-          <span>buy now</span>
-        </button>
+  
+  <Col xl={8} lg={24} md={8} xs={24}>
+  <Link to= "/courses/course-details">
+    <div class="gx-package">
+      
+        
+      <div class="gx-package-header border-radius: 50%">
+        <Avatar
+          size={200}
+          class="gx-img-fluid"
+          src={`/uploads/courses/Logo/Course--${props.course.image}`}
+          alt="course"
+        ></Avatar>
+      </div>
+      <div class="gx-package-body">
+        <ul class="gx-package-items">
+          <li>
+          <h3>
+            <i class="icon icon-translation"></i>0              
+                <span>{props.course.title}</span>
+              </h3>
+          </li>
+          <li>
+          <h5>
+            <i className="icon icon-graduation" />
+          
+              <span>{props.course.description}</span>
+            </h5>
+          </li>
+
+          <li>
+          <h5>
+            <i className="icon icon-attachment" />
+           
+              <span>Requirments : {props.course.requirments} </span>
+            </h5>
+          </li>
+          <li>
+          <h5>
+            <i className="icon icon-custom-view" />
+          
+              <span>Number of chapters :{props.course.chapters.length}</span>
+            </h5>
+          </li>
+          <li>
+          <h5>
+            <i className="icon icon-chat" />
+           
+              <span>Chapters :</span>
+            </h5>
+          </li>
+        </ul>
+        <div class="gx-package-footer">
+          <button type="button" class="ant-btn gx-btn-block ant-btn-primary">
+            <span>Show</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</Col>
+    </Link>
+  </Col>
+
 );
 
 export class ShowAllCourses extends Component {
@@ -84,10 +95,7 @@ export class ShowAllCourses extends Component {
   render() {
     return (
       <div className="gx-price-tables gx-pt-circle">
-        <Row>
-         
-            {this.coursesList()}
-        </Row>
+        <Row>{this.coursesList()}</Row>
       </div>
     );
   }

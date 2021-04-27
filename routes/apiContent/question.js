@@ -1,16 +1,16 @@
 // routes/api/questions.js
-
+const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const { check, validationResult } = require('express-validator/check');
 const {validateFile} = require('../../middleware/validator');
-
+const auth = require("../../middleware/auth")
 const Question = require("../../models/question.model");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./client/public/uploads/");
+    cb(null, "./client/public/uploads/Posts");
   },
   filename: (req, file, cb) => {
     cb(null, "Screenshot-Post--" + file.originalname);
@@ -39,10 +39,6 @@ router.get("/today", (req, res) => {
       res.status(404).json({ noquestionsfound: "No questions found" })
     );
 });
-router.get('/mari', function(req, res, next) {
- 
-  res.send( 'date '+ new Date (Date.now()).toLocaleDateString() );
-});
 // @route GET api/question/add
 // @description Get all questions
 // @access Public
@@ -62,11 +58,13 @@ router.post("/add",
     return res.status(422).json({ errors: errors.array() });
   }
   const newQuestion = new Question({
+    _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     question_date:new Date(),
     contentText: req.body.contentText,
     tags: req.body.tags,
     image: req.file.originalname,
+    owner: req.body.owner,
   });
 
   newQuestion
@@ -79,10 +77,40 @@ router.post("/add",
 // @description Get single question by id
 // @access Public
 router.route('/:id').get((req, res) => {
-  Question.findById(req.params.id)
+  Question.findOne({ "_id": req.params.id})
   .then(question => res.json(question))
   .catch(err => res.status(400).json('Error: ' +err));
 });
+/* // @route POST api/question/add
+// @description Get all questions
+// @access Public
+router.post('/add', auth, upload.single('image'), async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    const newQuestion = new Question({
+      title: req.body.title,
+      question_date: new Date(),
+      contentText: req.body.contentText,
+      tags: req.body.tags,
+      image: req.body.image,
+      name: user.name,
+      avatar: user.avatar,
+      user: req.user.id,
+    });
+    const question = await newQuestion.save();
+    res.json(question);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+
+  newQuestion
+    .save()
+    .then(() => res.json('Question added!'))
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+*/
+
 // @route GET api/question/:id
 // @description Delete question by id
 // @access Public
@@ -129,13 +157,17 @@ router.route("/verified/:id").post((req, res) => {
 
 // add comment
 
-router.route("/addComments/:id").post((req, res) => {
-    Question.findById(req.params.id)
+router.route("/addAnswer/:id").post((req, res) => {
+    Question.findByIdAndUpdate( req.params.id, req.body)
       .then((qst) => {
        qst.answers.push({ 
-         answer: req.body.answer , 
-         user: req.body.user
+          _id: new mongoose.Types.ObjectId(),
+          contentAnswer: req.body.contentAnswer,
+          contentCode: req.body.contentCode,
+         // owner: (req.user).id,
+          answer_date: new Date()
       });
+      
         qst
           .save()
           .then(() => res.json("comment added !"))

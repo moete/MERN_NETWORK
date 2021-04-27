@@ -11,6 +11,8 @@ const QuestionsViews = ({match}) => (
     <Route path={`${match.url}/edit-question`} component={asyncComponent(() => import('./EditQuestion'))}/>
     <Route path={`${match.url}/filtre-tags`} component={asyncComponent(() => import('./FiltreByTags'))}/>
     <Route path={`${match.url}/my-posts`} component={asyncComponent(() => import('./My_Posts'))}/>
+    <Route path={`${match.url}/stackoverflow`} component={asyncComponent(() => import('./stackoverflow'))}/>
+
   </Switch>
 );
 

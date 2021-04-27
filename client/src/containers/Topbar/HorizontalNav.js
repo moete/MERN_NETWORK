@@ -102,39 +102,23 @@ class HorizontalNav extends Component {
           key="components"
           title={"Questions & Posts"}
         >
-          <SubMenu
-            className="gx-menu-horizontal"
-            key="general"
-            title={
-              <span>
-                <i className="icon icon-all-contacts" />
-                Questions
-              </span>
-            }
-          >
-            <Menu.Item key="/question">
-              <Link to="/question/question-list">All Question</Link>
-            </Menu.Item>
-            <Menu.Item key="Tags">
-              <Link to="/question/filtre-tags">Tags & Technologies</Link>
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu
-            className="gx-menu-horizontal"
-            key="Posts"
-            title={
-              <span>
-                <i className="icon icon-all-contacts" />
-                <IntlMessages id="Posts" />
-              </span>
-            }
-          >
-            <Menu.Item key="My_Posts">
-              <Link to="/question/my-posts">
-                <IntlMessages id="My Posts" />
-              </Link>
-            </Menu.Item>
-          </SubMenu>
+          <Menu.Item key="/question">
+            <Link to="/question/question-list">
+              <i className="icon icon-navigation" />
+              All Question
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="Tags">
+            <Link to="/question/filtre-tags">
+              <i className="icon icon-alert" />
+              Tags & Technologies
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="My_Posts">
+            <Link to="/question/my-posts">
+              <i className="icon icon-wysiwyg" /> <IntlMessages id="My Posts" />
+            </Link>
+          </Menu.Item>
         </SubMenu>
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
