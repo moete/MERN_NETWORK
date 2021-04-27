@@ -14,7 +14,13 @@ const ProfileItem = ({
   return (
     <Col xl={8} lg={12} md={12} sm={24} xs={24}>
       <Link to={`/profile/${_id}`} className="gx-link">
-        <Card>
+        <Card
+          actions={[
+            <Icon type="setting" key="setting" />,
+            <Icon type="edit" key="edit" />,
+            <Icon type="ellipsis" key="ellipsis" />
+          ]}
+        >
           <Meta
             avatar={<Avatar src={avatar} />}
             title={name}
