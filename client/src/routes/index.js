@@ -15,6 +15,7 @@ import CoursesViews from "./ApiContent/Courses/index";
 import createprofile from "../components/profile/profile_forms/CreateProfile";
 import addexp from "../components/profile/profile_forms/AddExperience";
 import addEdu from "../components/profile/profile_forms/AddEducation";
+import profiles from "../components/profile/profiles/Profiles";
 import editprofile from "../components/profile/profile_forms/EditProfile";
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
@@ -36,6 +37,7 @@ const App = ({ match }) => (
       <Route path="/edit-profile" component={editprofile} />
       <Route path="/profile/Add-Experience" component={addexp} />
       <Route path="/profile/Add-Education" component={addEdu} />
+      <Route path="/profile/profiles" component={profiles} />
       <Route path={`${match.url}group`} component={GroupsViews} />
       <Route path={`${match.url}invitation`} component={invitationsViews} />
     </Switch>

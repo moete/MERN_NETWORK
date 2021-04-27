@@ -4,6 +4,7 @@ import {
   ON_SHOW_LOADER,
   SHOW_MESSAGE,
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_ERROR,
   CLEAR_PROFILE,
   CREATE_PROFILE_FAIL,
@@ -38,6 +39,12 @@ export default function(state = initialState, action) {
         profile: payload,
         loader: false,
         initURL: "/question/question-list"
+      };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loader: false
       };
     case PROFILE_ERROR:
       return {

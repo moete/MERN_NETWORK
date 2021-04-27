@@ -40,6 +40,8 @@ export const GET_REPOS = "GET_REPOS";
 export const NO_REPOS = "NO_REPOS";
 
 //profile
+export const GET_PROFILES = "GET_PROFILES";
+
 export const UPD_PROF = "UPD_PROF";
 export const ADD_PROFILE_EDUCATION_FAIL = "ADD_PROFILE_EDUCATION_FAIL";
 

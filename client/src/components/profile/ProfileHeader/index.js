@@ -83,12 +83,15 @@ const ProfileHeader = ({
           </div>
           <div className="gx-profile-banner-top-right">
             <ul className="gx-follower-list">
-              <li>
-                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                  2k+
-                </span>
-                <span className="gx-fs-sm">Followers</span>
-              </li>
+              <Link to="/profile/profiles" className="gx-link">
+                <li>
+                  <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
+                    2k+
+                  </span>
+                  <span className="gx-fs-sm">Followers</span>
+                </li>
+              </Link>
+
               <li>
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
                   847
