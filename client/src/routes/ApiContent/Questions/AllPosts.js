@@ -1,43 +1,47 @@
 import React, { Component } from "react";
-import { Input, Tag, Card, Col, Row } from "antd";
+import { Input,Button, Tag, Card, Col, Row } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Widget from "components/Widget/index";
+import CircularProgress from "components/CircularProgress/index";
+
+import { connect } from "react-redux";
+import { getCurrentProfile } from "../../../appRedux/actions/profile";
 
 const Question = props => (
   <Col>
     <Card>
       <div>
-        <div class="gx-wall-content">
-          <div class="gx-media gx-wall-user-info gx-flex-nowrap gx-align-items-center">
-            <span class="ant-avatar gx-mr-3 gx-mb-2 gx-size-50 ant-avatar-circle ant-avatar-image">
+        <div className="gx-wall-content">
+          <div className="gx-media gx-wall-user-info gx-flex-nowrap gx-align-items-center">
+            <span className="ant-avatar gx-mr-3 gx-mb-2 gx-size-50 ant-avatar-circle ant-avatar-image">
               <img src="https://via.placeholder.com/500x500"></img>
             </span>
-            <div class="gx-media-body">
-              <h5 class="gx-wall-user-title">By: {props.question.owner}</h5>
-              <p class="gx-text-grey gx-fs-sm gx-mb-0">
+            <div className="gx-media-body">
+              <h5 className="gx-wall-user-title">By: {props.question.owner}</h5>
+              <p className="gx-text-grey gx-fs-sm gx-mb-0">
                 {props.question.question_date.substring(0, 10)}
               </p>
             </div>
           </div>
           <p></p>
 
-          <div class="gx-wall-comment-box">
-            <div class="gx-media gx-flex-nowrap gx-wall-user-info gx-mb-3">
-              <div class="gx-media-body">
+          <div className="gx-wall-comment-box">
+            <div className="gx-media gx-flex-nowrap gx-wall-user-info gx-mb-3">
+              <div className="gx-media-body">
                 <Link to={"/question/question-details/" + props.question._id}>
-                  <h3 class="gx-wall-user-title">{props.question.title}</h3>
+                  <h3 className="gx-wall-user-title">{props.question.title}</h3>
                 </Link>
-                <p class="gx-text-grey gx-fs-sm gx-mb-0">
+                <p className="gx-text-grey gx-fs-sm gx-mb-0">
                   {props.question.question_date.substring(0, 10)}
                 </p>
-                <p class="gx-mt-2">{props.question.contentText}</p>
+                <p className="gx-mt-2">{props.question.contentText}</p>
               </div>
             </div>
           </div>
-          <div class="gx-wall-medialist">
-            <div class="gx-gallery-grid gx-gallery-2">
-              <div class="gx-gallery-item">
+          <div className="gx-wall-medialist">
+            <div className="gx-gallery-grid gx-gallery-2">
+              <div className="gx-gallery-item">
                 <img
                   class="gx-img-fluid"
                   src={`/uploads/Posts/Screenshot-Post--${props.question.image}`}
@@ -46,34 +50,37 @@ const Question = props => (
               </div>
             </div>
           </div>
-          <div class="gx-flex-row gx-mb-2 gx-mb-xl-3">
-            <p class="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
-              <i class="icon icon-view-o gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle"></i>
-              <span class="gx-d-inline-flex gx-vertical-align-middle">
+          <div className="gx-flex-row gx-mb-2 gx-mb-xl-3">
+            <p className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
+              <i className="icon icon-view-o gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle"></i>
+              <span className="gx-d-inline-flex gx-vertical-align-middle">
                 {props.question.views} likes
               </span>
             </p>
-            <p class="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
-              <i class="icon icon-like-o gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle"></i>
-              <span class="gx-d-inline-flex gx-vertical-align-middle">
+            <p className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
+              <i className="icon icon-like-o gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle"></i>
+              <span className="gx-d-inline-flex gx-vertical-align-middle">
                 {props.question.votes} votes
               </span>
             </p>
-            <p class="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
-              <i class="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle"></i>
-              <span class="gx-d-inline-flex gx-vertical-align-middle">
+            <p className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
+              <i className="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle"></i>
+              <span className="gx-d-inline-flex gx-vertical-align-middle">
                 {props.question.answers.length} comment
               </span>
             </p>
           </div>
-          <div class="gx-flex-row">
-            <button type="button" class="ant-btn ant-btn-primary ant-btn-sm">
+          <div className="gx-flex-row">
+            <button
+              type="button"
+              className="ant-btn ant-btn-primary ant-btn-sm"
+            >
               <span>Like</span>
             </button>
             <Link to={"/question/question-details/" + props.question._id}>
             <button
               type="button"
-              class="ant-btn gx-btn-primary-light ant-btn-sm"
+              className="ant-btn gx-btn-primary-light ant-btn-sm"
             >
               <span>Comment</span>
             </button>
@@ -171,20 +178,20 @@ const Course = props => (
 );
 const Today = props => (
   <Row>
-    <li mode="alternate" class="ant-timeline-item">
-      <div class="ant-timeline-item-tail"></div>
-      <div class="ant-timeline-item-head ant-timeline-item-head-custom ant-timeline-item-head-blue">
-        <span class="ant-avatar gx-size-40 ant-avatar-square ant-avatar-image">
+    <li mode="alternate" className="ant-timeline-item">
+      <div className="ant-timeline-item-tail"></div>
+      <div className="ant-timeline-item-head ant-timeline-item-head-custom ant-timeline-item-head-blue">
+        <span className="ant-avatar gx-size-40 ant-avatar-square ant-avatar-image">
           <img
-            class="gx-img-fluid"
+            className="gx-img-fluid"
             src={`/uploads/Screenshot-Post--${props.question.image}`}
             alt="post"
           ></img>
         </span>
       </div>
-      <div class="ant-timeline-item-content">
-        <p class="gx-mb-0">
-          <span class="gx-link">{props.question.title}</span>
+      <div className="ant-timeline-item-content">
+        <p className="gx-mb-0">
+          <span className="gx-link">{props.question.title}</span>
         </p>
       </div>
     </li>
@@ -194,20 +201,20 @@ const Today = props => (
 );
 const Yesterday = props => (
   <Row>
-    <li mode="alternate" class="ant-timeline-item">
-      <div class="ant-timeline-item-tail"></div>
-      <div class="ant-timeline-item-head ant-timeline-item-head-custom ant-timeline-item-head-blue">
-        <span class="ant-avatar gx-size-40 ant-avatar-square ant-avatar-image">
+    <li mode="alternate" className="ant-timeline-item">
+      <div className="ant-timeline-item-tail"></div>
+      <div className="ant-timeline-item-head ant-timeline-item-head-custom ant-timeline-item-head-blue">
+        <span className="ant-avatar gx-size-40 ant-avatar-square ant-avatar-image">
           <img
-            class="gx-img-fluid"
+            className="gx-img-fluid"
             src={`/uploads/Screenshot-Post--${props.question.image}`}
             alt="post"
           ></img>
         </span>
       </div>
-      <div class="ant-timeline-item-content">
-        <p class="gx-mb-0">
-          <span class="gx-link">{props.question.title}</span>
+      <div className="ant-timeline-item-content">
+        <p className="gx-mb-0">
+          <span className="gx-link">{props.question.title}</span>
         </p>
       </div>
     </li>
@@ -215,145 +222,154 @@ const Yesterday = props => (
     <div></div>
   </Row>
 );
-const User = props => (
+const User = ({ profile }) => (
   <div>
-    <div class="gx-wall-scroll">
+    <div className="gx-wall-scroll">
       <div>
-        <div class="gx-profileon">
-          <div class="gx-profileon-thumb gx-profileon-thumb-htctrcrop">
-            <img src="https://via.placeholder.com/500x500" alt=""></img>
+        <div className="gx-profileon">
+          <div className="gx-profileon-thumb gx-profileon-thumb-htctrcrop">
+            <img src={profile.user.avatar} alt=""></img>
           </div>
-          <div class="gx-profileon-content">
-            <p class="gx-profileon-title">Chelsea Jones @chelsea</p>
-            <span class="gx-fs-sm">Florida, USA</span>
+          <div
+            className="gx-profileon-content"
+            style={{ backgroundColor: "#38424b", opacity: "85%" }}
+          >
+            <p className="gx-profileon-title">{profile.user.name} </p>
+            <span className="gx-fs-sm">{profile.location}</span>
           </div>
         </div>
-        <div class="gx-follower gx-text-center">
-          <ul class="gx-follower-list">
+        <div className="gx-follower gx-text-center">
+          <ul className="gx-follower-list">
             <li>
-              <span class="gx-follower-title">2k+</span>
+              <span className="gx-follower-title">2k+</span>
               <span>Followers</span>
             </li>
             <li>
-              <span class="gx-follower-title">847</span>
+              <span className="gx-follower-title">847</span>
               <span>Following</span>
             </li>
             <li>
-              <span class="gx-follower-title">327</span>
+              <span className="gx-follower-title">327</span>
               <span>project</span>
             </li>
           </ul>
         </div>
-        <div class="gx-mb-xl-4 gx-mb-3">
+        <div className="gx-mb-xl-4 gx-mb-3">
           <p>You are following Chelsea Jones @chelsea</p>
           <button
             type="button"
-            class="ant-btn gx-btn-sm gx-mb-0 ant-btn-primary"
+            className="ant-btn gx-btn-sm gx-mb-0 ant-btn-primary"
           >
             <span>Unfollow</span>
           </button>
         </div>
-        <div class="gx-entry-sec">
-          <h2 class="gx-entry-title ">
+        <div className="gx-entry-sec">
+          <h2 className="gx-entry-title ">
             Interests
-            <span class="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
+            <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
           </h2>
-          <ul class="gx-list-inline">
+          <ul className="gx-list-inline">
             <li>
-              <span class="gx-link gx-btn gx-btn-white gx-mb-10">
+              <span className="gx-link gx-btn gx-btn-white gx-mb-10">
                 javaScript
               </span>
             </li>
             <li>
-              <span class="gx-link gx-btn gx-btn-white gx-mb-10">ReactJs</span>
+              <span className="gx-link gx-btn gx-btn-white gx-mb-10">
+                ReactJs
+              </span>
             </li>
             <li>
-              <span class="gx-link gx-btn gx-btn-white gx-mb-10">Symfony</span>
+              <span className="gx-link gx-btn gx-btn-white gx-mb-10">
+                Symfony
+              </span>
             </li>
             <li>
-              <span class="gx-link gx-btn gx-btn-white gx-mb-10">php</span>
+              <span className="gx-link gx-btn gx-btn-white gx-mb-10">php</span>
             </li>
             <li>
-              <span class="gx-link gx-btn gx-btn-white gx-mb-10">Mongoose</span>
+              <span className="gx-link gx-btn gx-btn-white gx-mb-10">
+                Mongoose
+              </span>
             </li>
           </ul>
         </div>
-        <div class="gx-entry-sec">
-          <h2 class="gx-entry-title ">
+        <div className="gx-entry-sec">
+          <h2 className="gx-entry-title ">
             <span>
               Friends - 530
-              <span class="gx-text-grey">(27 Mutual)</span>
+              <span className="gx-text-grey">(27 Mutual)</span>
             </span>
-            <span class="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
+            <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
           </h2>
-          <ul class="gx-fnd-list">
-            <li class="gx-mb-2">
-              <div class="gx-user-fnd">
+          <ul className="gx-fnd-list">
+            <li className="gx-mb-2">
+              <div className="gx-user-fnd">
                 <img alt="..." src="https://via.placeholder.com/150x150"></img>
-                <div class="gx-user-fnd-content">
-                  <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper">
-                    <span class="ant-badge-status-dot ant-badge-status-success"></span>
-                    <span class="ant-badge-status-text"></span>
+                <div className="gx-user-fnd-content">
+                  <span className="ant-badge ant-badge-status ant-badge-not-a-wrapper">
+                    <span className="ant-badge-status-dot ant-badge-status-success"></span>
+                    <span className="ant-badge-status-text"></span>
                   </span>
                   <h6>Chelsea</h6>
                 </div>
               </div>
             </li>
-            <li class="gx-mb-2">
-              <div class="gx-user-fnd">
+            <li className="gx-mb-2">
+              <div className="gx-user-fnd">
                 <img alt="..." src="https://via.placeholder.com/150x150"></img>
-                <div class="gx-user-fnd-content">
-                  <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper">
-                    <span class="ant-badge-status-dot ant-badge-status-error"></span>
-                    <span class="ant-badge-status-text"></span>
+                <div className="gx-user-fnd-content">
+                  <span className="ant-badge ant-badge-status ant-badge-not-a-wrapper">
+                    <span className="ant-badge-status-dot ant-badge-status-error"></span>
+                    <span className="ant-badge-status-text"></span>
                   </span>
                   <h6>Kenery Thomson</h6>
                 </div>
               </div>
             </li>
-            <li class="gx-mb-2">
-              <div class="gx-user-fnd">
+            <li className="gx-mb-2">
+              <div className="gx-user-fnd">
                 <img alt="..." src="https://via.placeholder.com/150x150"></img>
-                <div class="gx-user-fnd-content">
-                  <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper">
-                    <span class="ant-badge-status-dot ant-badge-status-warning"></span>
-                    <span class="ant-badge-status-text"></span>
+                <div className="gx-user-fnd-content">
+                  <span className="ant-badge ant-badge-status ant-badge-not-a-wrapper">
+                    <span className="ant-badge-status-dot ant-badge-status-warning"></span>
+                    <span className="ant-badge-status-text"></span>
                   </span>
                   <h6>Amanda</h6>
                 </div>
               </div>
             </li>
-            <li class="gx-mb-2">
-              <div class="gx-user-fnd">
+            <li className="gx-mb-2">
+              <div className="gx-user-fnd">
                 <img alt="..." src="https://via.placeholder.com/150x150"></img>
-                <div class="gx-user-fnd-content">
-                  <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper">
-                    <span class="ant-badge-status-dot ant-badge-status-warning"></span>
-                    <span class="ant-badge-status-text"></span>
+                <div className="gx-user-fnd-content">
+                  <span className="ant-badge ant-badge-status ant-badge-not-a-wrapper">
+                    <span className="ant-badge-status-dot ant-badge-status-warning"></span>
+                    <span className="ant-badge-status-text"></span>
                   </span>
                   <h6>Joshua</h6>
                 </div>
               </div>
             </li>
-            <li class="gx-mb-2">
-              <div class="gx-user-fnd">
+            <li className="gx-mb-2">
+              <div className="gx-user-fnd">
                 <img alt="..." src="https://via.placeholder.com/150x150"></img>
-                <div class="gx-user-fnd-content">
-                  <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper">
-                    <span class="ant-badge-status-dot ant-badge-status-warning"></span>
-                    <span class="ant-badge-status-text"></span>
+                <div className="gx-user-fnd-content">
+                  <span className="ant-badge ant-badge-status ant-badge-not-a-wrapper">
+                    <span className="ant-badge-status-dot ant-badge-status-warning"></span>
+                    <span className="ant-badge-status-text"></span>
                   </span>
                   <h6>Alex Mulski</h6>
                 </div>
               </div>
             </li>
-            <li class="gx-mb-2">
-              <div class="gx-user-fnd">
+            <li className="gx-mb-2">
+              <div className="gx-user-fnd">
                 <img alt="..." src="https://via.placeholder.com/150x150"></img>
-                <div class="gx-user-fnd-content">
-                  <span class="ant-badge ant-badge-status ant-badge-not-a-wrapper">
-                    <span class="ant-badge-status-dot ant-badge-status-warning"></span>
-                    <span class="ant-badge-status-text"></span>
+                <div className="gx-user-fnd-content">
+                  <span className="ant-badge ant-badge-status ant-badge-not-a-wrapper">
+                    <span className="ant-badge-status-dot ant-badge-status-warning"></span>
+                    <span className="ant-badge-status-text"></span>
                   </span>
                   <h6>Stella Johnson</h6>
                 </div>
@@ -362,7 +378,7 @@ const User = props => (
           </ul>
         </div>
       </div>
-      <div class="track-horizontal">
+      <div className="track-horizontal">
         <div></div>
       </div>
       <div></div>
@@ -384,6 +400,7 @@ export class AllPosts extends Component {
       isLoaded: true,
       site: "stackoverflow",
       posts: []
+      isLoading: true
     };
   }
   componentDidMount() {
@@ -428,6 +445,12 @@ export class AllPosts extends Component {
     this.setState({
       search: event.target.value.substr(0, 100)
     });
+    this.props.getCurrentProfile();
+    if (this.state.isLoading) {
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+      }, 5000);
+    }
   }
 
   questionList() {
@@ -490,7 +513,18 @@ export class AllPosts extends Component {
     });
   }
   User() {
-    return <User />;
+    if (this.state.isLoading) {
+      return (
+        <div className="gx-loader-view">
+          <CircularProgress />
+        </div>
+      );
+    } else {
+      return <User profile={this.props.profile.profile} />;
+    }
+  }
+  Search() {
+    return <Search />;
   }
   render() {
     return (
@@ -526,37 +560,37 @@ export class AllPosts extends Component {
             {this.questionList()}
           </Col>
           <Col className="gutter-row" span={6}>
-            <div class="ant-col gx-d-none gx-d-lg-block ant-col-xs-24">
-              <div class="gx-wall-scroll">
+            <div className="ant-col gx-d-none gx-d-lg-block ant-col-xs-24">
+              <div className="gx-wall-scroll">
                 <div>
-                  <div class="gx-entry-sec">
-                    <h2 class="gx-entry-title ">
+                  <div className="gx-entry-sec">
+                    <h2 className="gx-entry-title ">
                       <h3>Available Courses</h3>
-                      <span class="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
+                      <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
                     </h2>
                     <Row gutter={[16, 24]}>{this.CoursesList()}</Row>
                   </div>
-                  <span class="gx-text-primary gx-fs-md gx-pointer gx-d-block gx-mb-4">
+                  <span className="gx-text-primary gx-fs-md gx-pointer gx-d-block gx-mb-4">
                     <Link to={"/courses/courses-list"}> See All Courses </Link>
-                    <i class="icon icon-long-arrow-right gx-fs-xxl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle"></i>
+                    <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle"></i>
                   </span>
                 </div>
-                <div class="gx-entry-sec">
-                  <h2 class="gx-entry-title ">
+                <div className="gx-entry-sec">
+                  <h2 className="gx-entry-title ">
                     Recent Posts
-                    <span class="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
+                    <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
                   </h2>
-                  <div class="gx-timeline-info">
-                    <h4 class="gx-timeline-info-day">Today</h4>
+                  <div className="gx-timeline-info">
+                    <h4 className="gx-timeline-info-day">Today</h4>
                     {this.Today()}
                   </div>
-                  <div class="gx-timeline-info">
-                    <h4 class="gx-timeline-info-day">Yesterday</h4>
+                  <div className="gx-timeline-info">
+                    <h4 className="gx-timeline-info-day">Yesterday</h4>
                     {this.Yesterday()}
                   </div>
-                  <span class="gx-link gx-btn-link">Load More</span>
+                  <span className="gx-link gx-btn-link">Load More</span>
                 </div>
-                <div class="track-horizontal"></div>
+                <div className="track-horizontal"></div>
               </div>
             </div>
           </Col>
@@ -565,5 +599,8 @@ export class AllPosts extends Component {
     );
   }
 }
-
-export default AllPosts;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
+export default connect(mapStateToProps, { getCurrentProfile })(AllPosts);
