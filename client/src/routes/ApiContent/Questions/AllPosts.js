@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input,Button, Tag, Card, Col, Row } from "antd";
+import { Input, Button, Tag, Card, Col, Row } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Widget from "components/Widget/index";
@@ -78,12 +78,12 @@ const Question = props => (
               <span>Like</span>
             </button>
             <Link to={"/question/question-details/" + props.question._id}>
-            <button
-              type="button"
-              className="ant-btn gx-btn-primary-light ant-btn-sm"
-            >
-              <span>Comment</span>
-            </button>
+              <button
+                type="button"
+                className="ant-btn gx-btn-primary-light ant-btn-sm"
+              >
+                <span>Comment</span>
+              </button>
             </Link>
             <button
               type="button"
@@ -94,9 +94,7 @@ const Question = props => (
           </div>
           <div class="gx-wall-comment-box">
             <div class="gx-media gx-mb-2">
-              <span class="ant-avatar gx-mr-3 gx-size-36 ant-avatar-circle ant-avatar-image">
-              </span>
-            
+              <span class="ant-avatar gx-mr-3 gx-size-36 ant-avatar-circle ant-avatar-image"></span>
             </div>
           </div>
         </div>
@@ -152,8 +150,7 @@ const Stack = props => (
       </Row>
 
       <div class="started fr">
-        asked{" "}
-        by{" "}
+        asked by{" "}
         <a href="/users/5056/george-mauer">{props.post.owner.display_name}</a>{" "}
       </div>
     </div>
@@ -399,7 +396,7 @@ export class AllPosts extends Component {
       items: [],
       isLoaded: true,
       site: "stackoverflow",
-      posts: []
+      posts: [],
       isLoading: true
     };
   }
@@ -465,36 +462,36 @@ export class AllPosts extends Component {
       return filtredPosts.map(currentquestion => {
         return <Question question={currentquestion} />;
       });
-    } 
-     else{ 
-       if (this.state.search == "") {
-      return <div>search</div>;
-    }
-    let filtredPosts = this.state.posts.items.filter(currentPost => {
-      return (
-        currentPost.title
-          .toLowerCase()
-          .indexOf(this.state.search.toLowerCase()) !== -1
-      );
-    });
-    if (filtredPosts.length > 0) {
-      return filtredPosts.map(currentPost => {
-        return <Stack post={currentPost} />;
+    } else {
+      if (this.state.search == "") {
+        return <div>search</div>;
+      }
+      let filtredPosts = this.state.posts.items.filter(currentPost => {
+        return (
+          currentPost.title
+            .toLowerCase()
+            .indexOf(this.state.search.toLowerCase()) !== -1
+        );
       });
-    }}
-      return (
-        <Card>
-          <div align="center">
-            <h1>
-              <i className="icon icon-search-new" />
-            </h1>
-            <h2>
-              We couldn't find anything for <a>{this.state.search}</a>
-            </h2>
-            <h3>Try different or less specific keywords.</h3>
-          </div>
-        </Card>
-      );
+      if (filtredPosts.length > 0) {
+        return filtredPosts.map(currentPost => {
+          return <Stack post={currentPost} />;
+        });
+      }
+    }
+    return (
+      <Card>
+        <div align="center">
+          <h1>
+            <i className="icon icon-search-new" />
+          </h1>
+          <h2>
+            We couldn't find anything for <a>{this.state.search}</a>
+          </h2>
+          <h3>Try different or less specific keywords.</h3>
+        </div>
+      </Card>
+    );
   }
 
   CoursesList() {
