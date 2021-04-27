@@ -437,6 +437,13 @@ export class AllPosts extends Component {
         console.log(myJson);
       })
       .catch(error => console.error(error)); //If error occurs you will get here
+
+    this.props.getCurrentProfile();
+    if (this.state.isLoading) {
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+      }, 5000);
+    }
   }
   onSearch(event) {
     this.setState({
