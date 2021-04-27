@@ -10,7 +10,7 @@ const TabPane = Tabs.TabPane;
 const About = ({ auth: { authUser }, profile: { profile, loader } }) => {
   const data = profile.experience;
   const exp = profile.experience[0];
-  const edu = profile.experience[0];
+  const edu = profile.education[0];
 
   return (
     <Widget

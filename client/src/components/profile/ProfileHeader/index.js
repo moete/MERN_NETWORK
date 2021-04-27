@@ -111,6 +111,7 @@ const ProfileHeader = ({
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
+
   social: state.profile.profile.social
 });
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(

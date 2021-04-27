@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+//xl={12} lg={24} md={12} sm={24} xs={24}
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
 const ProfileItem = ({
   profile: {

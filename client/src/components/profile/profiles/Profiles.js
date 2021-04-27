@@ -29,13 +29,15 @@ const Profiles = ({ getProfiles, profile: { profiles, loader } }) => {
           }
           key="1"
         >
-          {Profiles.length > 0 ? (
-            profiles.map(profile => (
-              <ProfileItem key={profile._id} profile={profile} />
-            ))
-          ) : (
-            <h4>No profiles Found ...</h4>
-          )}
+          <Row>
+            {Profiles.length > 0 ? (
+              profiles.map(profile => (
+                <ProfileItem key={profile._id} profile={profile} />
+              ))
+            ) : (
+              <h4>No profiles Found ...</h4>
+            )}
+          </Row>
         </TabPane>
       </Tabs>
     </Card>
