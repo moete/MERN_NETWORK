@@ -5,12 +5,6 @@ import {
   Card,
   Form,
   Icon,
-  InputNumber,
-  Radio,
-  Rate,
-  Select,
-  Slider,
-  Switch,
   Upload
 } from "antd";
 import axios from "axios";

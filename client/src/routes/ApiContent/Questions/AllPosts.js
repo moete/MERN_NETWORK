@@ -8,17 +8,17 @@ import CircularProgress from "components/CircularProgress/index";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../appRedux/actions/profile";
 
-const Question = props => (
+const Question = (props, profile) => (
   <Col>
     <Card>
       <div>
         <div className="gx-wall-content">
           <div className="gx-media gx-wall-user-info gx-flex-nowrap gx-align-items-center">
             <span className="ant-avatar gx-mr-3 gx-mb-2 gx-size-50 ant-avatar-circle ant-avatar-image">
-              <img src="https://via.placeholder.com/500x500"></img>
+              <img src={props.question.owner.avatar}></img>
             </span>
             <div className="gx-media-body">
-              <h5 className="gx-wall-user-title">By: {props.question.owner}</h5>
+              <h5 className="gx-wall-user-title">By: {props.question.owner.name}</h5>
               <p className="gx-text-grey gx-fs-sm gx-mb-0">
                 {props.question.question_date.substring(0, 10)}
               </p>
@@ -172,52 +172,6 @@ const Course = props => (
       </div>
     </Widget>
   </Col>
-);
-const Today = props => (
-  <Row>
-    <li mode="alternate" className="ant-timeline-item">
-      <div className="ant-timeline-item-tail"></div>
-      <div className="ant-timeline-item-head ant-timeline-item-head-custom ant-timeline-item-head-blue">
-        <span className="ant-avatar gx-size-40 ant-avatar-square ant-avatar-image">
-          <img
-            className="gx-img-fluid"
-            src={`/uploads/Screenshot-Post--${props.question.image}`}
-            alt="post"
-          ></img>
-        </span>
-      </div>
-      <div className="ant-timeline-item-content">
-        <p className="gx-mb-0">
-          <span className="gx-link">{props.question.title}</span>
-        </p>
-      </div>
-    </li>
-
-    <div></div>
-  </Row>
-);
-const Yesterday = props => (
-  <Row>
-    <li mode="alternate" className="ant-timeline-item">
-      <div className="ant-timeline-item-tail"></div>
-      <div className="ant-timeline-item-head ant-timeline-item-head-custom ant-timeline-item-head-blue">
-        <span className="ant-avatar gx-size-40 ant-avatar-square ant-avatar-image">
-          <img
-            className="gx-img-fluid"
-            src={`/uploads/Screenshot-Post--${props.question.image}`}
-            alt="post"
-          ></img>
-        </span>
-      </div>
-      <div className="ant-timeline-item-content">
-        <p className="gx-mb-0">
-          <span className="gx-link">{props.question.title}</span>
-        </p>
-      </div>
-    </li>
-
-    <div></div>
-  </Row>
 );
 const User = ({ profile }) => (
   <div>
@@ -506,16 +460,6 @@ export class AllPosts extends Component {
       return <Course course={currentcourse} />;
     });
   }
-  Today() {
-    return this.state.questions.map(currentquestion => {
-      return <Today question={currentquestion} />;
-    });
-  }
-  Yesterday() {
-    return this.state.questions.map(currentquestion => {
-      return <Yesterday question={currentquestion} />;
-    });
-  }
   User() {
     if (this.state.isLoading) {
       return (
@@ -579,22 +523,6 @@ export class AllPosts extends Component {
                     <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle"></i>
                   </span>
                 </div>
-                <div className="gx-entry-sec">
-                  <h2 className="gx-entry-title ">
-                    Recent Posts
-                    <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
-                  </h2>
-                  <div className="gx-timeline-info">
-                    <h4 className="gx-timeline-info-day">Today</h4>
-                    {this.Today()}
-                  </div>
-                  <div className="gx-timeline-info">
-                    <h4 className="gx-timeline-info-day">Yesterday</h4>
-                    {this.Yesterday()}
-                  </div>
-                  <span className="gx-link gx-btn-link">Load More</span>
-                </div>
-                <div className="track-horizontal"></div>
               </div>
             </div>
           </Col>
