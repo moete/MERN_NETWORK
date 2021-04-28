@@ -1,6 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import ReactDOM from "react-dom";
-
 import NextApp from "./NextApp";
 import registerServiceWorker from "./registerServiceWorker";
 // Add this import:

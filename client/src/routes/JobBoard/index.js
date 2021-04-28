@@ -9,9 +9,7 @@ const JOB= ({match}) => (
 
     <Route path={`${match.url}/all-jobs`} component={asyncComponent(() => import('./Jobs'))}/>
 
-    <Route path={`${match.url}/job-details`} component={asyncComponent(() => import('./JobDetail'))}/>
 
-    <Route path={`${match.url}/job-save`} component={asyncComponent(() => import('./JobSave'))}/>
 
     
   </Switch>

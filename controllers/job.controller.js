@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 const Job = require('../models/Job');
-
+const company = require ('../models/Company');
 
 
 // @route GET api/Job/showJobs
 // @description Get all Jobs
 // @access Public
 const getAllJobs = async (req, res) => {
-    Job.find().populate('company_id',{company_name:1})
+    Job.find()
+    .populate("company_id", {company_name : 1})
       .then(Jobs => res.json(Jobs))
       .catch(err => res.status(404).json({ noJobsfound: 'No Jobs found' }));
   };

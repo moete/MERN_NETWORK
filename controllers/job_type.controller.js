@@ -10,6 +10,7 @@ const Job_type = require('../models/Job_type');
 // @access Public
 const getAlljob_types = async (req, res) => {
     Job_type.find()
+    .populate("job_type_id",{type_name:1})
       .then(job_types => res.json(job_types))
       .catch(err => res.status(404).json({ nojob_types: 'No job types found' }));
   };

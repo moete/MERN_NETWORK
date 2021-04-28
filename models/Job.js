@@ -7,9 +7,9 @@ const JobSchema = new Schema({
     type: String,
     required: true
   },
-  job_type_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'Job_type',
+  job_type: {
+    
+    type : String,
     required: true
  },
   posted_date: {
@@ -33,7 +33,15 @@ const JobSchema = new Schema({
   date_process_started: {
     type: Date,
    
+  },
+  languages : {
+    type : String 
+  } ,
+  location : {
+    type : String , 
+    required : true
   }
+   
 });
 
 

@@ -5,11 +5,11 @@ const {
     createJob,
     updateJobById,
     deleteJob,
-} = require("../controllers/job.controller");
+} = require("../controllers/Job.controller");
 
 const router = new express.Router();
 
-router.post("/", createJob);
+router.post("/create", createJob);
 router.get("/showJob", getAllJobs);
 router.get("/showbyId", getJobById);
 router.patch("/updateJob/:id", updateJobById);
