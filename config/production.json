@@ -1,0 +1,7 @@
+{
+  "mongoURI": "mongodb+srv://taz:K0WXDsm16ROSargQ@cluster0.j5yri.mongodb.net/NetworkyDB?retryWrites=true&w=majority",
+  "jwtToken": "mysecrettoken",
+  "githubClientId": "b6eafb767456eda7f03e",
+  "githubSecret": "6618b733d4c13d7d1d861772a834abbc1b30df0b",
+  "githubToken": "90eb8e10f6586d032b30c9424867b7ee96d560cc"
+}

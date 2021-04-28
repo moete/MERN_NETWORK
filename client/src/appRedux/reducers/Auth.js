@@ -10,6 +10,10 @@ import {
   SIGNIN_TWITTER_USER_SUCCESS,
   SIGNIN_USER_SUCCESS,
   SIGNOUT_USER_SUCCESS,
+  FOLLOW_SUCCESS,
+  FOLLOW_FAIL,
+  UNFOLLOW_SUCCESS,
+  UNFOLLOW_FAIL,
   SIGNOUT_USER,
   SIGNUP_USER_SUCCESS,
   USER_LOADED,
@@ -171,6 +175,14 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loader: false,
         authUser: action.payload
+      };
+    }
+    case FOLLOW_SUCCESS: {
+      return {
+        ...state,
+        loader: false,
+        authUser: payload,
+        user: payload
       };
     }
     case SIGNIN_GITHUB_USER_SUCCESS: {

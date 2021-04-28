@@ -10,9 +10,7 @@ const Experience = ({ auth: { authUser }, profile: { profile, loader } }) => {
     <Widget styleName="gx-card-profile">
       <div className="ant-card-head">
         <span className="ant-card-head-title gx-mb-1">Experiences</span>
-        <p className="gx-text-grey gx-fs-sm gx-mb-0">
-          What {authUser.name} is up-to
-        </p>
+        <p className="gx-text-grey gx-fs-sm gx-mb-0"></p>
       </div>
       <div className="gx-pt-md-3">
         {data.map((data, index) => (

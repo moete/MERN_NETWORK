@@ -38,7 +38,10 @@ export const ADMIN_LOGIN = "ADMIN_LOGIN";
 export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
 export const GET_REPOS = "GET_REPOS";
 export const NO_REPOS = "NO_REPOS";
-
+export const FOLLOW_SUCCESS = "FOLLOW_SUCCESS";
+export const FOLLOW_FAIL = "FOLLOW_FAIL";
+export const UNFOLLOW_SUCCESS = "UNFOLLOW_SUCCESS";
+export const UNFOLLOW_FAIL = "UNFOLLOW_FAIL";
 //profile
 export const GET_PROFILES = "GET_PROFILES";
 

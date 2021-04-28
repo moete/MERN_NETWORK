@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 // Use Cors
 
@@ -17,9 +18,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 // init midlleware
 app.use(express.json({ extended: false }));
-app.get('/', (req, res) => {
-  res.send('API Running');
-});
 
 // define routes
 app.use('/api/users', require('./routes/api/users'));
@@ -40,4 +38,12 @@ app.use('/group', groupsRouter);
 app.use('/invitation', invitationsRouter);
 app.use('/membership', membershipsRouter);
 
+//serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -18,7 +18,7 @@ const Question = props => (
               <img src="https://via.placeholder.com/500x500"></img>
             </span>
             <div className="gx-media-body">
-              <h5 className="gx-wall-user-title">By: {props.question.owner}</h5>
+              <h5 className="gx-wall-user-title">By:</h5>
               <p className="gx-text-grey gx-fs-sm gx-mb-0">
                 {props.question.question_date.substring(0, 10)}
               </p>

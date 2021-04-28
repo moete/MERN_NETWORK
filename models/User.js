@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { ObjectId } = mongoose.Schema.Types;
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -26,5 +26,7 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  followers: [{ type: ObjectId, ref: 'User' }],
+  following: [{ type: ObjectId, ref: 'User' }],
 });
 module.exports = User = mongoose.model('user', UserSchema);
