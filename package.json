@@ -42,7 +42,9 @@
     "react-router-dom": "^5.2.0",
     "react-select": "^4.3.0",
     "react-view-component": "^1.0.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
