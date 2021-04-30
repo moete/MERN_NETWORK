@@ -2,6 +2,9 @@
   "name": "mern_project",
   "version": "1.0.0",
   "description": "social network for developers",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "app.js",
   "scripts": {
     "start": "node server",
