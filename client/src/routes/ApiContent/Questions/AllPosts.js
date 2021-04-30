@@ -116,7 +116,7 @@ const Stack = props => (
           </a>
         </h3>
       </div>
-      <div class="excerpt">answer</div>
+      <div class="excerpt"></div>
       <div class="subcommunities float-left"></div>
       <Row>
         <div>

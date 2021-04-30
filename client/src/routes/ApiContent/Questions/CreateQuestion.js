@@ -77,8 +77,8 @@ export class CreateQuestion extends Component {
         axios
           .post("http://localhost:5000/question/add", formData, config)
           .then(res => console.log(res.data));
-        this.props.history.push("/question/my-posts");
-        //  window.location = "/question/my-posts";
+        //this.props.history.push("/question/my-posts");
+         window.location = "/question/my-posts";
       }
     });
   }
