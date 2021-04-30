@@ -20,6 +20,7 @@
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
+    "sass-loader": "^10",
     "react-big-calendar": "^0.19.2",
     "react-bootstrap-sweetalert": "^4.4.1",
     "react-ckeditor-component": "^1.0.7",
