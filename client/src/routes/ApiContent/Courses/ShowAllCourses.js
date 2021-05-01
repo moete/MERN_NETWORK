@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row } from "antd";
 import axios from "axios";
-import { Avatar, Image } from "antd";
+import { Avatar} from "antd";
 import { Link } from "react-router-dom";
 const Course = props => (
   
@@ -22,7 +22,7 @@ const Course = props => (
         <ul class="gx-package-items">
           <li>
           <h3>
-            <i class="icon icon-translation"></i>0              
+            <i class="icon icon-translation"></i>     
                 <span>{props.course.title}</span>
               </h3>
           </li>
@@ -49,11 +49,7 @@ const Course = props => (
             </h5>
           </li>
           <li>
-          <h5>
-            <i className="icon icon-chat" />
-           
-              <span>Chapters :</span>
-            </h5>
+         
           </li>
         </ul>
         <div class="gx-package-footer">

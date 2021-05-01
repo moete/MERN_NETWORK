@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Form, Input, Card, Tag, Button, Icon, Col, AutoComplete } from "antd";
+import { Form, Input, Card, Tag, Button, Icon, Col, Row } from "antd";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -18,20 +18,31 @@ const formItemLayout = {
   }
 };
 const Answer = props => (
-  <Card
-    id="components-back-top-demo-custom"
-    className="gx-card"
-    style={{ width: 900 }}
-  >
-    <div>{props.answer.contentAnswer}</div>
-    <div>
-      <Card style={{ backgroundColor: "#CBD4D6", width: 700 }}>
-        {" "}
-        {props.answer.contentCode}
-      </Card>
-    </div>
-    <div> {props.answer.answer_date.substr(0, 10)}</div>
-  </Card>
+  <div class="gx-user-list">
+    <img
+      alt="avatar"
+      src={props.answer.avatar}
+      class="gx-avatar-img gx-avatar-img-lg gx-border-0"
+    />
+            <div class="gx-description">
+
+    <Card
+      id="components-back-top-demo-custom"
+      className="gx-card"
+      style={{ width: 700 }}
+      title={props.answer.name}
+    >
+      <div>{props.answer.contentAnswer}</div>
+      <div>
+        <Card style={{ backgroundColor: "#CBD4D6", width: 500 }}>
+          {" "}
+          {props.answer.contentCode}
+        </Card>
+      </div>
+      <div> Answred :{props.answer.answer_date.substr(0, 10)}</div>
+    </Card>
+  </div>
+  </div>
 );
 export class QuestionDetails extends Component {
   constructor(props) {
@@ -46,28 +57,32 @@ export class QuestionDetails extends Component {
       tags: "",
       questions: [],
       answers: [],
+      owner: "",
       contentCode: "",
-      contentAnswer: ""
+      contentAnswer: "",
+      question_date: ""
     };
   }
 
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/question/6081f6cc4df0ec11fcedf88d`)
+      .get(`http://localhost:5000/question/6088cba2862c12d08d0f97ad`)
       .then(response => {
         this.setState({
           title: response.data.title,
           contentText: response.data.contentText,
           tags: response.data.tags,
           answers: response.data.answers,
-          votes: response.data.votes
+          votes: response.data.votes,
+          owner: response.data.owner,
+          question_date: response.data.question_date
         });
       })
       .catch(function(error) {
         console.log(error);
       });
   }
- 
+
   onChangeContentAnswer(e) {
     this.setState({
       contentAnswer: e.target.value
@@ -98,22 +113,23 @@ export class QuestionDetails extends Component {
     this.props.form.validateFields((err, values) => {
       console.log("values", values);
       if (!err) {
-    const answer = {
-      contentAnswer: this.state.contentAnswer,
-      contentCode: this.state.contentCode,
-    }
+        const answer = {
+          contentAnswer: this.state.contentAnswer,
+          contentCode: this.state.contentCode
+        };
 
-    console.log(answer);
+        console.log(answer);
         axios
           .post(
-            "http://localhost:5000/question/addAnswer/6081f6cc4df0ec11fcedf88d",
+            "http://localhost:5000/question/addAnswer/6088cba2862c12d08d0f97ad",
             answer
           )
           .then(res => console.log(res.data));
-        this.props.history.push("/question/question-details/6081f6cc4df0ec11fcedf88d");
+        this.props.history.push(
+          "/question/question-details/6088cba2862c12d08d0f97ad"
+        );
       }
-    }); 
-    
+    });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -121,7 +137,7 @@ export class QuestionDetails extends Component {
       <div class="gx-user-list">
         <img
           alt="avatar"
-          src="https://via.placeholder.com/150x150"
+          src={this.state.owner.avatar}
           class="gx-avatar-img gx-avatar-img-lg gx-border-0"
         />
         <div class="gx-description">
@@ -133,10 +149,13 @@ export class QuestionDetails extends Component {
             </Link>
           </span>
           <h5>
-            By <span class="gx-link">{this.state.owner}</span>
+            By <span class="gx-link">{this.state.owner.name}</span>
           </h5>
           <Tag color="#87d068">{this.state.tags}</Tag>
-          <Card title={this.state.owner} bordered={false}>
+          <Card
+            title={this.state.question_date.substring(0, 10)}
+            bordered={false}
+          >
             <div class="gx-mb-1"> {this.state.contentText}</div>
           </Card>
           <ul class="gx-list-inline gx-btn-list">
@@ -166,7 +185,7 @@ export class QuestionDetails extends Component {
               Your Answer <Icon type={this.state.expand ? "up" : "down"} />
             </Button>
             <div id="comment" style={{ display: "none" }}>
-              <Form onSubmit={this.onSubmit} >
+              <Form onSubmit={this.onSubmit}>
                 <FormItem
                   {...formItemLayout}
                   label="content Text"
@@ -196,7 +215,7 @@ export class QuestionDetails extends Component {
             </div>
           </>
         </div>
-     </div>
+      </div>
     );
   }
 }
