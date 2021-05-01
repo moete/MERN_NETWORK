@@ -6,15 +6,17 @@ import { connect } from "react-redux";
 
 //xl={12} lg={24} md={12} sm={24} xs={24}
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
-const ProfileItem = ({
+const followers = ({
   followUser,
   unfollowUser,
+  userfollowers,
   profile: {
     user: { _id, name, avatar },
     status,
     company
   }
 }) => {
+  console.log(userfollowers);
   const { Meta } = Card;
   return (
     <Col xl={8} lg={12} md={12} sm={24} xs={24}>
@@ -22,16 +24,9 @@ const ProfileItem = ({
         actions={[
           <Icon
             type="user-add"
-            key="setting"
-            onClick={() => {
-              followUser(_id);
-            }}
-          />,
-          <Icon
-            type="user-delete"
             key="edit"
             onClick={() => {
-              unfollowUser(_id);
+              followUser(_id);
             }}
           />,
           <Icon type="ellipsis" key="ellipsis" />
@@ -55,8 +50,10 @@ const ProfileItem = ({
   );
 };
 
-ProfileItem.propTypes = {};
+followers.propTypes = {};
 const mapStateToProps = state => ({
   userfollowers: state.auth.user.followers
 });
-export default connect(null, { followUser, unfollowUser })(ProfileItem);
+export default connect(mapStateToProps, { unfollowUser, followUser })(
+  followers
+);

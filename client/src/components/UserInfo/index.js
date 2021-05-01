@@ -24,8 +24,10 @@ const UserInfo = ({
           <Link to="/social-apps/profile">
             <li>My Account</li>
           </Link>
+          <Link to="/profile/profiles" className="gx-link">
+            <li>Connections</li>
+          </Link>
 
-          <li>Connections</li>
           <li onClick={() => userSignOut()}>Logout</li>
         </ul>
       }
