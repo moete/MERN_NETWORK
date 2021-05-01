@@ -1,79 +1,28 @@
 import React from "react";
-import { Tag, Col, Row, Tabs, Table } from "antd";
+import { connect } from "react-redux";
+import Widget from "components/Widget/index";
+import EducationItem from "./EducationItem";
 
-import Widget from "components/Widget";
-
-const TabPane = Tabs.TabPane;
-
-const Education = ({ education }) => {
-  const { Column, ColumnGroup } = Table;
-
-  const data = [
-    {
-      key: "1",
-      firstName: "John",
-      lastName: "Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-      tags: ["nice", "developer"]
-    },
-    {
-      key: "2",
-      firstName: "Jim",
-      lastName: "Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-      tags: ["loser"]
-    },
-    {
-      key: "3",
-      firstName: "Joe",
-      lastName: "Black",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
-      tags: ["cool", "teacher"]
-    }
-  ];
+const Education = ({ auth: { authUser }, profile: { profile, loader } }) => {
+  const data = profile.education;
 
   return (
-    <Widget
-      title="Education"
-      styleName="gx-card-tabs gx-card-tabs-right gx-card-profile"
-    >
-      <Table dataSource={data}>
-        <ColumnGroup title="Name">
-          <Column title="First Name" dataIndex="firstName" key="firstName" />
-          <Column title="Last Name" dataIndex="lastName" key="lastName" />
-        </ColumnGroup>
-        <Column title="Age" dataIndex="age" key="age" />
-        <Column title="Address" dataIndex="address" key="address" />
-        <Column
-          title="Tags"
-          dataIndex="tags"
-          key="tags"
-          render={tags => (
-            <>
-              {tags.map(tag => (
-                <Tag color="blue" key={tag}>
-                  {tag}
-                </Tag>
-              ))}
-            </>
-          )}
-        />
-        <Column
-          title="Action"
-          key="action"
-          render={(text, record) => (
-            <div size="middle">
-              <a>Invite {record.lastName}</a>
-              <a>Delete</a>
-            </div>
-          )}
-        />
-      </Table>
+    <Widget styleName="gx-card-profile">
+      <div className="ant-card-head">
+        <span className="ant-card-head-title gx-mb-1">Education</span>
+        <p className="gx-text-grey gx-fs-sm gx-mb-0"></p>
+      </div>
+      <div className="gx-pt-md-3">
+        {data.map((data, index) => (
+          <EducationItem key={index} data={data} />
+        ))}
+      </div>
     </Widget>
   );
 };
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
 
-export default Education;
+export default connect(mapStateToProps, {})(Education);

@@ -10,6 +10,10 @@ import {
   SIGNIN_TWITTER_USER_SUCCESS,
   SIGNIN_USER_SUCCESS,
   SIGNOUT_USER_SUCCESS,
+  FOLLOW_SUCCESS,
+  FOLLOW_FAIL,
+  UNFOLLOW_SUCCESS,
+  UNFOLLOW_FAIL,
   SIGNOUT_USER,
   SIGNUP_USER_SUCCESS,
   USER_LOADED,
@@ -18,7 +22,8 @@ import {
 import {
   LOGIN_FAIL,
   REGISTER_FAIL,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  ACCOUNT_DELETED
 } from "../../constants/ActionTypes";
 
 const INIT_STATE = {
@@ -42,7 +47,7 @@ export default (state = INIT_STATE, action) => {
         loader: false,
         authUser: payload.user,
         user: payload,
-        initURL: "/social-apps/wall"
+        initURL: "/social-//wall"
       };
 
     case USER_LOADED:
@@ -52,7 +57,7 @@ export default (state = INIT_STATE, action) => {
         loader: false,
         authUser: payload,
         user: payload,
-        initURL: "/social-apps/wall"
+        initURL: "/question/question-list"
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
@@ -68,7 +73,7 @@ export default (state = INIT_STATE, action) => {
         authUser: null,
         user: null
       };
-
+    case ACCOUNT_DELETED:
     case SIGNOUT_USER:
       localStorage.removeItem("token");
       return {
@@ -100,7 +105,7 @@ export default (state = INIT_STATE, action) => {
         loader: false,
         authUser: payload.user,
         user: payload.user,
-        initURL: "/social-apps/wall"
+        initURL: "/question/question-list"
       };
     }
     case SIGNIN_USER_SUCCESS: {
@@ -170,6 +175,14 @@ export default (state = INIT_STATE, action) => {
         ...state,
         loader: false,
         authUser: action.payload
+      };
+    }
+    case FOLLOW_SUCCESS: {
+      return {
+        ...state,
+        loader: false,
+        authUser: payload,
+        user: payload
       };
     }
     case SIGNIN_GITHUB_USER_SUCCESS: {

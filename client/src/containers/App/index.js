@@ -6,7 +6,7 @@ import { LocaleProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
 import AppLocale from "lngProvider";
-import MainApp from "./MainApp" 
+import MainApp from "./MainApp";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import { setInitUrl } from "appRedux/actions/Auth";
@@ -80,7 +80,7 @@ class App extends Component {
 
   componentWillMount() {
     if (this.props.initURL === "") {
-      this.props.setInitUrl(this.props.history.location.pathname);
+      this.props.setInitUrl("/question/question-list");
     }
     const params = new URLSearchParams(this.props.location.search);
 

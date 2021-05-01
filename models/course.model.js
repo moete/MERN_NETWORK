@@ -1,16 +1,22 @@
 var mongoose = require('mongoose');
+const Chapter = require('./chapter.model')
+
 var Schema = mongoose.Schema;
 
 var CourseSchema = new Schema({
-   title : { type: String , require : true },
-   technologies : { type: Array },
-   image : { type: String},
-   description : { type: String , require : true},
-   creation_date : { type: Date } ,
-   updated_at : { type: Date } ,
-   requirments : { type: Array},
-   chapters : { type: Array },
-   
+  
+   _id: mongoose.Types.ObjectId,
+   title: { type: String, required: true, allowNull: false },
+   description: { type: String, required: true, allowNull: false },
+   creation_date: { type: Date, required: true, allowNull: false },
+   update_date: { type: Date, required: false},
+   image: { type: String, required: true, allowNull: false },
+   requirements: { type: [String], required: true, allowNull: false },
+  // language: { type: String, required: true, allowNull: false },
+   //field: { type: String, required: true, allowNull: false },
+   technologies: { type: [String], required: true, allowNull: false },
+   chapters: {type: [Chapter.schema], required: false},
+   chapters_count : { type: Number ,default : 0}
    
     
 

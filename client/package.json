@@ -3,14 +3,14 @@
   "version": "1.7.0",
   "private": true,
   "dependencies": {
+    "react-app-rewired": "^2.1.8",
     "@amcharts/amcharts3-react": "^3.1.0",
     "amcharts3": "^3.21.13",
     "antd": "^3.11.6",
     "antd-theme-webpack-plugin": "^1.1.6",
     "axios": "^0.18.0",
     "draftjs-to-html": "^0.8.4",
-    "uuid": "^8.3.2",
-    "firebase": "5.3.1",
+    "firebase": "^8.4.3",
     "install": "^0.12.2",
     "instantsearch.css": "^7.1.0",
     "less": "2.7.3",
@@ -36,6 +36,7 @@
     "react-instantsearch": "^5.2.2",
     "react-instantsearch-dom": "^5.2.2",
     "react-intl": "^2.4.0",
+    "react-moment": "^1.1.1",
     "react-notifications": "^1.4.3",
     "react-placeholder": "^3.0.1",
     "react-redux": "^5.0.7",
@@ -51,11 +52,14 @@
     "recharts": "^1.0.1",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
+    "sass-loader": "^10",
     "redux-thunk": "^2.3.0",
     "rheostat": "^3.0.1",
     "slick-carousel": "^1.8.1",
     "url-search-params": "^1.1.0",
-    "victory": "^0.27.2"
+    "uuid": "^8.3.2",
+    "victory": "^0.27.2",
+    "customize-cra": "^0.2.10"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -65,8 +69,6 @@
   "devDependencies": {
     "add": "^2.0.6",
     "babel-plugin-import": "^1.8.0",
-    "customize-cra": "^0.2.10",
-    "react-app-rewired": "^2.0.2",
     "yarn": "^1.7.0"
   },
   "browserslist": [

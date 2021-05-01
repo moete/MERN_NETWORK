@@ -1,4 +1,3 @@
-
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
@@ -12,12 +11,25 @@ var QuestionSchema = new Schema({
   tags: { type: String, required: true },
   question_date: { type: Date },
   updated_at: { type: Date },
-  owner: { type: String },
-  answers: { type : Array
+  answers: {
+   type:Array
   },
   image: {
     type: String,
     required: true,
+  },
+  owner: {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: String,
+    },
   },
 });
 module.exports = mongoose.model("question", QuestionSchema);

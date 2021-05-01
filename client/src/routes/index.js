@@ -13,6 +13,12 @@ import Documents from "./documents/index";
 import QuestionsViews from "./ApiContent/Questions/index";
 import CoursesViews from "./ApiContent/Courses/index";
 import createprofile from "../components/profile/profile_forms/CreateProfile";
+import addexp from "../components/profile/profile_forms/AddExperience";
+import addEdu from "../components/profile/profile_forms/AddEducation";
+import profiles from "../components/profile/profiles/Profiles";
+import profileById from "../components/profile/profiles/ProfilebyID";
+import editprofile from "../components/profile/profile_forms/EditProfile";
+import ProfilebyID from "../components/profile/profiles/ProfilebyID";
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -30,6 +36,11 @@ const App = ({ match }) => (
       <Route path={`${match.url}question`} component={QuestionsViews} />
       <Route path={`${match.url}courses`} component={CoursesViews} />
       <Route path="/create-profile" component={createprofile} />
+      <Route path="/edit-profile" component={editprofile} />
+      <Route path="/profile/Add-Experience" component={addexp} />
+      <Route path="/profile/Add-Education" component={addEdu} />
+      <Route path="/profile/profiles" component={profiles} />
+      <Route path="/profile/:id" component={ProfilebyID} />
       <Route path={`${match.url}group`} component={GroupsViews} />
       <Route path={`${match.url}invitation`} component={invitationsViews} />
     </Switch>

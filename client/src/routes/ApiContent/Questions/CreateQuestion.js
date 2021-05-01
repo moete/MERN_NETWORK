@@ -23,7 +23,7 @@ export class CreateQuestion extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeTile = this.onChangeTile.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeContentText = this.onChangeContentText.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
     this.onChangeFile = this.onChangeFile.bind(this);
@@ -41,7 +41,7 @@ export class CreateQuestion extends Component {
       originalname: e.target.files[0]
     });
   }
-  onChangeTile(e) {
+  onChangeTitle(e) {
     this.setState({
       title: e.target.value
     });
@@ -58,28 +58,33 @@ export class CreateQuestion extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      console.log("values", values);
+      if (!err) {
+        const formData = new FormData();
 
-    const formData = new FormData();
+        formData.append("title", this.state.title);
+        formData.append("contentText", this.state.contentText);
+        formData.append("tags", this.state.tags);
+        formData.append("image", this.state.originalname);
 
-    formData.append("title", this.state.title);
-    formData.append("contentText", this.state.contentText);
-    formData.append("tags", this.state.tags);
-    formData.append("image", this.state.originalname);
-
-    console.log(formData);
-    const config = {
-      headers: {
-          'content-type': 'multipart/form-data'
+        console.log(formData);
+        const config = {
+          headers: {
+            "content-type": "multipart/form-data"
+          }
+        };
+        axios
+          .post("http://localhost:5000/question/add", formData, config)
+          .then(res => console.log(res.data));
+        //this.props.history.push("/question/my-posts");
+         window.location = "/question/my-posts";
       }
-  };
-    axios
-      .post("http://localhost:5000/question/add", formData,config)
-      .then(res => console.log(res.data));
-
-    window.location = "/question/my-posts";
+    });
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <>
         <Card className="gx-card" title="Ask a question">
@@ -89,55 +94,83 @@ export class CreateQuestion extends Component {
               label="Title"
               hasFeedback
               value={this.state.title}
-              onChange={this.onChangeTile}
-              //   validateStatus="success"
+              onChange={this.onChangeTitle}
             >
-              <Input placeholder="I'm the title" id="success" />
+              {getFieldDecorator("title", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Title is missing !"
+                  }
+                ]
+              })(<Input placeholder="I'm the title" />)}
             </FormItem>
             <FormItem
               {...formItemLayout}
               label="Body"
               hasFeedback
-              validateStatus="success"
               value={this.state.contentText}
               onChange={this.onChangeContentText}
             >
-              <TextArea
-                rows={6}
-                placeholder="I'm the content text"
-                id="success"
-              />
+              {getFieldDecorator("Body", {
+                rules: [
+                  {
+                    required: true,
+                    message: "content text is missing !",
+                    min: 6,
+                    message: "contentText must have 6+ characters long"
+                  }
+                ]
+              })(
+                <TextArea
+                  rows={6}
+                  placeholder="I'm the content text"
+                  id="success"
+                />
+              )}
             </FormItem>
             <FormItem
               {...formItemLayout}
               label="Tags"
               hasFeedback
-              validateStatus="success"
               value={this.state.tags}
               onChange={this.onChangeTags}
             >
-              <Input placeholder="Tags & technologies" id="success" />
+              {getFieldDecorator("tags", {
+                rules: [
+                  {
+                    required: true,
+                    message: "Please enter at least one tag !"
+                  }
+                ]
+              })(<Input placeholder="Tags & technologies" id="success" />)}
             </FormItem>
-          
-        <FormItem
-            {...formItemLayout}
-            label="Screenshot"
-            onChange={this.onChangeFile}
-          >
-            <div className="dropbox">
-              {(
-                <Upload.Dragger name="files" action="/upload.do" listType="picture">
-                  <p className="ant-upload-drag-icon">
-                    <Icon type="inbox"/>
-                  </p>
-                  <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                  <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-                </Upload.Dragger>
-              )}
-            </div>
-          </FormItem>
 
-        
+            <FormItem
+              {...formItemLayout}
+              label="Screenshot"
+              onChange={this.onChangeFile}
+            >
+              <div className="dropbox">
+                {
+                  <Upload.Dragger
+                    name="files"
+                    action="/upload.do"
+                    listType="picture"
+                  >
+                    <p className="ant-upload-drag-icon">
+                      <Icon type="inbox" />
+                    </p>
+                    <p className="ant-upload-text">
+                      Click or drag file to this area to upload
+                    </p>
+                    <p className="ant-upload-hint">
+                      Support for a single or bulk upload.
+                    </p>
+                  </Upload.Dragger>
+                }
+              </div>
+            </FormItem>
           </Form>
 
           <Button type="primary" htmlType="submit" onClick={this.onSubmit}>
@@ -149,4 +182,4 @@ export class CreateQuestion extends Component {
   }
 }
 
-export default CreateQuestion;
+export default Form.create()(CreateQuestion);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Drawer, Dropdown, Menu } from "antd";
+import { Button, Drawer } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import axios from "axios";
 
@@ -9,30 +9,12 @@ import IntlMessages from "util/IntlMessages";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
-const menus =  props =>(
-  <Menu>
-    <Menu.Item>
-      <Link to={"/question/edit-question/"}>Edit</Link>
-    </Menu.Item>
-    <Menu.Item icon="" disabled>
-      <a
-        href="#"
-        onClick={() => {
-        //  props.deleteQuestion(props.questions._id)
-     //   props. deleteQuestion(props.questions.id)
-        }}
-      >
-        delete
-      </a>
-    </Menu.Item>
-  </Menu>
-);
 const Question = props => (
   <div className="gx-contact-item">
     <div className="gx-module-list-icon">
-      <div className="gx-d-none gx-d-sm-flex" onClick="">
+      <div className="gx-d-none gx-d-sm-flex">
       {
-            (props.questions.confirm) == "true" ? 
+            (props.questions.confirm) === "true" ? 
             <div className="gx-icon-views">
             <i className="icon icon-check-cricle"/>
            
@@ -54,9 +36,9 @@ const Question = props => (
           <span className="gx-text-truncate gx-contact-name">
             {props.questions.title}
           </span>
-          <span className="gx-toolbar-separator">&nbsp;</span>
+          <span className="gx-toolbar-separator"></span>
           <span className="gx-text-truncate gx-job-title">
-          <i class="icon icon-alert">
+          <i className="icon icon-alert">
             {    props.questions.tags}</i>
            
           </span>
@@ -75,11 +57,13 @@ const Question = props => (
           </span>
         </div>
       </div>
-
       <div className="gx-module-contact-right">
-        <Dropdown overlay={menus} placement="bottomRight" trigger={["click"]}>
-          <i className="gx-icon-btn icon icon-ellipse-v" />
-        </Dropdown>
+      <a onClick={() => 
+        { props.deleteQuestion(props.questions._id) }}>Delete</a>
+
+      </div>
+      <div className="gx-module-contact-right">
+      <Link to={"/question/edit-question/"+props.questions._id}>Edit</Link>
       </div>
     </div>
   </div>
@@ -96,7 +80,6 @@ const filterOptions = [
     icon: "frequent"
   }
 ];
-
 class MyPosts extends Component {
   constructor(props) {
     super(props);
@@ -194,18 +177,6 @@ class MyPosts extends Component {
     );
   };
 
-  addFavourite = (id, data) => {
-    let contact = data;
-    contact.starred = !data.starred;
-    this.props.onUpdateContact(id, contact);
-  };
-
-  onAddContact = () => {
-    this.setState({ addContactState: true });
-  };
-  onContactClose = () => {
-    this.setState({ addContactState: false });
-  };
   onFilterOptionSelect = option => {
     switch (option.name) {
       case "My posts": {
@@ -230,54 +201,7 @@ class MyPosts extends Component {
         break;
     }
   };
-  onSaveContact = (id, data) => {
-    if (id) {
-      this.props.onUpdateContact(id, data);
-    } else {
-      this.props.onAddContact(data);
-    }
-  };
-  onDeleteContact = data => {
-    this.props.onDeleteContact(data);
-  };
-  filterContact = userName => {
-    const { filterOption } = this.state;
-    if (userName === "") {
-      this.setState({ contactList: this.state.allContact });
-    } else {
-      const filterContact = _.filter(
-        this.state.allContact,
-        contact =>
-          contact.name.toLowerCase().indexOf(userName.toLowerCase()) > -1
-      );
-      if (filterOption === "My posts") {
-        this.setState({ contactList: filterContact });
-      } else if (filterOption === "Recently published") {
-        this.setState({
-          contactList: filterContact.filter(contact => contact.frequently)
-        });
-      }
-    }
-  };
-  handleRequestClose = () => {
-    this.setState({
-      showMessage: false
-    });
-  };
-
-  updateContactUser(evt) {
-    this.setState({
-      searchUser: evt.target.value
-    });
-    this.filterContact(evt.target.value);
-  }
-
-  onToggleDrawer() {
-    this.setState({
-      drawerState: !this.state.drawerState
-    });
-  }
-
+ 
   render() {
     const { questions, user, drawerState, noContentFoundMessage } = this.state;
     return (
@@ -288,7 +212,7 @@ class MyPosts extends Component {
               placement="left"
               closable={false}
               visible={drawerState}
-              onClose={this.onToggleDrawer.bind(this)}
+            /*  onClose={this.onToggleDrawer.bind(this)}*/
             ></Drawer>
           </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
@@ -301,7 +225,7 @@ class MyPosts extends Component {
                 <i
                   className="icon icon-menu gx-icon-btn"
                   aria-label="Menu"
-                  onClick={this.onToggleDrawer.bind(this)}
+              /*    onClick={this.onToggleDrawer.bind(this)}*/
                 />
               </span>
 
@@ -310,7 +234,7 @@ class MyPosts extends Component {
                 notification={false}
                 apps={false}
                 user={this.state.user}
-                onChange={this.updateContactUser.bind(this)}
+                /*onChange={this.updateContactUser.bind(this)}*/
                 value={this.state.searchUser}
               />
             </div>
@@ -322,6 +246,7 @@ class MyPosts extends Component {
                     {noContentFoundMessage}
                   </div>
                 ) : (
+                  
                   this.questionList()
                 )}
               </CustomScrollbars>

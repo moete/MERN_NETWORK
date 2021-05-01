@@ -4,6 +4,10 @@ import {
   ON_HIDE_LOADER,
   ON_SHOW_LOADER,
   SHOW_MESSAGE,
+  FOLLOW_SUCCESS,
+  FOLLOW_FAIL,
+  UNFOLLOW_SUCCESS,
+  UNFOLLOW_FAIL,
   SIGNIN_FACEBOOK_USER,
   SIGNIN_FACEBOOK_USER_SUCCESS,
   SIGNIN_GITHUB_USER,
@@ -30,7 +34,40 @@ import {
   REGISTER_FAIL
 } from "../../constants/ActionTypes";
 const setUser = payload => ({ type: "SIGNIN_USER_SUCCESS", payload });
-
+//follow user
+export const followUser = id => async dispatch => {
+  fetch("http://localhost:5000/api/users/follow", {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": localStorage.getItem("token")
+    },
+    body: JSON.stringify({
+      followId: id
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch({ type: FOLLOW_SUCCESS, payload: data });
+    });
+};
+//unfollow user
+export const unfollowuser = id => async dispatch => {
+  fetch("http://localhost:5000/api/users/unfollow", {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": localStorage.getItem("token")
+    },
+    body: JSON.stringify({
+      followId: id
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch({ type: UNFOLLOW_SUCCESS, payload: data });
+    });
+};
 // Load User
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
