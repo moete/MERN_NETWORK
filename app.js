@@ -4,13 +4,14 @@ const cors = require('cors');
 const app = express();
 // Use Cors
 
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
 // Connect Database
 connectDB();
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: '*',
+  credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
@@ -38,14 +39,5 @@ app.use('/course', CoursesRouter);
 app.use('/group', groupsRouter);
 app.use('/invitation', invitationsRouter);
 app.use('/membership', membershipsRouter);
-
-
-
-
-
-
-
-
-
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

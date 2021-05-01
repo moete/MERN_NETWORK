@@ -3,13 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Tag, BackTop } from "antd";
 
-const AnswersList= props => (
-  <div className="text-comentarios">    
-  {props.questions.answers.map((comment, commentIndex) =>
-   <p key={commentIndex}>{comment}</p> )}       
- </div>
-);
-
 export class QuestionDetails extends Component {
   constructor(props) {
     super(props);
@@ -23,13 +16,13 @@ export class QuestionDetails extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/question/6061e98c65765b29545280fc`)
+      .get(`http://localhost:5000/question/6063502e12feaf53cc2dfd79`)
       .then(response => {
         this.setState({
           title: response.data.title,
           contentText: response.data.contentText,
           tags: response.data.tags,
-          answers: response.data.answers,
+          answers: response.data.answer,
           votes: response.data.votes
         });
       })
@@ -84,14 +77,14 @@ export class QuestionDetails extends Component {
             <li>
               <span class="gx-link gx-meta-comment">
                 <i class="icon icon-chat-new"></i>
-                {this.state.answers.length} comments
+                {this.state.answers} comments
               </span>
             </li>
           </ul>
          
           <Card
             id="components-back-top-demo-custom"
-            title="Custom"
+            title="User:"
             className="gx-card"
             style={{ width: 600 }}
           >

@@ -85,6 +85,8 @@ export default class ShowAllQuestions extends Component {
         </Row>
         </div>
       </div>
-    );
+  
+
+  );
   }
 }

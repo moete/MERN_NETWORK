@@ -12,6 +12,12 @@ router.get('/', (req, res) => {
       .then(courses => res.json(courses))
       .catch(err => res.status(404).json({ nocoursesfound: 'No courses found' }));
   });
+  router.get('/find3', (req, res) => {
+    Course.find().sort({'date': -1})
+    .limit(3)
+      .then(courses => res.json(courses))
+      .catch(err => res.status(404).json({ nocoursesfound: 'No courses found' }));
+  });
 
   // @route GET api/course/add
 // @description Get all courses

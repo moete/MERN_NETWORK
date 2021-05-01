@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import "./nav.css";
 import {
   Button,
   Dropdown,
@@ -11,7 +12,7 @@ import {
 } from "antd";
 import { connect } from "react-redux";
 import CustomScrollbars from "util/CustomScrollbars";
-
+import { userSignOut } from "appRedux/actions/Auth";
 import languageData from "../languageData";
 import SearchBox from "components/SearchBox";
 import UserInfo from "components/UserInfo";
@@ -55,9 +56,25 @@ class HorizontalDefault extends Component {
   };
 
   render() {
-    const { locale, navCollapsed } = this.props;
+    const { isAuthenticated, loader, locale, navCollapsed } = this.props;
+
+    const authLinks = (
+      <ul className="gx-login-list">
+        <li onClick={() => this.props.userSignOut()}>Sign out</li>
+      </ul>
+    );
+    const guestLinks = (
+      <ul className="gx-login-list">
+        <Link to="/signin">
+          <li>Login</li>
+        </Link>
+        <Link to="/signup">
+          <li>Signup</li>
+        </Link>
+      </ul>
+    );
     return (
-      <div className="gx-header-horizontal">
+      <div className="mynav gx-header-horizontal">
         <Header className="gx-header-horizontal-main">
           <div className="gx-container">
             <div className="gx-header-horizontal-main-flex">
@@ -71,15 +88,15 @@ class HorizontalDefault extends Component {
               </div>
               <Link
                 to="/"
-                className="gx-d-block gx-d-lg-none gx-pointer gx-w-logo"
+                className="logonetworkymini gx-d-block gx-d-lg-none gx-pointer gx-w-logo"
               >
                 <img alt="" src={require("assets/images/w-logo.png")} />
               </Link>
               <Link
                 to="/"
-                className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
+                className=" logonetworky gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
               >
-                <img alt="" src={require("assets/images/logo-white.png")} />
+                <img alt="" src={require("assets/images/logo.png")} />
               </Link>
               <div className="gx-header-search gx-d-none gx-d-lg-flex">
                 <SearchBox
@@ -154,20 +171,12 @@ class HorizontalDefault extends Component {
                     </span>
                   </Popover>
                 </li>
-                <li className="gx-language">
-                  <Popover
-                    overlayClassName="gx-popover-horizantal"
-                    placement="bottomRight"
-                    // content={this.languageMenu()}
-                    trigger="click"
-                  >
-                    <span className="gx-pointer gx-flex-row gx-align-items-center">
-                      <i className={`flag flag-24 flag-${locale.icon}`} />
-                    </span>
-                  </Popover>
-                </li>
                 <li className="gx-user-nav">
-                  <UserInfo />
+                  {!loader && (
+                    <Fragment>
+                      {isAuthenticated ? <UserInfo /> : guestLinks}
+                    </Fragment>
+                  )}
                 </li>
               </ul>
             </div>
@@ -202,11 +211,18 @@ class HorizontalDefault extends Component {
   }
 }
 
-const mapStateToProps = ({ settings }) => {
+/*const mapStateToProps = ({ settings }) => {
   const { locale, navCollapsed } = settings;
   return { locale, navCollapsed };
+};*/
+const mapStateToProps = state => {
+  const { locale, navCollapsed } = state.settings;
+  const { isAuthenticated, loader } = state.auth;
+
+  return { locale, navCollapsed, isAuthenticated, loader };
 };
 export default connect(mapStateToProps, {
   toggleCollapsedSideNav,
-  switchLanguage
+  switchLanguage,
+  userSignOut
 })(HorizontalDefault);

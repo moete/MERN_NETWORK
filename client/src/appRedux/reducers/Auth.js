@@ -41,6 +41,7 @@ export default (state = INIT_STATE, action) => {
         isAuthenticated: true,
         loader: false,
         authUser: payload.user,
+        user: payload,
         initURL: "/social-apps/wall"
       };
 
@@ -50,6 +51,7 @@ export default (state = INIT_STATE, action) => {
         isAuthenticated: true,
         loader: false,
         authUser: payload,
+        user: payload,
         initURL: "/social-apps/wall"
       };
     case LOGIN_FAIL:
@@ -62,7 +64,9 @@ export default (state = INIT_STATE, action) => {
         loader: false,
         initURL: "/",
         alertMessage: payload,
-        showMessage: true
+        showMessage: true,
+        authUser: null,
+        user: null
       };
 
     case SIGNOUT_USER:
@@ -72,7 +76,9 @@ export default (state = INIT_STATE, action) => {
         token: null,
         isAuthenticated: false,
         loader: false,
-        initURL: "/"
+        initURL: "/",
+        authUser: null,
+        user: null
       };
     case AUTH_ERROR:
       localStorage.removeItem("token");
@@ -81,7 +87,9 @@ export default (state = INIT_STATE, action) => {
         token: null,
         isAuthenticated: false,
         loader: false,
-        initURL: "/"
+        initURL: "/",
+        authUser: null,
+        user: null
       };
     case SIGNUP_USER_SUCCESS: {
       localStorage.setItem("token", payload.token);
@@ -90,8 +98,8 @@ export default (state = INIT_STATE, action) => {
         ...state,
         isAuthenticated: true,
         loader: false,
-        authUser: localStorage.getItem("user_id"),
-        token: localStorage.getItem("token"),
+        authUser: payload.user,
+        user: payload.user,
         initURL: "/social-apps/wall"
       };
     }
@@ -103,7 +111,9 @@ export default (state = INIT_STATE, action) => {
         ...payload,
         loader: false,
         isAuthenticated: true,
-        authUser: localStorage.getItem("user_id")
+        authUser: payload.user,
+        user: payload.user,
+        token: payload.token
       };
     }
     case INIT_URL: {
@@ -119,7 +129,8 @@ export default (state = INIT_STATE, action) => {
         authUser: null,
         initURL: "/",
         loader: false,
-        isAuthenticated: false
+        isAuthenticated: false,
+        user: null
       };
     }
 
