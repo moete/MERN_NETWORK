@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Drawer, Dropdown, Menu } from "antd";
+import { Button, Drawer } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ const Question = props => (
     <div className="gx-module-list-icon">
       <div className="gx-d-none gx-d-sm-flex">
       {
-            (props.questions.confirm) == "true" ? 
+            (props.questions.confirm) === "true" ? 
             <div className="gx-icon-views">
             <i className="icon icon-check-cricle"/>
            
@@ -58,7 +58,7 @@ const Question = props => (
         </div>
       </div>
       <div className="gx-module-contact-right">
-      <a href="#" onClick={() => 
+      <a onClick={() => 
         { props.deleteQuestion(props.questions._id) }}>Delete</a>
 
       </div>
@@ -80,11 +80,6 @@ const filterOptions = [
     icon: "frequent"
   }
 ];
-const ChildComponent = (props) => {
-  return(
-        <h2> {props.message} </h2>
-  );
-}
 class MyPosts extends Component {
   constructor(props) {
     super(props);
@@ -263,4 +258,4 @@ class MyPosts extends Component {
   }
 }
 
-export default {MyPosts,ChildComponent};
+export default MyPosts;

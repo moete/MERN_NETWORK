@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Form, Input, Button, Upload, Icon } from "antd";
-import ChildComponent from './My_Posts';
+
 const FormItem = Form.Item;
 const { TextArea } = Input;
 const formItemLayout = {

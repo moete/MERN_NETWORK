@@ -3,7 +3,7 @@ import { Col, Card, Row, Input } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Question = props => (
-  <Col span={8}  >
+  <Col span={9}  >
     <Card
       title={<i class="icon icon-alert">{props.question.tags} </i>}
       extra={
@@ -18,7 +18,7 @@ const Question = props => (
       <div class="gx-user-list">
         <img
           alt="avatar"
-          src="https://via.placeholder.com/150x150"
+          src={props.question.owner.avatar}
           class="gx-avatar-img gx-avatar-img-lg gx-border-0"
         />
         <div class="gx-description">
@@ -30,7 +30,7 @@ const Question = props => (
             </Link>
           </span>
           <h5>
-            By <span class="gx-link">{props.question.owner}</span>
+            By <span class="gx-link">{props.question.owner.name}</span>
           </h5>
 
           <p class="gx-mb-1"> {props.question.contentText}</p>
@@ -38,7 +38,7 @@ const Question = props => (
             <li>
               <span class="gx-link gx-meta-like">
                 <i class="icon icon-like-o gx-text-red"></i>
-                {props.question.views} views
+                {props.question.views} likes
               </span>
             </li>
             <li>

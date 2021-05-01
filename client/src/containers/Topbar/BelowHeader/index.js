@@ -1,20 +1,13 @@
 import React, { Fragment, Component } from "react";
 import "./nav.css";
 import {
-  Button,
-  Dropdown,
-  Icon,
   Layout,
-  Menu,
-  message,
   Popover,
-  Select
 } from "antd";
 import { connect } from "react-redux";
 import CustomScrollbars from "util/CustomScrollbars";
 import { userSignOut } from "appRedux/actions/Auth";
 import languageData from "../languageData";
-import SearchBox from "components/SearchBox";
 import UserInfo from "components/UserInfo";
 import AppNotification from "components/AppNotification";
 import MailNotification from "components/MailNotification";
@@ -24,12 +17,9 @@ import {
 } from "../../../appRedux/actions/Setting";
 import HorizontalNav from "../HorizontalNav";
 import { Link } from "react-router-dom";
-import IntlMessages from "util/IntlMessages";
-import { signUserUp } from "../../../appRedux/actions/Auth";
 
 const { Header } = Layout;
 
-const Option = Select.Option;
 
 class BelowHeader extends Component {
   state = {
@@ -60,7 +50,7 @@ class BelowHeader extends Component {
   };
 
   render() {
-    const { isAuthenticated, loader, locale, navCollapsed } = this.props;
+    const { isAuthenticated, loader} = this.props;
     const authLinks = (
       <ul className="gx-login-list">
         <li onClick={() => this.props.userSignOut()}>Sign out</li>
