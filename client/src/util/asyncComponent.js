@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Nprogress from "nprogress";
 import ReactPlaceholder from "react-placeholder";
 import "nprogress/nprogress.css";
@@ -25,7 +25,7 @@ export default function asyncComponent(importComponent) {
 
     async componentDidMount() {
       this.mounted = true;
-      const {default: Component} = await importComponent();
+      const { default: Component } = await importComponent();
       Nprogress.done();
       if (this.mounted) {
         this.setState({
@@ -35,7 +35,7 @@ export default function asyncComponent(importComponent) {
     }
 
     render() {
-      const Component = this.state.component || <CircularProgress/>;
+      const Component = this.state.component || <CircularProgress />;
       return (
         <ReactPlaceholder type="text" rows={7} ready={Component !== null}>
           {Component}
