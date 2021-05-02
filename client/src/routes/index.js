@@ -11,6 +11,9 @@ import Main from "./main/index";
 import Documents from "./documents/index";
 import asyncComponent from "../util/asyncComponent";
 import JOB from "./JobBoard/index";
+import Chat from "./JobBoard/chat/App" ;
+import ReactDOM from 'react-dom';
+
 
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
@@ -25,7 +28,8 @@ const App = ({ match }) => (
         component={ExtraComponents}
       />
       <Route path={`${match.url}job-board`} component={JOB}/>
-      <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
+      <Route path={`${match.url}job-board`} component={App}/>
+            <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
       <Route path={`${match.url}social-apps`} component={SocialApps} />
       <Route path={`${match.url}documents`} component={Documents} />
     </Switch>

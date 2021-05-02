@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @ant-designs/icons
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
 
 PATH: 
   C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\Users\HP\AppData\Local\Microsoft\WindowsApps;;C:\Users\HP\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\HP\AppData\Roaming\npm;C:\Users\HP\AppData\Local\Yarn\bin
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@ant-designs%2ficons: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66097:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140749:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141721:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141643:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  Error: C:\Users\HP\Desktop\Node\MERN_PROJECT\client\node_modules\@firebase\polyfill\node_modules\core-js: EBUSY: resource busy or locked, open 'C:\Users\HP\AppData\Local\Temp\yarn--1619815025114-0.9174235765445702\yarn.cmd'
 
 npm manifest: 
   {
@@ -37,9 +27,10 @@ npm manifest:
       "antd": "^3.11.6",
       "antd-theme-webpack-plugin": "^1.1.6",
       "axios": "^0.18.0",
+      "bootstrap": "^4.6.0",
+      "d3": "^6.7.0",
       "draftjs-to-html": "^0.8.4",
-      "uuid": "^8.3.2",
-      "firebase": "5.3.1",
+      "firebase": "^8.4.1",
       "install": "^0.12.2",
       "instantsearch.css": "^7.1.0",
       "less": "2.7.3",
@@ -50,7 +41,9 @@ npm manifest:
       "nprogress": "^0.2.0",
       "prop-types": "^15.6.2",
       "react": "^16.8.6",
+      "react-autocomplete": "^1.8.1",
       "react-big-calendar": "^0.19.2",
+      "react-bootstrap": "^1.5.2",
       "react-bootstrap-sweetalert": "^4.4.1",
       "react-ckeditor-component": "^1.0.7",
       "react-color": "^2.14.1",
@@ -81,9 +74,11 @@ npm manifest:
       "redux": "^4.0.0",
       "redux-saga": "^0.16.0",
       "redux-thunk": "^2.3.0",
+      "response": "^0.18.0",
       "rheostat": "^3.0.1",
       "slick-carousel": "^1.8.1",
       "url-search-params": "^1.1.0",
+      "uuid": "^8.3.2",
       "victory": "^0.27.2"
     },
     "scripts": {

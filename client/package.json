@@ -3,12 +3,14 @@
   "version": "1.7.0",
   "private": true,
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.26",
     "@amcharts/amcharts3-react": "^3.1.0",
     "amcharts3": "^3.21.13",
     "antd": "^3.11.6",
     "antd-theme-webpack-plugin": "^1.1.6",
     "axios": "^0.18.0",
     "bootstrap": "^4.6.0",
+    "d3": "^6.7.0",
     "draftjs-to-html": "^0.8.4",
     "firebase": "^8.4.1",
     "install": "^0.12.2",
@@ -25,6 +27,7 @@
     "react-big-calendar": "^0.19.2",
     "react-bootstrap": "^1.5.2",
     "react-bootstrap-sweetalert": "^4.4.1",
+    "react-chat-engine": "^1.8.11",
     "react-ckeditor-component": "^1.0.7",
     "react-color": "^2.14.1",
     "react-custom-scrollbars": "^4.2.1",
@@ -59,7 +62,8 @@
     "slick-carousel": "^1.8.1",
     "url-search-params": "^1.1.0",
     "uuid": "^8.3.2",
-    "victory": "^0.27.2"
+    "victory": "^0.27.2",
+    "words-to-number": "^1.1.0"
   },
   "scripts": {
     "start": "react-app-rewired start",

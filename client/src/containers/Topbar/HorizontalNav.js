@@ -979,6 +979,13 @@ class HorizontalNav extends Component {
           </Link>  
 
         </Menu.Item>
+        <Menu.Item key="job-board">
+
+          <Link to="/job-board/all" >
+               Chat 
+          </Link>  
+
+         </Menu.Item>    
 
       </Menu>
     );

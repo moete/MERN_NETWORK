@@ -33,7 +33,7 @@ function reducer(state, action) {
       dispatch({ type: ACTIONS.MAKE_REQUEST })
       axios.get(BASE_URL, {
         cancelToken: cancelToken1.token,
-        params: { markdown: true, page: page, ...params }
+        params: {  page: page, ...params }
       }).then(res => {
         dispatch({ type: ACTIONS.GET_DATA, payload: { jobs: res.data } }) 
       }).catch(e => {
@@ -44,7 +44,7 @@ function reducer(state, action) {
       const cancelToken2 = axios.CancelToken.source()
       axios.get(BASE_URL, {
         cancelToken: cancelToken2.token,
-        params: { markdown: true, page: page + 1, ...params }
+        params: { page: page + 1, ...params }
       }).then(res => {
         dispatch({ type: ACTIONS.UPDATE_HAS_NEXT_PAGE, payload: { hasNextPage: res.data.length !== 0 } }) 
       }).catch(e => {

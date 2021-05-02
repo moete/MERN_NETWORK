@@ -9,7 +9,11 @@ const Company = require('../models/Company');
 // @description Get all companies
 // @access Public
 const getAllCompanies = async (req, res) => {
+
+  
+  //console.log(rech)
     Company.find()
+     .populate("company_id",{company_name : 1})
       .then(companys => res.json(companys))
       .catch(err => res.status(404).json({ nocompaniesfound: 'No companyies found' }));
   };

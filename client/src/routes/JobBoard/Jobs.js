@@ -5,10 +5,14 @@ import Job from './Job'
 import JobsPagination from './JobsPagination';
 import SearchForm from './SearchForm';
 import JobModal from './JobModal';
-
+import UseAlan from './chatbot/UseAlan';
+import Chart from './chart/Chart';
 const jobs = ({ match }) => {
-  
-  //modal job
+
+ 	/** ********BEGIN ALAN AI******** */
+   UseAlan();
+   /** *********END ALAN AI******* */
+
   
   const [open, setOpen] = useState(false);
   const [selectedJob,setselectedJob] = useState({});
@@ -35,8 +39,8 @@ const jobs = ({ match }) => {
 
   return (
     <Container className="my-4">
-
-      <JobModal open={open}  job={selectedJob} />
+       
+       <JobModal open={open}  job={selectedJob} handleClose={handleClose} />
       <h1 className="mb-4">Networky Jobs</h1>
       <SearchForm params={params} onParamChange={handleParamChange} />
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
@@ -47,12 +51,13 @@ const jobs = ({ match }) => {
         return <Job key={job.id}
                     job={job} 
                     onClick = {() => {
-                      handleClickOpen()  
-                      selectedJob(job)} 
-                    }
+                      console.log('clicked');
+                      handleClickOpen() ;
+                      setselectedJob(job)
+                    }}
                     
                     />
-      })}
+        })}
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
     </Container>
   )

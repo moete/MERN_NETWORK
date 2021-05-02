@@ -3,20 +3,28 @@ import { Modal , Button } from 'react-bootstrap' ;
 
 export default function JobModal ( {open,job,handleClose}) {
 
+   const data = {
+     description : job.description
+   }
+   console.log(data)
+  if(!job.title) {
+    return (<div>   </div>) ;
+  }
   return (
     <>
+      
 
-      <Modal open={open} onHide={handleClose}>
+      <Modal show={open} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title> {job.title} </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{job.description}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Apply
           </Button>
         </Modal.Footer>
       </Modal>

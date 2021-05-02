@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Card, Badge, Button, Collapse } from 'react-bootstrap'
 
-export default function Job({ job}) {
+export default function Job({ job,onClick}) {
   const [open, setOpen] = useState(false)
 
   return (
-    <Card  className="mb-3">
-      <Card.Body>
+    <Card className="mb-3">
+      <Card.Body  >
         <div className="d-flex justify-content-between">
           <div>
-            <Card.Title>
+            <Card.Title  onClick={onClick} >
               {job.title} - <span className="text-muted font-weight-light">{job.company_id.company_name}</span>
             </Card.Title>
             <Card.Subtitle className="text-muted mb-2">
