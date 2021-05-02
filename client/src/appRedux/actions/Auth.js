@@ -87,7 +87,6 @@ export const loadUser = () => async dispatch => {
   }
 };
 export const logUserOut = () => ({ type: "LOG_OUT" });
-
 export const fetchUser = userInfo => async dispatch => {
   const config = {
     headers: {

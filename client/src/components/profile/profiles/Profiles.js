@@ -1,4 +1,4 @@
-import React, { Fragment, fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
 import ProfileItem from "./ProfileItem";

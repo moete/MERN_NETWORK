@@ -1,16 +1,18 @@
 import React from "react";
-import {Breadcrumb, Card} from "antd";
+import { Breadcrumb, Card } from "antd";
+import { Link } from "react-router-dom";
 
 const Basic = () => {
   return (
-    <Card className="gx-card" title="Basic">
-      <Breadcrumb>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item><span className="gx-link">Application Center</span></Breadcrumb.Item>
-        <Breadcrumb.Item><span className="gx-link">Application List</span></Breadcrumb.Item>
-        <Breadcrumb.Item>An Application</Breadcrumb.Item>
-      </Breadcrumb>
-    </Card>
+    <Breadcrumb>
+      <Breadcrumb.Item>Home</Breadcrumb.Item>
+      <Link to="all-jobs/Jobs">
+        <Breadcrumb.Item>
+          <span className="gx-link">Jobs</span>
+        </Breadcrumb.Item>
+      </Link>
+      <Breadcrumb.Item>Job Favorites</Breadcrumb.Item>
+    </Breadcrumb>
   );
 };
 

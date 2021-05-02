@@ -1,12 +1,8 @@
 import React from "react";
-import {Card, Pagination} from "antd";
+import { Card, Pagination } from "antd";
 
 const Basic = () => {
-  return (
-    <Card className="gx-card" title="Basic Pagination">
-      <Pagination defaultCurrent={1} total={50}/>
-    </Card>
-  );
+  return <Pagination showTitle={true} defaultCurrent={1} total={50} />;
 };
 
 export default Basic;

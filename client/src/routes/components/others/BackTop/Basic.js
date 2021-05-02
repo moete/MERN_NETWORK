@@ -1,15 +1,8 @@
 import React from "react";
-import {BackTop, Card} from "antd";
+import { BackTop, Card } from "antd";
 
-const Basic = () => {
-  return (
-    <Card title="Basic" className="gx-card">
-      <BackTop/>
-      Scroll down to see the bottom-right
-      <strong className="gx-text-grey"> gray </strong>
-      button.
-    </Card>
-  );
+const Back = () => {
+  return <BackTop />;
 };
 
-export default Basic;
+export default Back;

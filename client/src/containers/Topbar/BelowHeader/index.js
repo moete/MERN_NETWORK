@@ -1,9 +1,6 @@
 import React, { Fragment, Component } from "react";
 import "./nav.css";
-import {
-  Layout,
-  Popover,
-} from "antd";
+import { Layout, Popover } from "antd";
 import { connect } from "react-redux";
 import CustomScrollbars from "util/CustomScrollbars";
 import { userSignOut } from "appRedux/actions/Auth";
@@ -19,7 +16,6 @@ import HorizontalNav from "../HorizontalNav";
 import { Link } from "react-router-dom";
 
 const { Header } = Layout;
-
 
 class BelowHeader extends Component {
   state = {
@@ -50,7 +46,7 @@ class BelowHeader extends Component {
   };
 
   render() {
-    const { isAuthenticated, loader} = this.props;
+    const { isAuthenticated, loader } = this.props;
     const authLinks = (
       <ul className="gx-login-list">
         <li onClick={() => this.props.userSignOut()}>Sign out</li>
