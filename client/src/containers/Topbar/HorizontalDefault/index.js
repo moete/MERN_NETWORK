@@ -88,11 +88,7 @@ class HorizontalDefault extends Component {
               </div>
               <Link
                 to="/"
-<<<<<<< HEAD
-                className="gx-d-block gx-d-lg-none gx-pointer gx-w-logo"
-=======
                 className="logonetworkymini gx-d-block gx-d-lg-none gx-pointer gx-w-logo"
->>>>>>> main
               >
                 <img alt="" src={require("assets/images/w-logo.png")} />
               </Link>

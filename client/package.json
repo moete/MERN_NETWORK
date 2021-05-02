@@ -12,7 +12,6 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.6.0",
     "d3": "^6.7.0",
-   
     "draftjs-to-html": "^0.8.4",
     "firebase": "^8.4.3",
     "install": "^0.12.2",
@@ -26,9 +25,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
-   
     "react-bootstrap": "^1.5.2",
-   
     "react-chat-engine": "^1.8.11",
     "sass-loader": "^10",
     "react-big-calendar": "^0.19.2",
