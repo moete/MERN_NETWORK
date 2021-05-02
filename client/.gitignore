@@ -2,5 +2,6 @@
 .git/
 .idea/
 yarn.lock
+
 node_modules/
 /nbproject/private/

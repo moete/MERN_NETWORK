@@ -1,1 +1,10 @@
-node_modules
+# Created by .ignore support plugin (hsz.mobi)
+.git/
+.vscode/
+.idea/
+
+node_modules/
+/nbproject/private/
+config/default.json
+package-lock.json
+package.json

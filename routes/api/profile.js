@@ -8,6 +8,8 @@ const { check, validationResult } = require('express-validator');
 const axios = require('axios');
 const config = require('config');
 const request = require('request');
+
+const ClearbitLogo = require('clearbit-logo');
 // @route    GET api/profile/me
 // @desc     Get current users profile
 // @access   Private
@@ -193,12 +195,35 @@ router.put(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    let logoextraction = new ClearbitLogo();
 
+    const {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
+
+    const newExp = {
+      title: title,
+      company: company,
+      location: location,
+      from: from,
+      to: to,
+      current: current,
+      description: description,
+      companylogo: 'https://logo.clearbit.com/' + company + '.com',
+    };
     try {
       const profile = await Profile.findOne({ user: req.user.id });
 
-      profile.experience.unshift(req.body);
-
+      profile.experience.unshift(newExp);
+      logoextraction.topSuggestion(company).then((company) => {
+        console.log(company.logo);
+      });
       await profile.save();
 
       res.json(profile);
@@ -244,11 +269,30 @@ router.put(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    const {
+      degree,
+      school,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
 
+    const newEdu = {
+      degree: degree,
+      school: school,
+      fieldofstudy: fieldofstudy,
+      from: from,
+      to: to,
+      current: current,
+      description: description,
+      schoollogo: 'https://logo.clearbit.com/' + school + '.tn',
+    };
     try {
       const profile = await Profile.findOne({ user: req.user.id });
 
-      profile.education.unshift(req.body);
+      profile.education.unshift(newEdu);
 
       await profile.save();
 

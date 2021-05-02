@@ -16,12 +16,7 @@ class NavigationTop extends Component {
   };
 
   render() {
-    return (
-      <Card className="gx-card" title="Top Navigation">
-   
-     
-      </Card>
-    );
+    return <Card className="gx-card" title="Top Navigation"></Card>;
   }
 }
 

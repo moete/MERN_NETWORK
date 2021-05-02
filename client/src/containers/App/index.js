@@ -80,7 +80,7 @@ class App extends Component {
 
   componentWillMount() {
     if (this.props.initURL === "") {
-      this.props.setInitUrl(this.props.history.location.pathname);
+      this.props.setInitUrl("/question/question-list");
     }
     const params = new URLSearchParams(this.props.location.search);
 
@@ -110,7 +110,7 @@ class App extends Component {
       if (authUser === null) {
         return <Redirect to={"/signin"} />;
       } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
-        return <Redirect to={"/social-apps/wall"} />;
+        return <Redirect to={"/question/question-list"} />;
       } else {
         return <Redirect to={initURL} />;
       }
