@@ -175,20 +175,20 @@ const Course = props => (
     </Widget>
   </Col>
 );
-const User = ({ profile }) => (
+const User = ({ user }) => (
   <div>
     <div className="gx-wall-scroll">
       <div>
         <div className="gx-profileon">
           <div className="gx-profileon-thumb gx-profileon-thumb-htctrcrop">
-            <img src={profile.user.avatar} alt=""></img>
+            <img src={user.avatar} alt=""></img>
           </div>
           <div
             className="gx-profileon-content"
             style={{ backgroundColor: "#38424b", opacity: "85%" }}
           >
-            <p className="gx-profileon-title">{profile.user.name} </p>
-            <span className="gx-fs-sm">{profile.location}</span>
+            <p className="gx-profileon-title">{user.name} </p>
+            <span className="gx-fs-sm">{user.email}</span>
           </div>
         </div>
         <div className="gx-follower gx-text-center">
@@ -470,7 +470,7 @@ export class AllPosts extends Component {
         </div>
       );
     } else {
-      return <User profile={this.props.profile.profile} />;
+      return <User user={this.props.auth.user} />;
     }
   }
   Search() {
