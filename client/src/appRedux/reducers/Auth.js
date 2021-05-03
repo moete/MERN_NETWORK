@@ -33,6 +33,7 @@ const INIT_STATE = {
   initURL: "",
   authUser: localStorage.getItem("user_id"),
   token: localStorage.getItem("token"),
+
   isAuthenticated: null
 };
 
@@ -41,6 +42,10 @@ export default (state = INIT_STATE, action) => {
   switch (type) {
     case REGISTER_SUCCESS:
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("email", payload.user.email);
+      localStorage.setItem("password", payload.user.password);
+      //  localStorage.setItem("email", payload.token);
+
       return {
         ...state,
         isAuthenticated: true,
@@ -61,6 +66,8 @@ export default (state = INIT_STATE, action) => {
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
+      localStorage.removeItem("email");
+      localStorage.removeItem("password");
       localStorage.removeItem("token");
       return {
         ...state,
@@ -75,6 +82,8 @@ export default (state = INIT_STATE, action) => {
       };
     case ACCOUNT_DELETED:
     case SIGNOUT_USER:
+      localStorage.removeItem("email");
+      localStorage.removeItem("password");
       localStorage.removeItem("token");
       return {
         ...state,
@@ -86,6 +95,8 @@ export default (state = INIT_STATE, action) => {
         user: null
       };
     case AUTH_ERROR:
+      localStorage.removeItem("email");
+      localStorage.removeItem("password");
       localStorage.removeItem("token");
       return {
         ...state,
@@ -97,6 +108,8 @@ export default (state = INIT_STATE, action) => {
         user: null
       };
     case SIGNUP_USER_SUCCESS: {
+      localStorage.setItem("email", payload.user.email);
+      localStorage.setItem("password", payload.user.password);
       localStorage.setItem("token", payload.token);
       localStorage.setItem("user_id", payload.user);
       return {
@@ -109,7 +122,10 @@ export default (state = INIT_STATE, action) => {
       };
     }
     case SIGNIN_USER_SUCCESS: {
+      localStorage.setItem("email", payload.user.email);
+      localStorage.setItem("password", payload.user.password);
       localStorage.setItem("token", payload.token);
+
       localStorage.setItem("user_id", payload.user);
       return {
         ...state,
