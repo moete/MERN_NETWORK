@@ -226,71 +226,138 @@ class EditProfile extends Component {
                 </Col>
               </Row>
               <div id="myDIV" style={{ display: "none" }}>
-                <FormItem {...formItemLayout} label="Twitter">
-                  {getFieldDecorator("twitter", {
-                    initialValue: profile.social.twitter,
-                    rules: [{ required: false }]
-                  })(
-                    <AutoComplete
-                      dataSource={websiteOptions}
-                      onChange={this.handleWebsiteChange}
-                    >
-                      <Input placeholder="Twitter URL" />
-                    </AutoComplete>
-                  )}
-                </FormItem>
-                <FormItem {...formItemLayout} label="Instagram">
-                  {getFieldDecorator("instagram", {
-                    initialValue: profile.social.instagram,
-                    rules: [{ required: false }]
-                  })(
-                    <AutoComplete
-                      dataSource={websiteOptions}
-                      onChange={this.handleWebsiteChange}
-                    >
-                      <Input placeholder="Instagram URL" />
-                    </AutoComplete>
-                  )}
-                </FormItem>
-                <FormItem {...formItemLayout} label="Facebook">
-                  {getFieldDecorator("facebook", {
-                    initialValue: profile.social.facebook,
-                    rules: [{ required: false }]
-                  })(
-                    <AutoComplete
-                      dataSource={websiteOptions}
-                      onChange={this.handleWebsiteChange}
-                    >
-                      <Input placeholder="Facebook URL" />
-                    </AutoComplete>
-                  )}
-                </FormItem>
-                <FormItem {...formItemLayout} label="LinkedIn">
-                  {getFieldDecorator("linkedin", {
-                    initialValue: profile.social.linkedin,
-                    rules: [{ required: false }]
-                  })(
-                    <AutoComplete
-                      dataSource={websiteOptions}
-                      onChange={this.handleWebsiteChange}
-                    >
-                      <Input placeholder="LinkedIn URL" />
-                    </AutoComplete>
-                  )}
-                </FormItem>
-                <FormItem {...formItemLayout} label="Youtube">
-                  {getFieldDecorator("youtube", {
-                    initialValue: profile.social.youtube,
-                    rules: [{ required: false }]
-                  })(
-                    <AutoComplete
-                      dataSource={websiteOptions}
-                      onChange={this.handleWebsiteChange}
-                    >
-                      <Input placeholder="Youtube URL" />
-                    </AutoComplete>
-                  )}
-                </FormItem>
+                {profile.social !== undefined ? (
+                  <Fragment>
+                    <FormItem {...formItemLayout} label="Twitter">
+                      {getFieldDecorator("twitter", {
+                        initialValue: profile.social.twitter,
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Twitter URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="Instagram">
+                      {getFieldDecorator("instagram", {
+                        initialValue: profile.social.instagram,
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Instagram URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="Facebook">
+                      {getFieldDecorator("facebook", {
+                        initialValue: profile.social.facebook,
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Facebook URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="LinkedIn">
+                      {getFieldDecorator("linkedin", {
+                        initialValue: profile.social.linkedin,
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="LinkedIn URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="Youtube">
+                      {getFieldDecorator("youtube", {
+                        initialValue: profile.social.youtube,
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Youtube URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <FormItem {...formItemLayout} label="Twitter">
+                      {getFieldDecorator("twitter", {
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Twitter URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="Instagram">
+                      {getFieldDecorator("instagram", {
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Instagram URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="Facebook">
+                      {getFieldDecorator("facebook", {
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Facebook URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="LinkedIn">
+                      {getFieldDecorator("linkedin", {
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="LinkedIn URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="Youtube">
+                      {getFieldDecorator("youtube", {
+                        rules: [{ required: false }]
+                      })(
+                        <AutoComplete
+                          dataSource={websiteOptions}
+                          onChange={this.handleWebsiteChange}
+                        >
+                          <Input placeholder="Youtube URL" />
+                        </AutoComplete>
+                      )}
+                    </FormItem>
+                  </Fragment>
+                )}
               </div>
               <FormItem wrapperCol={{ xs: 24, sm: { span: 14, offset: 6 } }}>
                 <Button type="primary" htmlType="submit">

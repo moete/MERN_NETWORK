@@ -177,6 +177,7 @@ export default (state = INIT_STATE, action) => {
         authUser: action.payload
       };
     }
+    case UNFOLLOW_SUCCESS:
     case FOLLOW_SUCCESS: {
       return {
         ...state,

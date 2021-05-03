@@ -14,9 +14,6 @@ const ClearbitLogo = require('clearbit-logo');
 // @desc     Get current users profile
 // @access   Private
 router.get('/me', auth, async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Max-Age', '1800');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'content-type',
@@ -56,6 +53,16 @@ router.post(
     ],
   ],
   async (req, res) => {
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'content-type',
+      'Authorization',
+      'x-auth-token'
+    );
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+    );
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -125,6 +132,16 @@ router.post(
 // @desc        Get all profiles
 // @access      Public
 router.get('/', async (req, res) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'content-type',
+    'Authorization',
+    'x-auth-token'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   try {
     const profiles = await Profile.find().populate('user', ['name', 'avatar']);
     res.json(profiles);
@@ -137,6 +154,16 @@ router.get('/', async (req, res) => {
 // @desc        Get profile by user ID
 // @access      Public
 router.get('/user/:user_id', async (req, res) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'content-type',
+    'Authorization',
+    'x-auth-token'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
@@ -158,6 +185,16 @@ router.get('/user/:user_id', async (req, res) => {
 // @desc     Delete profile, user & posts
 // @access   Private
 router.delete('/', auth, async (req, res) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'content-type',
+    'Authorization',
+    'x-auth-token'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   try {
     // Remove user posts
     // Remove profile
@@ -191,6 +228,16 @@ router.put(
     ],
   ],
   async (req, res) => {
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'content-type',
+      'Authorization',
+      'x-auth-token'
+    );
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+    );
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -238,6 +285,16 @@ router.put(
 // @access   Private
 
 router.delete('/experience/:exp_id', auth, async (req, res) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'content-type',
+    'Authorization',
+    'x-auth-token'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
 
@@ -265,6 +322,16 @@ router.put(
     .notEmpty()
     .custom((value, { req }) => (req.body.to ? value < req.body.to : true)),
   async (req, res) => {
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'content-type',
+      'Authorization',
+      'x-auth-token'
+    );
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+    );
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -308,6 +375,16 @@ router.put(
 // @access   Private
 
 router.delete('/education/:edu_id', auth, async (req, res) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'content-type',
+    'Authorization',
+    'x-auth-token'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   try {
     const foundProfile = await Profile.findOne({ user: req.user.id });
     foundProfile.education = foundProfile.education.filter(
@@ -325,6 +402,16 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @desc     Get user repos from Github
 // @access   Public
 router.get('/github/:username', (req, res) => {
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'content-type',
+    'Authorization',
+    'x-auth-token'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
+  );
   try {
     const options = {
       uri: `https://api.github.com/users/${
