@@ -6,7 +6,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const config = require('./config/twilio');
 
 // CORS
 app.use((req, res, next) => {
@@ -55,12 +54,14 @@ const Jobtype = require('./routes/job_type.routes');
 const Postedon = require('./routes/posted_on.routes');
 const Job = require('./routes/job.routes');
 const Schedule = require('./routes/schedule.routes');
+const PdfRouter = require('./routes/pdf.routes');
 
 app.use('/company', CompanyRouter);
 app.use('/jobtype', Jobtype);
 app.use('/postedon', Postedon);
 app.use('/job', Job);
 app.use('/schedule', Schedule);
+app.use('/pdf',PdfRouter);
 
 /*
 app.post("sms",Twilio.webhook(config.twilio),function(req,res){

@@ -1,8 +1,43 @@
 import React, { useState } from 'react'
 import { Card, Badge, Button, Collapse } from 'react-bootstrap'
+import {notification} from 'antd'
+import axios from 'axios';
+import { saveAs } from 'file-saver';
 
 export default function Job({ job,onClick}) {
+
+ 
+  const BASE_URL = 'http://localhosst:5000/create-pdf' ;
+  
   const [open, setOpen] = useState(false)
+  const openNotification = () => {
+    notification.open({
+      message: `Your job ${job.title} is saved to pdf File`,
+      description:
+        `Maybe your next job will be located in ${job.location}`,
+      onClick: () => {
+        console.log(this.pdfData)
+        console.log('Notification Clicked!');
+      },
+    });
+  };
+ 
+ const createAndDownloadPdf = () => {
+  const pdfData = {
+    title : job.title ,
+    location : job.location , 
+    employees_needed : job.employees_needed,
+    posted_date : job.posted_date
+    
+  }
+    axios.post('/create-pdf', this.pdfData)
+      .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+
+        saveAs(pdfBlob, 'newPdf.pdf');
+      })
+  }
 
   return (
     <Card className="mb-3">
@@ -29,12 +64,23 @@ export default function Job({ job,onClick}) {
           <img className="d-none d-md-block" height="50" alt={job.company_id.company_name} />
         </div>
         <Card.Text>
+          <br></br>
           <Button
             onClick={() => setOpen(prevOpen => !prevOpen)}
             variant="primary"
           >
             {open ? 'Hide Details' : 'View Details'}
           </Button>
+          <Button 
+           variant="primary"
+           onClick = {() => {
+            console.log('clicked');
+            openNotification() ;
+            createAndDownloadPdf();
+          }}
+           >
+             Save To Pdf
+           </Button>
         </Card.Text>
         <Collapse in={open}>
           <div className="mt-4">
