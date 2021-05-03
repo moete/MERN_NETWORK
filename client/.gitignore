@@ -1,6 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 .git/
+.vscode/
 .idea/
 
 node_modules/
 /nbproject/private/
+package-lock.json
+package.json
