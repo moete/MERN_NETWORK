@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Input} from "antd";
+import { Card, Input } from "antd";
 
 const Search = Input.Search;
 
@@ -9,7 +9,7 @@ const SearchBox = () => {
       <Search
         placeholder="input search text"
         onSearch={value => console.log(value)}
-        style={{width: 200}}
+        style={{ width: 200 }}
       />
 
       <Search
@@ -18,7 +18,11 @@ const SearchBox = () => {
         enterButton
       />
 
-      <Search placeholder="input search text" enterButton="Search" size="large"/>
+      <Search
+        placeholder="input search text"
+        enterButton="Search"
+        size="large"
+      />
     </Card>
   );
 };

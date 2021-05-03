@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { followUser } from "../../../appRedux/actions/Auth";
+import { followUser, unfollowUser } from "../../../appRedux/actions/Auth";
 import { connect } from "react-redux";
 
 //xl={12} lg={24} md={12} sm={24} xs={24}
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
 const ProfileItem = ({
   followUser,
+  unfollowUser,
   profile: {
     user: { _id, name, avatar },
     status,
@@ -26,7 +27,13 @@ const ProfileItem = ({
               followUser(_id);
             }}
           />,
-          <Icon type="user-delete" key="edit" />,
+          <Icon
+            type="user-delete"
+            key="edit"
+            onClick={() => {
+              unfollowUser(_id);
+            }}
+          />,
           <Icon type="ellipsis" key="ellipsis" />
         ]}
       >
@@ -49,5 +56,7 @@ const ProfileItem = ({
 };
 
 ProfileItem.propTypes = {};
-
-export default connect(null, { followUser })(ProfileItem);
+const mapStateToProps = state => ({
+  userfollowers: state.auth.user.followers
+});
+export default connect(null, { followUser, unfollowUser })(ProfileItem);

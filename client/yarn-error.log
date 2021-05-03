@@ -1,0 +1,108 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\Users\HP\AppData\Local\Microsoft\WindowsApps;;C:\Users\HP\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\HP\AppData\Roaming\npm;C:\Users\HP\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  14.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: C:\Users\HP\Desktop\Node\MERN_PROJECT\client\node_modules\@firebase\polyfill\node_modules\core-js: EBUSY: resource busy or locked, open 'C:\Users\HP\AppData\Local\Temp\yarn--1619815025114-0.9174235765445702\yarn.cmd'
+
+npm manifest: 
+  {
+    "name": "Wieldy",
+    "version": "1.7.0",
+    "private": true,
+    "dependencies": {
+      "@amcharts/amcharts3-react": "^3.1.0",
+      "amcharts3": "^3.21.13",
+      "antd": "^3.11.6",
+      "antd-theme-webpack-plugin": "^1.1.6",
+      "axios": "^0.18.0",
+      "bootstrap": "^4.6.0",
+      "d3": "^6.7.0",
+      "draftjs-to-html": "^0.8.4",
+      "firebase": "^8.4.1",
+      "install": "^0.12.2",
+      "instantsearch.css": "^7.1.0",
+      "less": "2.7.3",
+      "less-loader": "^4.1.0",
+      "less-vars-to-js": "^1.2.1",
+      "lodash": "^4.17.11",
+      "moment": "^2.22.2",
+      "nprogress": "^0.2.0",
+      "prop-types": "^15.6.2",
+      "react": "^16.8.6",
+      "react-autocomplete": "^1.8.1",
+      "react-big-calendar": "^0.19.2",
+      "react-bootstrap": "^1.5.2",
+      "react-bootstrap-sweetalert": "^4.4.1",
+      "react-ckeditor-component": "^1.0.7",
+      "react-color": "^2.14.1",
+      "react-custom-scrollbars": "^4.2.1",
+      "react-dnd": "^5.0.0",
+      "react-dnd-html5-backend": "^5.0.1",
+      "react-dom": "^16.8.6",
+      "react-draft-wysiwyg": "^1.12.13",
+      "react-flip-move": "^3.0.2",
+      "react-google-maps": "^9.4.5",
+      "react-hot-loader": "^4.6.3",
+      "react-instantsearch": "^5.2.2",
+      "react-instantsearch-dom": "^5.2.2",
+      "react-intl": "^2.4.0",
+      "react-notifications": "^1.4.3",
+      "react-placeholder": "^3.0.1",
+      "react-redux": "^5.0.7",
+      "react-router-dom": "^4.3.1",
+      "react-router-redux": "^5.0.0-alpha.9",
+      "react-scripts": "^2.1.3",
+      "react-simple-maps": "^0.12.1",
+      "react-slick": "^0.23.1",
+      "react-sortable-hoc": "^0.8.3",
+      "react-star-rating-component": "^1.4.1",
+      "react-stickies": "^0.0.16",
+      "react-view-component": "1.0.1",
+      "recharts": "^1.0.1",
+      "redux": "^4.0.0",
+      "redux-saga": "^0.16.0",
+      "redux-thunk": "^2.3.0",
+      "response": "^0.18.0",
+      "rheostat": "^3.0.1",
+      "slick-carousel": "^1.8.1",
+      "url-search-params": "^1.1.0",
+      "uuid": "^8.3.2",
+      "victory": "^0.27.2"
+    },
+    "scripts": {
+      "start": "react-app-rewired start",
+      "build": "react-app-rewired build",
+      "test": "react-app-rewired --env=jsdom"
+    },
+    "devDependencies": {
+      "add": "^2.0.6",
+      "babel-plugin-import": "^1.8.0",
+      "customize-cra": "^0.2.10",
+      "react-app-rewired": "^2.0.2",
+      "yarn": "^1.7.0"
+    },
+    "browserslist": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+    ]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

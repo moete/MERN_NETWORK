@@ -1,11 +1,18 @@
-import React, { Fragment, fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
 import ProfileItem from "./ProfileItem";
+import Followings from "./followings";
+import Followers from "./followers";
 import { connect } from "react-redux";
 import CircularProgress from "../../../components/CircularProgress/index";
 import { getProfiles } from "../../../appRedux/actions/profile";
-const Profiles = ({ getProfiles, profile: { profiles, loader } }) => {
+const Profiles = ({
+  userfollowings,
+  user,
+  getProfiles,
+  profile: { profiles, loader }
+}) => {
   useEffect(() => {
     getProfiles();
     if (isLoading) {
@@ -15,8 +22,10 @@ const Profiles = ({ getProfiles, profile: { profiles, loader } }) => {
     }
   }, []);
   const { TabPane } = Tabs;
+  const newList = profiles.filter(profile => profile.user._id !== user._id);
 
   let isLoading = true;
+
   return (
     <Card className="gx-card" title="Friends">
       <Tabs className="gx-main-content" defaultActiveKey="1">
@@ -24,15 +33,37 @@ const Profiles = ({ getProfiles, profile: { profiles, loader } }) => {
           tab={
             <span>
               <Icon type="apple" />
-              All friends
+              Following
             </span>
           }
           key="1"
         >
           <Row>
             {Profiles.length > 0 ? (
-              profiles.map(profile => (
-                <ProfileItem key={profile._id} profile={profile} />
+              newList.map(
+                profile => (
+                  console.log(profile),
+                  (<Followings key={profile._id} profile={profile} />)
+                )
+              )
+            ) : (
+              <h4>No profiles Found ...</h4>
+            )}
+          </Row>
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <Icon type="apple" />
+              Followers
+            </span>
+          }
+          key="2"
+        >
+          <Row>
+            {Profiles.length > 0 ? (
+              newList.map(profile => (
+                <Followers key={profile._id} profile={profile} />
               ))
             ) : (
               <h4>No profiles Found ...</h4>
@@ -46,7 +77,9 @@ const Profiles = ({ getProfiles, profile: { profiles, loader } }) => {
 
 Profiles.propTypes = {};
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  user: state.auth.user
+  //userfollowings: state.auth.user.following
 });
 
 export default connect(mapStateToProps, { getProfiles })(Profiles);
