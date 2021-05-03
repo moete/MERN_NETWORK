@@ -97,8 +97,7 @@ export class UpdateQuestion extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { showMessage, loader, alertMessage } = this.props;
-    const {title, contentText, tags, originalname } = this.state;
+    const {title, contentText, tags } = this.state;
     return (
       <>
       

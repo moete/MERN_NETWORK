@@ -60,7 +60,8 @@ export class QuestionDetails extends Component {
       owner: "",
       contentCode: "",
       contentAnswer: "",
-      question_date: ""
+      question_date: "",
+      image:""
     };
   }
 
@@ -75,7 +76,8 @@ export class QuestionDetails extends Component {
           answers: response.data.answers,
           votes: response.data.votes,
           owner: response.data.owner,
-          question_date: response.data.question_date
+          question_date: response.data.question_date,
+          image: response.data.image
         });
       })
       .catch(function(error) {
@@ -157,7 +159,21 @@ export class QuestionDetails extends Component {
             bordered={false}
           >
             <div class="gx-mb-1"> {this.state.contentText}</div>
+            <Col>
+          <div className="gx-wall-medialist">
+            <div className="gx-gallery-grid gx-gallery-2">
+              <div className="gx-gallery-item">
+                <img
+                  class="gx-img-fluid"
+                  src={`/uploads/Posts/Screenshot-Post--${this.state.image}`}
+                  alt="post"
+                ></img>
+              </div>
+            </div>
+          </div>
+          </Col>
           </Card>
+         
           <ul class="gx-list-inline gx-btn-list">
             <li>
               <span class="gx-link gx-meta-like">
