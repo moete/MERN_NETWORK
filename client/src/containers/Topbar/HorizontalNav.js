@@ -92,6 +92,7 @@ class HorizontalNav extends Component {
             </Link>
           </Menu.Item>
         </SubMenu>
+
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="extraComponents"
@@ -112,12 +113,31 @@ class HorizontalNav extends Component {
             </Link>
           </Menu.Item>
         </SubMenu>
+
+        <SubMenu
+          className={this.getNavStyleSubMenuClass(navStyle)}
+          key="JobBoard"
+          title={"JobBoard"}
+        >
         <Menu.Item key="job-board">
-          <Link to="/job-board/all-jobs">Jobs</Link>
+          <Link to="/job-board/all-jobs">
+          <i className="icon icon-alert" />
+          <IntlMessages id="Jobs for you" />
+
+          </Link>
+        
+
         </Menu.Item>
         <Menu.Item key="job-board">
-          <Link to="/job-board/all">Chat</Link>
+          <Link to="/job-board/all">
+          <i className="  icon icon-chat-bubble -flex-column-reverse" />
+          <IntlMessages id="Chat with networky community " />
+          </Link>
+          
+         
+
         </Menu.Item>
+        </SubMenu>
       </Menu>
     );
   }

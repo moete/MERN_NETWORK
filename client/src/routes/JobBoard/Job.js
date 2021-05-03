@@ -16,11 +16,12 @@ export default function Job({ job,onClick}) {
       description:
         `Maybe your next job will be located in ${job.location}`,
       onClick: () => {
-        console.log(this.pdfData)
+       // console.log(this.pdfData)
         console.log('Notification Clicked!');
       },
     });
   };
+  /*
  
  const createAndDownloadPdf = () => {
   const pdfData = {
@@ -38,6 +39,7 @@ export default function Job({ job,onClick}) {
         saveAs(pdfBlob, 'newPdf.pdf');
       })
   }
+  */
 
   return (
     <Card className="mb-3">
@@ -76,7 +78,7 @@ export default function Job({ job,onClick}) {
            onClick = {() => {
             console.log('clicked');
             openNotification() ;
-            createAndDownloadPdf();
+           // createAndDownloadPdf();
           }}
            >
              Save To Pdf
