@@ -5,9 +5,15 @@ import axios from 'axios';
 import { saveAs } from 'file-saver';
 
 export default function Job({ job,onClick}) {
-
+  const pdfData = {
+    title : job.title ,
+    location : job.location , 
+    employees_needed : job.employees_needed,
+    posted_date : job.posted_date
+    
+  }
  
-  const BASE_URL = 'http://localhosst:5000/create-pdf' ;
+  const BASE_URL = 'http://localhost:5000/pdf/create-pdf' ;
   
   const [open, setOpen] = useState(false)
   const openNotification = () => {
@@ -16,30 +22,24 @@ export default function Job({ job,onClick}) {
       description:
         `Maybe your next job will be located in ${job.location}`,
       onClick: () => {
-       // console.log(this.pdfData)
+       console.log(this.pdfData)
         console.log('Notification Clicked!');
       },
     });
   };
-  /*
+  
  
  const createAndDownloadPdf = () => {
-  const pdfData = {
-    title : job.title ,
-    location : job.location , 
-    employees_needed : job.employees_needed,
-    posted_date : job.posted_date
-    
-  }
-    axios.post('/create-pdf', this.pdfData)
-      .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
+ 
+    axios.post(BASE_URL, pdfData)
+      .then(() => axios.get('http://localhost:5000/pdf/fetch-pdf', { responseType: 'blob' }))
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
         saveAs(pdfBlob, 'newPdf.pdf');
       })
   }
-  */
+  
 
   return (
     <Card className="mb-3">
@@ -78,7 +78,7 @@ export default function Job({ job,onClick}) {
            onClick = {() => {
             console.log('clicked');
             openNotification() ;
-           // createAndDownloadPdf();
+            createAndDownloadPdf();
           }}
            >
              Save To Pdf

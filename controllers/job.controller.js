@@ -14,6 +14,7 @@ const getAllJobs = async (req, res) => {
   req.query.job_type ? rech.job_type = req.query.job_type : null ;
   req.query.title ? rech.title = req.query.title : null ;
 
+  console.log(req.query)
   Job.find(rech)
     .populate("company_id", {company_name : 1})
       .then(Jobs => res.json(Jobs))

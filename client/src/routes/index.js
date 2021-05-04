@@ -37,6 +37,8 @@ const App = ({ match }) => (
       />
       <Route path={`${match.url}job-board`} component={JOB} />
       <Route path={`${match.url}job-board`} component={App} />
+
+      
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
       <Route path={`${match.url}social-apps`} component={SocialApps} />
       <Route path={`${match.url}documents`} component={Documents} />

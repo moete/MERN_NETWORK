@@ -9,13 +9,13 @@ import UseAlan from './chatbot/UseAlan';
 import Chart from './chart/Chart';
 const jobs = ({ match }) => {
 
- 	/** ********BEGIN ALAN AI******** */
-   UseAlan();
-   /** *********END ALAN AI******* */
+  /** ********BEGIN ALAN AI******** */
+  UseAlan();
+  /** *********END ALAN AI******* */
 
-  
+
   const [open, setOpen] = useState(false);
-  const [selectedJob,setselectedJob] = useState({});
+  const [selectedJob, setselectedJob] = useState({});
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -23,7 +23,7 @@ const jobs = ({ match }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const [params, setParams] = useState({})
   const [page, setPage] = useState(1)
   const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page)
@@ -39,8 +39,7 @@ const jobs = ({ match }) => {
 
   return (
     <Container className="my-4">
-       
-       <JobModal open={open}  job={selectedJob} handleClose={handleClose} />
+      <JobModal open={open} job={selectedJob} handleClose={handleClose} />
       <h1 className="mb-4">Networky Jobs</h1>
       <SearchForm params={params} onParamChange={handleParamChange} />
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
@@ -48,16 +47,16 @@ const jobs = ({ match }) => {
       {error && <h1>Error. Try Refreshing.</h1>}
       {jobs.map(job => {
 
-        return <Job key={job.id}
-                    job={job} 
-                    onClick = {() => {
-                      console.log('clicked');
-                      handleClickOpen() ;
-                      setselectedJob(job)
-                    }}
-                    
-                    />
-        })}
+        return <Job key={job._id}
+          job={job}
+          onClick={() => {
+            console.log('clicked');
+            handleClickOpen();
+            setselectedJob(job)
+          }}
+
+        />
+      })}
       <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
     </Container>
   )

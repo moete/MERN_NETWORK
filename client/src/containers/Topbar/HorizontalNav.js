@@ -119,24 +119,32 @@ class HorizontalNav extends Component {
           key="JobBoard"
           title={"JobBoard"}
         >
-        <Menu.Item key="job-board">
-          <Link to="/job-board/all-jobs">
-          <i className="icon icon-alert" />
-          <IntlMessages id="Jobs for you" />
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all-jobs">
+              <i className="icon icon-alert" />
+              <IntlMessages id="Jobs for you" />
 
-          </Link>
-        
+            </Link>
 
-        </Menu.Item>
-        <Menu.Item key="job-board">
-          <Link to="/job-board/all">
-          <i className="  icon icon-chat-bubble -flex-column-reverse" />
-          <IntlMessages id="Chat with networky community " />
-          </Link>
-          
-         
+          </Menu.Item>
 
-        </Menu.Item>
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all-stats">
+              <i className="icon icon-alert" />
+              <IntlMessages id="View Networky stats Before your search" />
+
+            </Link>
+
+          </Menu.Item>
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all">
+              <i className="  icon icon-chat-bubble -flex-column-reverse" />
+              <IntlMessages id="Chat with networky community " />
+            </Link>
+
+
+
+          </Menu.Item>
         </SubMenu>
       </Menu>
     );

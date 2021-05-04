@@ -1,13 +1,10 @@
-import React from "react";
-import './App.css';
-import RowChart from "./RowChart";
-class Chart extends React.Component {
-render() {
-      return (
-        <div className="mainPage">
-            <RowChart />
-        </div>
-      )
-  }
+
+import React from 'react' ;
+
+export default function Chart () {
+  return (
+    <div>
+      
+    </div>
+  )
 }
-export default Chart;

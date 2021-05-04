@@ -9,6 +9,8 @@ const JOB= ({match}) => (
     <Redirect exact from={`${match.url}/`} to={`${match.url}/job-board`}/>
     <Route path={`${match.url}/all-jobs`} component={asyncComponent(() => import('./Jobs'))}/>
     <Route path={`${match.url}/all`} component={asyncComponent(() => import('./chat/App'))}/>
+    <Route path={`${match.url}/all-stats`} component={asyncComponent(() => import('./chart/Chart'))}/>
+
  
     
   </Switch>

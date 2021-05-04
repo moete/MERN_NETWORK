@@ -5,9 +5,9 @@ const pdfTemplate = require('../documents/index');
 
 
 
-const CreatePdf = async (req,res) => {
-    pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
-        if(err) {
+const CreatePdf = async (req, res) => {
+    pdf.create(pdfTemplate(req.body), {}).toFile('controllers/result.pdf', (err) => {
+        if (err) {
             res.send(Promise.reject());
         }
 
@@ -15,7 +15,7 @@ const CreatePdf = async (req,res) => {
     });
 
 };
-const FetchPdf = async (req,res) => {
+const FetchPdf = async (req, res) => {
     res.sendFile(`${__dirname}/result.pdf`)
 
 }

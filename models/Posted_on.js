@@ -7,9 +7,9 @@ const PostedOnSchema = new Schema({
     type: String,
     required: true
   },
-  user: {
-    type: String,
-    required: true
+  user_id: {
+    type: Schema.Types.ObjectId,
+   required: true
   },
   job_id: {
     type: Schema.Types.ObjectId,

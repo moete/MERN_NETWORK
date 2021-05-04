@@ -18,7 +18,7 @@ const App = ({ getProfiles, profile: { profiles } }) => {
       height="100vh"
       projectID={projectID}
       userName={localStorage.getItem('email')}
-      userSecret={localStorage.getItem('password')}
+      userSecret={localStorage.getItem('email')}
       onNewMessage={() =>
         new Audio(
           "https://chat-engine-assets.s3.amazonaws.com/click.mp3"

@@ -14,9 +14,18 @@ export default function SearchForm({ params, onParamChange }) {
           <Form.Control onChange={onParamChange} value={params.location} name="location" type="text" />
         </Form.Group>
         <Form.Group as={Col} xs="auto" className="ml-2">
-          <Form.Check onChange={onParamChange} value={params.job_type} name="job_type" id="job_type" label="Only Full Time" type="checkbox" className="mb-2" />
+          <Form.Label>Job Type</Form.Label>
+          <Form.Control onChange={onParamChange} value={params.job_type} name="job_type"  as="select"  defaultValue=''>
+             <option value="">No preferences</option>
+
+              <option value="Full Time">Full Time</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Remote">Remote</option>
+            </Form.Control>
+         
         </Form.Group>
+    
       </Form.Row>
-    </Form>
+    </Form >
   )
 }
