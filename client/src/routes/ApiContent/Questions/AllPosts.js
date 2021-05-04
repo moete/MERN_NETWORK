@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Widget from "components/Widget/index";
 import CircularProgress from "components/CircularProgress/index";
-
+import GroupList from './GroupList'
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../appRedux/actions/profile";
 
@@ -181,14 +181,14 @@ const User = ({ profile }) => (
       <div>
         <div className="gx-profileon">
           <div className="gx-profileon-thumb gx-profileon-thumb-htctrcrop">
-            <img src={profile.user.avatar} alt=""></img>
+            <img src={profile ?(profile.user.avatar):("")} alt=""></img>
           </div>
           <div
             className="gx-profileon-content"
             style={{ backgroundColor: "#38424b", opacity: "85%" }}
           >
-            <p className="gx-profileon-title">{profile.user.name} </p>
-            <span className="gx-fs-sm">{profile.location}</span>
+            <p className="gx-profileon-title">{profile ?(profile.user.name):("")} </p>
+            <span className="gx-fs-sm">{profile ?(profile.location):('')}</span>
           </div>
         </div>
         <div className="gx-follower gx-text-center">
@@ -353,14 +353,27 @@ export class AllPosts extends Component {
       isLoaded: true,
       site: "stackoverflow",
       posts: [],
-      isLoading: true
+      isLoading: true,
+      groups:[]
     };
   }
   componentDidMount() {
+   
     axios
       .get("http://localhost:5000/question/")
       .then(response => {
         this.setState({ questions: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      axios
+      .get("http://localhost:5000/group/")
+      .then(response => {
+        this.setState( {groups:response.data});
+        console.log(response.data)
+       console.log(this.state.groups)
+       
       })
       .catch(error => {
         console.log(error);
@@ -426,7 +439,7 @@ export class AllPosts extends Component {
         return <Question question={currentquestion} />;
       });
     } else {
-      if (this.state.search == "") {
+      if (this.state.search === "") {
         return <div>search</div>;
       }
       let filtredPosts = this.state.posts.items.filter(currentPost => {
@@ -461,6 +474,11 @@ export class AllPosts extends Component {
     return this.state.courses.map(currentcourse => {
       return <Course course={currentcourse} />;
     });
+  }
+  GroupList(){
+    return this.state.groups.map((group)=>{
+      return <GroupList group={group} />
+    })
   }
   User() {
     if (this.state.isLoading) {
@@ -525,8 +543,10 @@ export class AllPosts extends Component {
                     <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle"></i>
                   </span>
                 </div>
+                {this.GroupList()}
               </div>
             </div>
+           
           </Col>
         </Row>
       </div>

@@ -41,6 +41,8 @@ export default (state = INIT_STATE, action) => {
   switch (type) {
     case REGISTER_SUCCESS:
       localStorage.setItem("token", payload.token);
+      localStorage.setItem("name", payload.name);
+      
       return {
         ...state,
         isAuthenticated: true,
@@ -99,6 +101,7 @@ export default (state = INIT_STATE, action) => {
     case SIGNUP_USER_SUCCESS: {
       localStorage.setItem("token", payload.token);
       localStorage.setItem("user_id", payload.user);
+      localStorage.setItem("name", payload.user.name);
       return {
         ...state,
         isAuthenticated: true,
@@ -111,6 +114,8 @@ export default (state = INIT_STATE, action) => {
     case SIGNIN_USER_SUCCESS: {
       localStorage.setItem("token", payload.token);
       localStorage.setItem("user_id", payload.user);
+      localStorage.setItem("name", payload.user.name);
+    
       return {
         ...state,
         ...payload,

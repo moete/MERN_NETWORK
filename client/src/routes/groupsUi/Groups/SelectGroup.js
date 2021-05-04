@@ -10,29 +10,28 @@ import CustomScrollbars from "util/CustomScrollbars";
 
 export class SelectGroup extends Component {
   
-   
-
-
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       theme: '',
       superadmin: '',
+      coverphoto:''
     };
   }
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/group/60687adc7ea0621774953760`)
+      .get(`http://localhost:5000/group/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           name: response.data.name,
           theme: response.data.theme,
           superadmin : response.data.superadmin,
-          
+          coverphoto :response.data.coverphoto
+         }
+         );
+         console.log(response.data)
          
-          
-        });
       })
       .catch(function(error) {
         console.log(error);
@@ -45,13 +44,13 @@ export class SelectGroup extends Component {
       <div class="gx-user-list">
         <img
           alt="avatar"
-          src="https://via.placeholder.com/150x150"
+          src={this.state.coverphoto ?(this.state.coverphoto):("https://via.placeholder.com/150x150")}
           class="gx-avatar-img gx-avatar-img-lg gx-border-0"
         />
         <div class="gx-description">
           <span>
            
-              <h1>Group Name :{this.state.superadmin}</h1>
+              <h1>Group Name :{this.state.name}</h1>
              
               <CustomScrollbars className="gx-wall-scroll">
               <div className="gx-wall-postlist">
