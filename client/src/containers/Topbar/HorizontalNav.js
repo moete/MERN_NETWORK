@@ -127,6 +127,14 @@ class HorizontalNav extends Component {
             </Link>
 
           </Menu.Item>
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all-saved">
+              <i className="icon icon-alert" />
+              <IntlMessages id="You already applied jobs " />
+
+            </Link>
+
+          </Menu.Item>
 
           <Menu.Item key="job-board">
             <Link to="/job-board/all-stats">

@@ -126,7 +126,7 @@ export default (state = INIT_STATE, action) => {
       localStorage.setItem("password", payload.user.password);
       localStorage.setItem("token", payload.token);
 
-      localStorage.setItem("user_id", payload.user);
+      localStorage.setItem("user_id", payload.user._id);
       return {
         ...state,
         ...payload,

@@ -4,6 +4,7 @@ import { ChatEngine } from "react-chat-engine";
 import { ChatFeed } from "./components/ChatFeed";
 import { connect } from "react-redux";
 import { getProfiles } from "../../../appRedux/actions/profile";
+import { get } from "lodash";
 
 const projectID = "6b91339d-4064-4527-9c33-23ddc1f95ce9";
 
@@ -12,6 +13,7 @@ const App = ({ getProfiles, profile: { profiles } }) => {
 
     getProfiles();
   }, []);
+  console.log(getProfiles)
   console.log(localStorage.getItem('email'))
   return (
     <ChatEngine

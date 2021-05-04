@@ -10,6 +10,8 @@ const JOB= ({match}) => (
     <Route path={`${match.url}/all-jobs`} component={asyncComponent(() => import('./Jobs'))}/>
     <Route path={`${match.url}/all`} component={asyncComponent(() => import('./chat/App'))}/>
     <Route path={`${match.url}/all-stats`} component={asyncComponent(() => import('./chart/Chart'))}/>
+    <Route path={`${match.url}/all-saved`} component={asyncComponent(() => import('./SavedJob'))}/>
+
 
  
     

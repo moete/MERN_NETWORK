@@ -3,10 +3,8 @@ mongoose.Promise = global.Promise ;
 
 let Schema = mongoose.Schema
 const JobSchema = new Schema({
-  page : {
-    type : Number ,
-    default : 1
-  },
+
+   
   title: {
     type: String,
     required: true

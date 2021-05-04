@@ -22,6 +22,10 @@ const getPostedonById = async (req, res) => {
       .catch(err => res.status(404).json({ noPostedonfound: 'No postedon found' }));
   };
 
+  const getPostedonByUser = async (req,res) => {
+    
+    //Postedon
+  }
 
 // @route GET api/company
 // @description api/company/addcomp
