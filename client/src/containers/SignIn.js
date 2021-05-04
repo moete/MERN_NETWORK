@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./bg_register.css";
 import { Col, Row } from "antd";
 import land from "../assets/images/landing.jpg";
+
 import {
   hideMessage,
   showAuthLoader,
@@ -74,6 +75,7 @@ class SignIn extends React.Component {
                   className="gx-app-login-container"
                   style={{
                     width: "fit-content",
+
                     marginRight: "auto"
                   }}
                 >

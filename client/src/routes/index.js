@@ -10,11 +10,6 @@ import InBuiltApps from "./inBuiltApps/index";
 import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
-import asyncComponent from "../util/asyncComponent";
-import JOB from "./JobBoard/index";
-import Chat from "./JobBoard/chat/App";
-import ReactDOM from "react-dom";
-
 import QuestionsViews from "./ApiContent/Questions/index";
 import CoursesViews from "./ApiContent/Courses/index";
 import createprofile from "../components/profile/profile_forms/CreateProfile";
@@ -35,11 +30,6 @@ const App = ({ match }) => (
         path={`${match.url}extra-components`}
         component={ExtraComponents}
       />
-      <Route path={`${match.url}job-board`} component={JOB} />
-      <Route path={`${match.url}job-board`} component={App} />
-      <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
-      <Route path={`${match.url}social-apps`} component={SocialApps} />
-      <Route path={`${match.url}documents`} component={Documents} />
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
       <Route path={`${match.url}social-apps`} component={SocialApps} />
       <Route path={`${match.url}documents`} component={Documents} />

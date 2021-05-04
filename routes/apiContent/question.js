@@ -1,19 +1,19 @@
 // routes/api/questions.js
-const mongoose = require('mongoose');
-const express = require('express');
+const mongoose = require("mongoose");
+const express = require("express");
 const router = express.Router();
-const multer = require('multer');
-const { check, validationResult } = require('express-validator/check');
-const { validateFile } = require('../../middleware/validator');
-const auth = require('../../middleware/auth');
-const Question = require('../../models/question.model');
+const multer = require("multer");
+const { check, validationResult } = require("express-validator/check");
+const { validateFile } = require("../../middleware/validator");
+const auth = require("../../middleware/auth");
+const Question = require("../../models/question.model");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './client/public/uploads/Posts');
+    cb(null, "./client/public/uploads/Posts");
   },
   filename: (req, file, cb) => {
-    cb(null, 'Screenshot-Post--' + file.originalname);
+    cb(null, "Screenshot-Post--" + file.originalname);
   },
 });
 
@@ -22,39 +22,39 @@ var upload = multer({ storage: storage });
 // @route GET api/question
 // @description Get all questions
 // @access Public
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   Question.find()
     .then((questions) => res.json(questions))
     .catch((err) =>
-      res.status(404).json({ noquestionsfound: 'No questions found' })
+      res.status(404).json({ noquestionsfound: "No questions found" })
     );
 });
-router.get('/today', (req, res) => {
+router.get("/today", (req, res) => {
   Question.find()
     .where({
       question_date: new Date(Date.now()).toLocaleDateString(),
     })
     .then((questions) => res.json(questions))
     .catch((err) =>
-      res.status(404).json({ noquestionsfound: 'No questions found' })
+      res.status(404).json({ noquestionsfound: "No questions found" })
     );
 });
 // @route GET api/question/add
 // @description Get all questions
 // @access Public
 router.post(
-  '/add',
-  upload.single('image'),
+  "/add",
+  upload.single("image"),
   validateFile,
   auth,
 
   [
-    check('title', 'title is required').not().isEmpty(),
-    check('contentText', 'contentText is required').not().isEmpty(),
-    check('contentText', 'contentText must have 6+ characters long').isLength({
+    check("title", "title is required").not().isEmpty(),
+    check("contentText", "contentText is required").not().isEmpty(),
+    check("contentText", "contentText must have 6+ characters long").isLength({
       min: 6,
     }),
-    check('tags', 'tags is required').not().isEmpty(),
+    check("tags", "tags is required").not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -76,7 +76,7 @@ router.post(
       res.json(question);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
     }
 
     /*newQuestion
@@ -87,54 +87,55 @@ router.post(
 );
 // add comment
 
-router.post('/addAnswer/:id', auth, async (req, res) => {
+router.post("/addAnswer/:id", auth, async(req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    Question.findByIdAndUpdate(req.params.id, req.body).then((qst) => {
+  Question.findByIdAndUpdate(req.params.id, req.body)
+    .then((qst) => {
       qst.answers.push({
         contentAnswer: req.body.contentAnswer,
         contentCode: req.body.contentCode,
-        user: mongoose.Types.ObjectId(req.user.id),
-        name: user.name,
-        avatar: user.avatar,
+       user:mongoose.Types.ObjectId( req.user.id),
+       name: user.name, 
+       avatar: user.avatar ,
         answer_date: new Date(),
       });
 
       qst
         .save()
-        .then(() => res.json('comment added !'))
-        .catch((err) => res.status(400).json('Error: ' + err));
-    });
+        .then(() => res.json("comment added !"))
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
   } catch (err) {
     console.error(err.message);
-    res.status(400).json('Error: ' + err);
+    res.status(400).json("Error: " + err);
   }
 });
 
 // @route GET api/question/:id
 // @description Get single question by id
 // @access Public
-router.route('/:id').get((req, res) => {
+router.route("/:id").get((req, res) => {
   Question.findOne({ _id: req.params.id })
     .then((question) => res.json(question))
-    .catch((err) => res.status(400).json('Error: ' + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 // @route GET api/question/:id
 // @description Delete question by id
 // @access Public
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   Question.findByIdAndRemove(req.params.id, req.body)
     .then((questions) =>
-      res.json({ mgs: 'questions entry deleted successfully' })
+      res.json({ mgs: "questions entry deleted successfully" })
     )
-    .catch((err) => res.status(404).json({ error: 'No such a questions' }));
+    .catch((err) => res.status(404).json({ error: "No such a questions" }));
 });
 // @route POST api/question/:id
 // @description Update question by id
 // @access Public
 
-router.post('/update/:id', upload.single('image'), (req, res) => {
+router.post("/update/:id", upload.single("image"), (req, res) => {
   Question.findById(req.params.id)
     .then((qst) => {
       qst.title = req.body.title;
@@ -143,21 +144,22 @@ router.post('/update/:id', upload.single('image'), (req, res) => {
       qst.tags = req.body.tags;
       qst.image = req.file.originalname;
 
-      qst.save().then(() => res.json('Question updated!'));
+      qst.save().then(() => res.json("Question updated!"));
     })
-    .catch((err) => res.status(400).json('Error: ' + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
-router.route('/verified/:id').post((req, res) => {
+router.route("/verified/:id").post((req, res) => {
   Question.findById(req.params.id)
     .then((qst) => {
-      qst.confirm = 'true';
+      qst.confirm = "true";
 
       qst
         .save()
-        .then(() => res.json('Question verified!'))
-        .catch((err) => res.status(400).json('Error: ' + err));
+        .then(() => res.json("Question verified!"))
+        .catch((err) => res.status(400).json("Error: " + err));
     })
-    .catch((err) => res.status(400).json('Error: ' + err));
+    .catch((err) => res.status(400).json("Error: " + err));
 });
+
 
 module.exports = router;

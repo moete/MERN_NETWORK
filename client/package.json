@@ -3,15 +3,14 @@
   "version": "1.7.0",
   "private": true,
   "dependencies": {
-    "@alan-ai/alan-sdk-web": "^1.8.26",
-    "react-app-rewired": "^2.1.8",
     "@amcharts/amcharts3-react": "^3.1.0",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "amcharts3": "^3.21.13",
     "antd": "^3.11.6",
     "antd-theme-webpack-plugin": "^1.1.6",
-    "axios": "^0.18.0",
-    "bootstrap": "^4.6.0",
-    "d3": "^6.7.0",
+    "axios": "^0.21.1",
+    "customize-cra": "^0.2.10",
     "draftjs-to-html": "^0.8.4",
     "firebase": "^8.4.3",
     "install": "^0.12.2",
@@ -24,10 +23,7 @@
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
-    "react-autocomplete": "^1.8.1",
-    "react-bootstrap": "^1.5.2",
-    "react-chat-engine": "^1.8.11",
-    "sass-loader": "^10",
+    "react-app-rewired": "^2.1.8",
     "react-big-calendar": "^0.19.2",
     "react-bootstrap-sweetalert": "^4.4.1",
     "react-ckeditor-component": "^1.0.7",
@@ -60,14 +56,13 @@
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.3.0",
-    "response": "^0.18.0",
     "rheostat": "^3.0.1",
+    "sass-loader": "^10",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^5.2.3",
     "url-search-params": "^1.1.0",
     "uuid": "^8.3.2",
-    "victory": "^0.27.2",
-    "words-to-number": "^1.1.0",
-    "customize-cra": "^0.2.10"
+    "victory": "^0.27.2"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -77,8 +72,6 @@
   "devDependencies": {
     "add": "^2.0.6",
     "babel-plugin-import": "^1.8.0",
-    "customize-cra": "^0.2.10",
-    "react-app-rewired": "^2.0.2",
     "yarn": "^1.7.0"
   },
   "browserslist": [

@@ -2,14 +2,16 @@ import React, { Fragment, useEffect } from "react";
 import { Avatar, Button, Icon } from "antd";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { followUser } from "../../../appRedux/actions/Auth";
-
-import { getProfileById } from "../../../appRedux/actions/profile";
+import {
+  deleteAccount,
+  getProfileById
+} from "../../../appRedux/actions/profile";
 const profilebyIDheader = ({
-  followUser,
+  deleteAccount,
+
   profile: { profile, loader },
 
-  social
+  social: { instagram, twitter, facebook, youtube, linkedin }
 }) => {
   const user = profile.user;
   return (
@@ -27,34 +29,48 @@ const profilebyIDheader = ({
               <p style={{ paddingBottom: "10px" }} className="gx-mb-0 gx-fs-lg">
                 {profile.status}
               </p>
-
-              <Button type="primary" ghost onClick={() => followUser(user._id)}>
-                Add friend
+              <Button type="default">
+                <Link to="/edit-profile" className="gx-link">
+                  Edit Profile
+                </Link>
+              </Button>
+              <Button type="ghost">
+                <Link to="/profile/Add-Experience" className="gx-link">
+                  Add Experience
+                </Link>
+              </Button>
+              <Button type="ghost">
+                <Link to="/profile/Add-Education" className="gx-link">
+                  Add Education
+                </Link>
+              </Button>
+              <Button type="danger" ghost onClick={() => deleteAccount()}>
+                Delete My Account
               </Button>
               <h3>Socials :</h3>
               <ul className=" gx-social-link ">
-                {social && social.instagram ? (
+                {instagram ? (
                   <li>
                     <Icon type="instagram" />
                   </li>
                 ) : null}
-                {social && social.linkedin ? (
+                {linkedin ? (
                   <li>
                     <Icon type="linkedin" />
                   </li>
                 ) : null}
 
-                {social && social.twitter ? (
+                {twitter ? (
                   <li>
                     <Icon type="twitter" />
                   </li>
                 ) : null}
-                {social && social.facebook ? (
+                {facebook ? (
                   <li>
                     <Icon type="facebook" />
                   </li>
                 ) : null}
-                {social && social.youtube ? (
+                {youtube ? (
                   <li>
                     <Icon type="youtube" />
                   </li>
@@ -95,6 +111,6 @@ const mapStateToProps = state => ({
 
   social: state.profile.profile.social
 });
-export default connect(mapStateToProps, { getProfileById, followUser })(
+export default connect(mapStateToProps, { getProfileById, deleteAccount })(
   profilebyIDheader
 );

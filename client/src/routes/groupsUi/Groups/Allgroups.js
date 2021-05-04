@@ -1,44 +1,43 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Col, Row } from "antd";
+import {  Col, Row } from "antd";
 import ContainerHeader from "components/ContainerHeader/index";
 import { Link } from "react-router-dom";
-
+import styled from "styled-components"
+import Button from '@material-ui/core/Button';
+import { Avatar } from "@material-ui/core";
 const Group = props => (
-  <tr>
-    <th scope="row">Group Name | </th>
-    <td>{props.group.name}</td>
-    <th scope="row">Group Theme |</th>
-    <td>{props.group.theme}</td>
-    <th scope="row">Group Super Admin |</th>
-    <td>{props.group.superadmin.name}</td>
-    <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>{" "}
-    <br></br> <br></br> <br></br>
-    <td>
-      <span>
-        {" "}
+  
+    <InfoContainer>
+    <Avatar alt="Group IMG" src={props.coverphoto} />
+    <h2 >Group Name | </h2>
+    <h4>{props.group.name}</h4>
+    <h2 >Group theme |</h2>
+    <h4>{props.group.theme}</h4>
+    <h2 >Group Super Admin |</h2>
+    <h4>{props.group.superadmin.name}</h4>
+    <h4>
         <Link to={"/group/enter-group/" + props.group._id}>
-          <p>
-            {" "}
-            <mark>Group Link</mark>
-          </p>
+          Group Link
         </Link>
-      </span>
-    </td>
-    <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>{" "}
-    <br></br> <br></br> <br></br>
-    <td>
-      <Link to={"/edit/" + props.group._id}>Join</Link> |{" "}
-      <a
+    </h4>
+    
+    <div>
+      <Link to={"/edit/" + props.group._id}><Button variant="contained" color="primary">Join</Button></Link> |{" "}
+      <Button
+      variant="contained" color="primary"
         href="#"
         onClick={() => {
           props.deleteGroup(props.group._id);
         }}
       >
-        |Delete|
-      </a>
-    </td>
-  </tr>
+        Delete
+      </Button>
+    </div>
+    </InfoContainer>
+    
+    
+
 );
 
 export default class Allgroups extends Component {
@@ -48,7 +47,8 @@ export default class Allgroups extends Component {
 
     this.state = {
       groups: [],
-      superadmin: ""
+      superadmin: "",
+      username:localStorage.getItem("name")
     };
   }
   componentDidMount() {
@@ -56,10 +56,13 @@ export default class Allgroups extends Component {
       .get("http://localhost:5000/group/")
       .then(response => {
         this.setState({ groups: response.data });
+        this.setState({ groups: this.state.groups.filter(gp => gp.superadmin.name === localStorage.getItem("name") ) });
+        console.log(this.state.groups)
       })
       .catch(error => {
         console.log(error);
       });
+    
   }
 
   deleteGroup(id) {
@@ -80,6 +83,7 @@ export default class Allgroups extends Component {
           deleteGroup={this.deleteGroup}
           key={currentgroup._id}
         />
+      
       );
     });
   }
@@ -108,3 +112,11 @@ export default class Allgroups extends Component {
     );
   }
 }
+
+
+const InfoContainer = styled.div`
+display:flex;
+flex-direction:column;
+margin:100px;
+flex-wrap:wrap;
+`

@@ -11,12 +11,11 @@ const ProfileHeader = ({
   getCurrentProfile,
   auth: { authUser, user },
   profile: { profile, loader },
-  social
+  social: { instagram, twitter, facebook, youtube, linkedin }
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, []);
-  //const { instagram, twitter, facebook, youtube, linkedin } = social;
 
   return (
     <div className="gx-profile-banner">
@@ -53,28 +52,28 @@ const ProfileHeader = ({
               </Button>
               <h3>Socials :</h3>
               <ul className=" gx-social-link ">
-                {social && social.instagram ? (
+                {instagram ? (
                   <li>
                     <Icon type="instagram" />
                   </li>
                 ) : null}
-                {social && social.linkedin ? (
+                {linkedin ? (
                   <li>
                     <Icon type="linkedin" />
                   </li>
                 ) : null}
 
-                {social && social.twitter ? (
+                {twitter ? (
                   <li>
                     <Icon type="twitter" />
                   </li>
                 ) : null}
-                {social && social.facebook ? (
+                {facebook ? (
                   <li>
                     <Icon type="facebook" />
                   </li>
                 ) : null}
-                {social && social.youtube ? (
+                {youtube ? (
                   <li>
                     <Icon type="youtube" />
                   </li>
