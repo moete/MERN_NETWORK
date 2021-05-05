@@ -6,6 +6,8 @@ import {
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_ERROR,
+  GET_FOLLOWERS,
+  GET_FOLLOWINGS,
   CLEAR_PROFILE,
   CREATE_PROFILE_FAIL,
   UPDATE_PROFILE_FAIL,
@@ -26,12 +28,25 @@ const initialState = {
   loader: true,
   alertMessage: "",
   showMessage: false,
+  followers: [],
+  followings: [],
 
   error: {}
 };
 export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case GET_FOLLOWINGS:
+      return {
+        ...state,
+        followings: payload
+      };
+    case GET_FOLLOWERS:
+      return {
+        ...state,
+        followers: payload
+      };
+
     case GET_PROFILE:
     case UPD_PROF:
       return {

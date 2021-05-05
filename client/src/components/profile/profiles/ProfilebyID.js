@@ -1,15 +1,15 @@
 import React, { Component, Fragment, useEffect } from "react";
 import { Col, Row } from "antd";
-import Education from "../Education/index";
+import Education from "../EducationbyID/index";
 import Event from "../Events/index";
 import About from "../About/index";
-import Experience from "../Experience/index";
+import Experience from "../ExperiencebyID/index";
 import ProfileGithub from "../ProfileGithub/index";
 
 import Contact from "../Contact/index";
 import { Avatar, Button } from "antd";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { getProfileById } from "../../../appRedux/actions/profile";
 
 import { friendList } from "../../../routes/socialApps/Profile/data";
@@ -21,15 +21,32 @@ import ProfilebyIDheader from "../profilebyIDheader/index";
 
 import Spinner from "../../Spinner";
 
-const ProfilebyID = ({
-  getProfileById,
-  auth: { authUser, user },
-  profile: { profile, loader },
-  match
-}) => {
+const ProfilebyID = (
+  //getProfileById,
+  props
+  //auth: { authUser, user },
+  // profile: { profile, loader },
+  // match
+) => {
   useEffect(() => {
-    getProfileById(match.params.id);
-  }, [getProfileById]);
+    window.addEventListener("beforeunload", alertUser);
+
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+      //history.push("/profile/profiles");
+    };
+  }, []);
+  const alertUser = e => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
+  localStorage.setItem("profilebyID", JSON.stringify(props.location.ownProps));
+
+  let profilebyID = localStorage.getItem("profilebyID");
+  profilebyID = JSON.parse(profilebyID);
+  const { user } = profilebyID.profile;
+  const { profile } = profilebyID;
+  console.log(profilebyID);
   return (
     <Fragment>
       {profile !== null ? (
@@ -39,8 +56,8 @@ const ProfilebyID = ({
             <Row>
               <Col xl={16} lg={14} md={14} sm={24} xs={24}>
                 <About profile={profile} />
-                <Experience />
-                <Education />
+                <Experience profile={profile} />
+                <Education profile={profile} />
               </Col>
 
               <Col xl={8} lg={10} md={10} sm={24} xs={24}>
@@ -73,4 +90,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile
 });
-export default connect(mapStateToProps, { getProfileById })(ProfilebyID);
+export default connect(null, { getProfileById })(ProfilebyID);

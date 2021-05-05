@@ -7,8 +7,10 @@ import AboutItem from "./AboutItem";
 
 const TabPane = Tabs.TabPane;
 
-const About = ({ auth: { authUser }, profile: { profile, loader } }) => {
-  const data = profile.experience;
+const About = ({
+  profile /*auth: { authUser }, profile: { profile, loader } */
+}) => {
+  // const data = profile.experience;
   const exp = profile.experience[0];
   const edu = profile.education[0];
 
@@ -87,8 +89,8 @@ const About = ({ auth: { authUser }, profile: { profile, loader } }) => {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile
+  //auth: state.auth,
+  //profile: state.profile
 });
 
-export default connect(mapStateToProps, {})(About);
+export default connect(null, {})(About);
