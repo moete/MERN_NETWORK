@@ -6,7 +6,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+// Connect Database
+connectDB();
 // CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -23,8 +24,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// Connect Database
-connectDB();
+
 var corsOptions = {
   origin: '*',
   credentials: true,

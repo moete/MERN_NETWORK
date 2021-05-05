@@ -30,7 +30,7 @@ function reducer(state, action) {
       dispatch({ type: ACTIONS.MAKE_REQUEST })
       axios.get(BASE_URL, {
         cancelToken: cancelToken1.token,
-        params: { ...params }
+        params: { user_id: localStorage.getItem('user_id') }
       }).then(res => {
         dispatch({ type: ACTIONS.GET_DATA, payload: { savedjobs: res.data } }) 
       }).catch(e => {

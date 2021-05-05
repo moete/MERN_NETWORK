@@ -13,6 +13,6 @@ router.post("/", createPostedon);
 router.get("/showpostedon", getAllPostedon);
 router.get("/showpostedonbyId/:id", getPostedonById);
 router.patch("/updatepostedon/:id", updatePostedonById);
-router.delete("/deletepostedon/:id", deletePostedon);
+router.delete("/deletepostedon", deletePostedon);
 
 module.exports = router;

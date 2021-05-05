@@ -3,19 +3,20 @@ let Schema = mongoose.Schema ;
 mongoose.Promise = global.Promise ;
 
 const PostedOnSchema = new Schema({
-  description: {
-    type: String,
-    required: true
-  },
+ 
   user_id: {
     type: Schema.Types.ObjectId,
    required: true
   },
   job_id: {
     type: Schema.Types.ObjectId,
-    ref: 'Job',
+    ref: 'job',
     required: true
- }
+ },
+  created_at :  {
+    type : Date ,
+    default : Date.now
+  }
 });
 
 module.exports = postedon = mongoose.model('postedOn', PostedOnSchema);
