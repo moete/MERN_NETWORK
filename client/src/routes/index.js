@@ -19,6 +19,7 @@ import profiles from "../components/profile/profiles/Profiles";
 import profileById from "../components/profile/profiles/ProfilebyID";
 import editprofile from "../components/profile/profile_forms/EditProfile";
 import ProfilebyID from "../components/profile/profiles/ProfilebyID";
+import news from "../routes/groupsUi/externpAPi/NewsCard";
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -43,6 +44,7 @@ const App = ({ match }) => (
       <Route path="/profile/:id" component={ProfilebyID} />
       <Route path={`${match.url}group`} component={GroupsViews} />
       <Route path={`${match.url}invitation`} component={invitationsViews} />
+      <Route path="/news" exact component={news} />
     </Switch>
   </div>
 );

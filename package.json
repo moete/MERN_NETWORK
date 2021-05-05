@@ -43,7 +43,8 @@
     "react-router-dom": "^5.2.0",
     "react-select": "^4.3.0",
     "react-view-component": "^1.0.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "timeago-react": "^3.0.2"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",

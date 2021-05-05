@@ -8,6 +8,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import ArrowDropDownCircleIcon from "@material-ui/icons/ArrowDropDownCircle";
+import NewsCard from "../../groupsUi/externpAPi/NewsCard";
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -38,16 +40,26 @@ export default function AlignItemsList(props) {
         <ListItemText
           secondary={
             <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                {props.group.name}
-              </Typography>
-
-              <h1>{props.group.privacy}</h1>
+              <div>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  className={classes.inline}
+                  color="textPrimary"
+                >
+                  {props.group.name}
+                </Typography>
+                <h1>
+                  <span
+                    className="myClass"
+                    style={{
+                      border: "dotted "
+                    }}
+                  >
+                    {props.group.privacy}{" "}
+                  </span>
+                </h1>
+              </div>
             </React.Fragment>
           }
         />

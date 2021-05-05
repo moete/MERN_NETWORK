@@ -8,23 +8,22 @@ import Button from "@material-ui/core/Button";
 import { Avatar } from "@material-ui/core";
 const Group = props => (
   <InfoContainer>
-    <div>
-      <Avatar alt="Group IMG" src={props.group.coverphoto} />
+    <Avatar alt="Group IMG" src={props.group.coverphoto} />
 
-      <h3>{props.group.name}</h3>
+    <h3>{props.group.name}</h3>
 
-      <h5>Group Theme {props.group.theme}</h5>
+    <h1>Group Theme {props.group.theme}</h1>
 
-      <p>
-        <u>You are the super admin of this group</u>
-      </p>
+    <p>
+      <u>You are the super admin of this group</u>
+    </p>
 
-      <h4>
-        <Link to={"/group/enter-group/" + props.group._id}>
-          <mark> ==> Group Link </mark>
-        </Link>
-      </h4>
-    </div>
+    <h4>
+      <Link to={"/group/enter-group/" + props.group._id}>
+        <mark> ==> Group Link </mark>
+      </Link>
+    </h4>
+
     <div>
       {" "}
       <Button
@@ -120,9 +119,10 @@ export default class Allgroups extends Component {
 
 const InfoContainer = styled.div`
   display: flex;
-  width: 250px;
-  height: 250px;
-  flex-wrap: column nowrap;
+  width: 500px;
+  height: 500px;
+  flex-wrap: nowrap;
 
   align-content: space-between;
+  flex-direction: column;
 `;
