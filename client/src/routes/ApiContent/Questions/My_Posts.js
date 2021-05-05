@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Row, Col } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import axios from "axios";
 
@@ -8,6 +8,9 @@ import AppModuleHeader from "components/AppModuleHeader/index";
 import IntlMessages from "util/IntlMessages";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getCurrentProfile } from "../../../appRedux/actions/profile";
+import CircularProgress from "components/CircularProgress/index";
 
 const Question = props => (
   <div className="gx-contact-item">
@@ -87,17 +90,12 @@ class MyPosts extends Component {
 
     this.state = {
       noContentFoundMessage: "No Posts found",
-      alertMessage: "",
-      showMessage: false,
-      selectedSectionId: 1,
-      drawerState: false,
       searchUser: "",
       filterOption: "My posts",
-      allContact: [],
-      contactList: [],
-      selectedContact: null,
-      addContactState: false,
-      questions: []
+      questions: [],
+      isLoading: true,
+      owner:[]
+
     };
   }
 
@@ -110,6 +108,12 @@ class MyPosts extends Component {
       .catch(error => {
         console.log(error);
       });
+      this.props.getCurrentProfile();
+      if (this.state.isLoading) {
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 5000);
+      }
   }
   deleteQuestion(id) {
     axios.delete('http://localhost:5000/question/'+id)
@@ -119,13 +123,27 @@ class MyPosts extends Component {
       questions: this.state.questions.filter(el => el._id !== id)
     })
   }
-  questionList() {
-    return this.state.questions.map(currentquestion => {
-      return <Question questions={currentquestion} deleteQuestion={this.deleteQuestion} key={currentquestion._id}/>;
-    });
+  questionList ( profile ){
+    if (this.state.isLoading) {
+      return (
+        <div className="gx-loader-view">
+          <CircularProgress />
+        </div>
+      );
+    } else {
+      return this.state.questions.map(currentquestion => {
+        if (currentquestion.owner.user === this.props.profile.profile.user._id)
+        {
+          this.props.getCurrentProfile();
+          return <Question questions={currentquestion} deleteQuestion={this.deleteQuestion} key={currentquestion._id}/>;
+
+        }
+      });
+    }
+    
   }
 
-  ContactSideBar = user => {
+  SideBar = user => {
     return (
       <div className="gx-module-side">
         <div className="gx-module-side-header">
@@ -201,41 +219,37 @@ class MyPosts extends Component {
         break;
     }
   };
- 
+  onSearch(event) {
+    this.setState({
+      search: event.target.value.substr(0, 100)
+    });
+    this.props.getCurrentProfile();
+    if (this.state.isLoading) {
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+      }, 5000);
+    }
+  }
   render() {
-    const { questions, user, drawerState, noContentFoundMessage } = this.state;
+    const { questions, user, noContentFoundMessage } = this.state;
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
-          <div className="gx-d-block gx-d-lg-none">
-            <Drawer
-              placement="left"
-              closable={false}
-              visible={drawerState}
-            /*  onClose={this.onToggleDrawer.bind(this)}*/
-            ></Drawer>
-          </div>
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            {this.ContactSideBar(user)}
+            
+            {this.SideBar(user)}
           </div>
-
+         
           <div className="gx-module-box">
             <div className="gx-module-box-header">
-              <span className="gx-drawer-btn gx-d-flex gx-d-lg-none">
-                <i
-                  className="icon icon-menu gx-icon-btn"
-                  aria-label="Menu"
-              /*    onClick={this.onToggleDrawer.bind(this)}*/
-                />
-              </span>
 
               <AppModuleHeader
                 placeholder="Search posts"
                 notification={false}
                 apps={false}
                 user={this.state.user}
-                /*onChange={this.updateContactUser.bind(this)}*/
-                value={this.state.searchUser}
+                onChange={this.onSearch.bind(this)}
+               value={this.state.searchUser}
               />
             </div>
             <div className="gx-module-box-content">
@@ -250,6 +264,7 @@ class MyPosts extends Component {
                   this.questionList()
                 )}
               </CustomScrollbars>
+             
             </div>
           </div>
         </div>
@@ -257,5 +272,8 @@ class MyPosts extends Component {
     );
   }
 }
-
-export default MyPosts;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+});
+export default connect(mapStateToProps, { getCurrentProfile })(MyPosts);

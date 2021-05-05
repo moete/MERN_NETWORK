@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button, Tag, Card, Col, Row } from "antd";
+import { Input, Tag, Card, Col, Row } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Widget from "components/Widget/index";
@@ -45,7 +45,7 @@ const Question = (props, profile) => (
             <div className="gx-gallery-grid gx-gallery-2">
               <div className="gx-gallery-item">
                 <img
-                  class="gx-img-fluid"
+                  className="gx-img-fluid"
                   src={`/uploads/Posts/Screenshot-Post--${props.question.image}`}
                   alt="post"
                 ></img>
@@ -89,14 +89,14 @@ const Question = (props, profile) => (
             </Link>
             <button
               type="button"
-              class="ant-btn ant-btn-danger ant-btn-background-ghost ant-btn-sm"
+              className="ant-btn ant-btn-danger ant-btn-background-ghost ant-btn-sm"
             >
               <span>Report</span>
             </button>
           </div>
-          <div class="gx-wall-comment-box">
-            <div class="gx-media gx-mb-2">
-              <span class="ant-avatar gx-mr-3 gx-size-36 ant-avatar-circle ant-avatar-image"></span>
+          <div className="gx-wall-comment-box">
+            <div className="gx-media gx-mb-2">
+              <span className="ant-avatar gx-mr-3 gx-size-36 ant-avatar-circle ant-avatar-image"></span>
             </div>
           </div>
         </div>
@@ -353,7 +353,8 @@ export class AllPosts extends Component {
       isLoaded: true,
       site: "stackoverflow",
       posts: [],
-      isLoading: true
+      isLoading: true,
+      
     };
   }
   componentDidMount() {
@@ -423,7 +424,7 @@ export class AllPosts extends Component {
     });
     if (filtredPosts.length > 0) {
       return filtredPosts.map(currentquestion => {
-        return <Question question={currentquestion} />;
+        return <Question question={currentquestion} key={currentquestion._id} />;
       });
     } else {
       if (this.state.search == "") {
@@ -438,7 +439,7 @@ export class AllPosts extends Component {
       });
       if (filtredPosts.length > 0) {
         return filtredPosts.map(currentPost => {
-          return <Stack post={currentPost} />;
+          return <Stack post={currentPost} key= {currentPost._id}/>;
         });
       }
     }
@@ -458,8 +459,8 @@ export class AllPosts extends Component {
   }
 
   CoursesList() {
-    return this.state.courses.map(currentcourse => {
-      return <Course course={currentcourse} />;
+    return this.state.courses.map((currentcourse , idx)=> {
+      return <Course course={currentcourse} key={currentcourse._id}/>;
     });
   }
   User() {
@@ -514,10 +515,10 @@ export class AllPosts extends Component {
               <div className="gx-wall-scroll">
                 <div>
                   <div className="gx-entry-sec">
-                    <h2 className="gx-entry-title ">
+                    <div className="gx-entry-title ">
                       <h3>Available Courses</h3>
                       <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
-                    </h2>
+                    </div>
                     <Row gutter={[16, 24]}>{this.CoursesList()}</Row>
                   </div>
                   <span className="gx-text-primary gx-fs-md gx-pointer gx-d-block gx-mb-4">

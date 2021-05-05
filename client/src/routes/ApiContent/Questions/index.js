@@ -1,9 +1,9 @@
 import React from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
 import asyncComponent from "util/asyncComponent";
-
+import history from "./../history";
 const QuestionsViews = ({match}) => (
-  <Switch>
+  <Switch  history={history}>
     <Redirect exact from={`${match.url}/`} to={`${match.url}/question`}/>
     <Route path={`${match.url}/question-list`} component={asyncComponent(() => import('./AllPosts'))}/>
     <Route path={`${match.url}/ask-question`} component={asyncComponent(() => import('./CreateQuestion'))}/>
