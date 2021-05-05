@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
 import ProfileItem from "./ProfileItem";
+import Followings from "./followings";
+import Followers from "./followers";
 import { connect } from "react-redux";
 import CircularProgress from "../../../components/CircularProgress/index";
 import { getProfiles } from "../../../appRedux/actions/profile";
@@ -31,7 +33,6 @@ const Profiles = ({
   console.log(listfollowings);
   /*if (user && user.following !== undefined) {
     const array = user.following;
-
     const promises = array.map(n =>
       fetch(`http://localhost:5000/api/profile/user/${n}`)
         .then(response => response.json())

@@ -52,7 +52,7 @@ export const followUser = id => async dispatch => {
     });
 };
 //unfollow user
-export const unfollowuser = id => async dispatch => {
+export const unfollowUser = id => async dispatch => {
   fetch("http://localhost:5000/api/users/unfollow", {
     method: "put",
     headers: {
@@ -60,7 +60,7 @@ export const unfollowuser = id => async dispatch => {
       "x-auth-token": localStorage.getItem("token")
     },
     body: JSON.stringify({
-      followId: id
+      unfollowId: id
     })
   })
     .then(res => res.json())
@@ -87,7 +87,6 @@ export const loadUser = () => async dispatch => {
   }
 };
 export const logUserOut = () => ({ type: "LOG_OUT" });
-
 export const fetchUser = userInfo => async dispatch => {
   const config = {
     headers: {

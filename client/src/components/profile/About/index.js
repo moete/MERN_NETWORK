@@ -33,7 +33,11 @@ const About = ({
                   </div>
                   <div className="gx-media-body">
                     <h6 className="gx-mb-1 gx-text-grey">Worked At</h6>
-                    <p className="gx-mb-0">{exp.company}</p>
+                    {exp !== undefined ? (
+                      <p className="gx-mb-0">{exp.company}</p>
+                    ) : (
+                      <p className="gx-mb-0">still not available</p>
+                    )}
                   </div>
                 </div>
               </Col>
@@ -46,7 +50,11 @@ const About = ({
                   </div>
                   <div className="gx-media-body">
                     <h6 className="gx-mb-1 gx-text-grey">Went To</h6>
-                    <p className="gx-mb-0">{edu.school}</p>
+                    {edu !== undefined ? (
+                      <p className="gx-mb-0">{edu.school}</p>
+                    ) : (
+                      <p className="gx-mb-0">still not available</p>
+                    )}
                   </div>
                 </div>
               </Col>
