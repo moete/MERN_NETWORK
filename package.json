@@ -51,7 +51,8 @@
     "react-select": "^4.3.0",
     "react-view-component": "^1.0.1",
     "request": "^2.88.2",
-    "validation": "0.0.1"
+    "validation": "0.0.1",
+    "timeago-react": "^3.0.2"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",

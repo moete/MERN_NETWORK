@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { followUser, unfollowUser } from "../../../appRedux/actions/Auth";
+import { followUser } from "../../../appRedux/actions/Auth";
 import { connect } from "react-redux";
 
 //xl={12} lg={24} md={12} sm={24} xs={24}

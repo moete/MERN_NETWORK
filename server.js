@@ -22,14 +22,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//app.use(cors());
 app.use(express.json());
-
 
 var corsOptions = {
   origin: '*',
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 app.use(cors(corsOptions));
 // init midlleware
@@ -61,7 +60,7 @@ app.use('/jobtype', Jobtype);
 app.use('/postedon', Postedon);
 app.use('/job', Job);
 app.use('/schedule', Schedule);
-app.use('/pdf',PdfRouter);
+app.use('/pdf', PdfRouter);
 
 /*
 app.post("sms",Twilio.webhook(config.twilio),function(req,res){
@@ -86,7 +85,6 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 
 const port = process.env.PORT || 5000;
-
 //routes
 
 const QuestionsRouter = require('./routes/apiContent/question');

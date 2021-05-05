@@ -5,22 +5,12 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 config = require('config');
 const bcrypt = require('bcryptjs');
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 
 // @route       GET api/auth
 // @desc        Get user by token
 // @access      Public
 router.get('/', auth, async (req, res) => {
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'content-type',
-    'Authorization',
-    'x-auth-token'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
-  );
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
@@ -38,16 +28,6 @@ router.post(
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Password is required').exists(),
   async (req, res) => {
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'content-type',
-      'Authorization',
-      'x-auth-token'
-    );
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'PUT, POST, GET, DELETE, PATCH, OPTIONS'
-    );
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });

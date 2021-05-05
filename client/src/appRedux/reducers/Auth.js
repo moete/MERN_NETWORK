@@ -46,6 +46,8 @@ export default (state = INIT_STATE, action) => {
       localStorage.setItem("password", payload.user.password);
       //  localStorage.setItem("email", payload.token);
 
+      localStorage.setItem("name", payload.name);
+
       return {
         ...state,
         isAuthenticated: true,
@@ -112,6 +114,7 @@ export default (state = INIT_STATE, action) => {
       localStorage.setItem("password", payload.user.password);
       localStorage.setItem("token", payload.token);
       localStorage.setItem("user_id", payload.user);
+      localStorage.setItem("name", payload.user.name);
       return {
         ...state,
         isAuthenticated: true,
@@ -127,6 +130,9 @@ export default (state = INIT_STATE, action) => {
       localStorage.setItem("token", payload.token);
 
       localStorage.setItem("user_id", payload.user._id);
+      // localStorage.setItem("user_id", payload.user);
+      localStorage.setItem("name", payload.user.name);
+
       return {
         ...state,
         ...payload,
@@ -193,7 +199,6 @@ export default (state = INIT_STATE, action) => {
         authUser: action.payload
       };
     }
-    case UNFOLLOW_SUCCESS:
     case FOLLOW_SUCCESS: {
       return {
         ...state,

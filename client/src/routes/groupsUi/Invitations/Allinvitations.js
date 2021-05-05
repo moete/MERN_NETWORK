@@ -1,26 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Col, Row } from "antd";
+import {  Col, Row } from "antd";
 import ContainerHeader from "components/ContainerHeader/index";
 import { Link } from "react-router-dom";
-
+import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
 const Invitation = props => (
   
     
-  <tr>
-     
-    <th scope="row">Sent to  : </th> 
-    <td>{props.invitation.to_user}</td>
-    <th scope="row">To Join   :</th> 
-    <td>{props.invitation.groupname}</td>
-    <th scope="row">To become an    :</th> 
-    <td>{props.invitation.role[0]}</td>
+  <InvContainer>
+     <div style={{display:"flex",alignItems:"center"}}>
+      <h2 scope="row">Sent to  : </h2> 
+       <h4>{props.invitation.to_user}</h4>
+    </div>
+    <div style={{display:"flex",alignItems:"center"}}>
+    <h2 scope="row">To Join   :</h2> 
+    <h4>{props.invitation.groupname}</h4>
+    </div>
+    <div style={{display:"flex",alignItems:"center"}}>
+    <h2 scope="row">To become an    :</h2> 
+    <h4>{props.invitation.role[0]}</h4>
+    </div>
     
-    <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
-    <td>
-        <a href="#" onClick={() => { props.deleteInvitation(props.invitation._id) }}>Cancel</a>
-    </td>
-  </tr>
+    
+        <Button variant="contained" color="primary" href="#" onClick={() => { props.deleteInvitation(props.invitation._id) }}>Cancel</Button>
+    
+  </InvContainer>
 )
 
 ;
@@ -84,3 +89,8 @@ export default class Allinvitations extends Component {
     );
   }
 }
+const InvContainer = styled.div`display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center
+`

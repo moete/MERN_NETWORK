@@ -2,8 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Avatar, Tabs, Card, Col, Icon, Row } from "antd";
 import ProfileItem from "./ProfileItem";
-import Followings from "./followings";
-import Followers from "./followers";
 import { connect } from "react-redux";
 import CircularProgress from "../../../components/CircularProgress/index";
 import { getProfiles } from "../../../appRedux/actions/profile";

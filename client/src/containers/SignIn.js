@@ -77,6 +77,7 @@ class SignIn extends React.Component {
                   className="gx-app-login-container"
                   style={{
                     width: "fit-content",
+
                     marginRight: "auto"
                   }}
                 >

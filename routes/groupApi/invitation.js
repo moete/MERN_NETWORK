@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const Group = require('../../models/group.model');
 const Invitation = require('../../models/invitation.model');
 
 router.route('/').get((req, res)=>{
@@ -67,5 +67,21 @@ router.route('/update/:id').post((req, res) => {
 });
 
 
-
+router.route('/Add/:id').post((req, res) => {
+    Invitation.findByIdAndDelete(req.params.id).then(
+        Group.findOne({name:req.body.groupname}).then((gp)=>{
+            if(req.body.role[0] ==="Admin"){
+                gp.admins.push(req.body.to_user)
+               
+            }else{
+                gp.members.push(req.body.to_user)
+            }
+            gp.save().then().catch(err=>res.status(400).json(err))
+            res.json(gp)
+        }).catch(err=>res.json(err))
+    ) 
+    
+    
+    
+});
 module.exports = router ;

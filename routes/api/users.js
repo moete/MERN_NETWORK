@@ -23,16 +23,6 @@ router.post(
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'content-type',
-      'Authorization',
-      'x-auth-token'
-    );
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'PUT, POST, GET, DELETE, PATCH, OPTIONS'
-    );
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -122,16 +112,6 @@ router.put('/follow', auth, (req, res) => {
 });
 // unfollow
 router.put('/unfollow', auth, (req, res) => {
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'content-type',
-    'Authorization',
-    'x-auth-token'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'PUT, POST, GET, DELETE, PATCH, OPTIONS'
-  );
   User.findByIdAndUpdate(
     req.body.unfollowId,
     {
