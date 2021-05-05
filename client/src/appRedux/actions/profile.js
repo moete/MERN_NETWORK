@@ -5,6 +5,8 @@ import {
   ON_SHOW_LOADER,
   GET_PROFILE,
   PROFILE_ERROR,
+  GET_FOLLOWINGS,
+  GET_FOLLOWERS,
   CREATE_PROFILE_FAIL,
   CREATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_SUCCESS,
@@ -248,4 +250,31 @@ export const hideAuthLoader = () => {
   return {
     type: ON_HIDE_LOADER
   };
+};
+
+export const getFollowings = () => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  try {
+    const res = await axios.get("http://localhost:5000/api/users/getfollowing");
+
+    dispatch({
+      type: GET_FOLLOWINGS,
+      payload: res.data
+    });
+  } catch (err) {}
+};
+export const getFollowers = () => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  try {
+    const res = await axios.get("http://localhost:5000/api/users/getfollowers");
+
+    dispatch({
+      type: GET_FOLLOWERS,
+      payload: res.data
+    });
+  } catch (err) {}
 };

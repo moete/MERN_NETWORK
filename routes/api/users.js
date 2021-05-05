@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth');
 const config = require('config');
 const { check, validationResult } = require('express-validator/check');
+const Profile = require('../../models/Profile');
 
 const User = require('../../models/User');
 // @route       GET api/users
@@ -90,15 +91,6 @@ router.post(
 //
 //Follow
 router.put('/follow', auth, (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Max-Age', '1800');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'content-type',
-    'Authorization',
-    'x-auth-token'
-  );
   User.findByIdAndUpdate(
     req.body.followId,
     {
@@ -168,5 +160,44 @@ router.put('/unfollow', auth, (req, res) => {
         });
     }
   );
+});
+
+router.get('/getfollowing', auth, async (req, res) => {
+  const following = [];
+
+  try {
+    const user = await User.findById(req.user.id);
+    for (const id of user.following) {
+      const user = await Profile.find({ user: id }).populate('user', [
+        'name',
+        'avatar',
+
+        'following',
+        'followers',
+      ]);
+
+      following.push(user);
+    }
+  } catch (error) {}
+  res.json(following);
+  //const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+});
+
+router.get('/getfollowers', auth, async (req, res) => {
+  const followers = [];
+  try {
+    const user = await User.findById(req.user.id);
+    for (const id of user.followers) {
+      const user = await Profile.find({ user: id }).populate('user', [
+        'name',
+        'avatar',
+
+        'following',
+        'followers',
+      ]);
+      followers.push(user);
+    }
+  } catch (error) {}
+  res.json(followers);
 });
 module.exports = router;

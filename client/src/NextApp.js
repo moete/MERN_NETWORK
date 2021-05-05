@@ -9,6 +9,7 @@ import configureStore, { history } from "./appRedux/store";
 import "./firebase/firebase";
 import App from "./containers/App/index";
 import { loadUser } from "./appRedux/actions/Auth";
+import { getFollowings, getFollowers } from "./appRedux/actions/profile";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -17,6 +18,8 @@ export const store = configureStore();
 const NextApp = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(getFollowers());
+    store.dispatch(getFollowings());
   }, []);
   return (
     <Provider store={store}>
