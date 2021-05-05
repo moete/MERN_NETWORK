@@ -1,35 +1,34 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
-const useStyles = makeStyles((theme) => ({
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Divider from "@material-ui/core/Divider";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
+import ArrowDropDownCircleIcon from "@material-ui/icons/ArrowDropDownCircle";
+const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: '36ch',
-    backgroundColor: theme.palette.background.paper,
-    
+    width: "100%",
+    maxWidth: "36ch",
+    backgroundColor: theme.palette.background.paper
   },
   inline: {
-    display: 'inline',
-  },
+    display: "inline"
+  }
 }));
 
 export default function AlignItemsList(props) {
   const classes = useStyles();
   useEffect(() => {
-      console.log(props)
-  }, [])
-  const JoinGroup =()=>{
-    if(props.group.privacy ==="public"){
-      window.location =`http://localhost:3000/group/enter-group/${props.group._id}`
+    console.log(props);
+  }, []);
+  const JoinGroup = () => {
+    if (props.group.privacy === "public") {
+      window.location = `http://localhost:3000/group/enter-group/${props.group._id}`;
     }
-  }
+  };
   return (
     <List className={classes.root}>
       <ListItem alignItems="flex-start">
@@ -37,7 +36,6 @@ export default function AlignItemsList(props) {
           <Avatar alt="Group" src={props.group.coverphoto} />
         </ListItemAvatar>
         <ListItemText
-          
           secondary={
             <React.Fragment>
               <Typography
@@ -48,13 +46,16 @@ export default function AlignItemsList(props) {
               >
                 {props.group.name}
               </Typography>
-              {`SuperAdmin: ${props.group.superadmin.name} `}
+
+              <h1>{props.group.privacy}</h1>
             </React.Fragment>
           }
         />
-        <ArrowDropDownCircleIcon onClick={JoinGroup} style={{cursor:"pointer"}} />
+        <ArrowDropDownCircleIcon
+          onClick={JoinGroup}
+          style={{ cursor: "pointer" }}
+        />
       </ListItem>
-      
     </List>
   );
 }

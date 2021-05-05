@@ -40,7 +40,7 @@ export class CreateInvitation extends Component {
       role: [],
       groupname: "",
       accepted: "",
-      groups:[]
+      groups: []
     };
   }
 
@@ -62,49 +62,53 @@ export class CreateInvitation extends Component {
       to_user: "receiver user",
       groupname: "",
       role: ["membre"],
-      accepted: false,
-     
+      accepted: false
     });
     this.props.getProfiles();
-    axios.get('http://localhost:5000/group').then((res)=> {this.setState({
-      admins: [],
-      from_user: localStorage.getItem('name'),
-      to_user: "receiver user",
-      groupname: "",
-      role: ["membre"],
-      accepted: false,
-      groups: res.data
-    })
-    this.setState({
-      groups: this.state.groups.filter(gp => gp.superadmin.name === localStorage.getItem("name"))
-    })
-    console.log(this.state);}
-    
-    ).catch((err)=> alert(err))
+    axios
+      .get("http://localhost:5000/group")
+      .then(res => {
+        this.setState({
+          admins: [],
+          from_user: localStorage.getItem("name"),
+          to_user: "receiver user",
+          groupname: "",
+          role: ["membre"],
+          accepted: false,
+          groups: res.data
+        });
+        this.setState({
+          groups: this.state.groups.filter(
+            gp => gp.superadmin.name === localStorage.getItem("name")
+          )
+        });
+        console.log(this.state);
+      })
+      .catch(err => alert(err));
   }
   onChangeFromuser(e) {
     this.setState({
       from_user: e.target.value
     });
-    console.log(this.state.from_user)
+    console.log(this.state.from_user);
   }
   onChangeTouser(e) {
     this.setState({
       to_user: e
     });
-    console.log(this.state.to_user)
+    console.log(this.state.to_user);
   }
   onChangeRole(e) {
     this.setState({
       role: e.target.value
     });
-    console.log(this.state.role)
+    console.log(this.state.role);
   }
   onChangeGroupname(e) {
     this.setState({
       groupname: e
     });
-    console.log(this.state.groupname)
+    console.log(this.state.groupname);
   }
 
   onChangeAccepted(e) {
@@ -125,22 +129,29 @@ export class CreateInvitation extends Component {
     };
 
     console.log(invitation);
-    
+
     axios
       .post("http://localhost:5000/invitation/add", invitation)
       .then(res => console.log(res.data));
-    window.location ="/invitation/invitation-list"
+    window.location = "/invitation/invitation-list";
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const { profiles } = this.props.profile;
-    const Rprofiles = profiles.filter(pf => pf.user.name !== localStorage.getItem("name"))
+    const Rprofiles = profiles.filter(
+      pf => pf.user.name !== localStorage.getItem("name")
+    );
     console.log(Rprofiles);
     return (
       <Card className="gx-card" title="Invite">
         <Form>
-          <FormItem {...formItemLayout} label="Members" hasFeedback   value={this.state.to_user}>
+          <FormItem
+            {...formItemLayout}
+            label="Members"
+            hasFeedback
+            value={this.state.to_user}
+          >
             {getFieldDecorator("status", {
               rules: [
                 {
@@ -150,10 +161,14 @@ export class CreateInvitation extends Component {
               ]
             })(
               <Select placeholder="Please select Professional Status">
-              
-                 { Rprofiles.map((profile) =>  <Option value={profile.user.name} onClick={()=> this.onChangeTouser(profile.user.name)}>{profile.user.name}</Option>
-                   
-                 )} 
+                {Rprofiles.map(profile => (
+                  <Option
+                    value={profile.user.name}
+                    onClick={() => this.onChangeTouser(profile.user.name)}
+                  >
+                    {profile.user.name}
+                  </Option>
+                ))}
               </Select>
             )}
           </FormItem>
@@ -164,18 +179,18 @@ export class CreateInvitation extends Component {
             label="Group name"
             hasFeedback
             value={this.state.groupname}
-            
           >
-           
-              <Select placeholder="Please select Group Name">
-              
-               
-              { this.state.groups.map((group,index) =>   <Option value={group.name} key={index} onClick={()=> this.onChangeGroupname(group.name)}>{group.name}</Option>)}
-               
-               
-            
-              </Select>
-           
+            <Select placeholder="Please select Group Name">
+              {this.state.groups.map((group, index) => (
+                <Option
+                  value={group.name}
+                  key={index}
+                  onClick={() => this.onChangeGroupname(group.name)}
+                >
+                  {group.name}
+                </Option>
+              ))}
+            </Select>
           </FormItem>
           <h3> As a :</h3>
 
@@ -206,5 +221,3 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { getProfiles })(
   WrappedCreateInvitation
 );
-
-

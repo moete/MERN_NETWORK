@@ -8,17 +8,23 @@ import Button from "@material-ui/core/Button";
 import { Avatar } from "@material-ui/core";
 const Group = props => (
   <InfoContainer>
-    <Avatar alt="Group IMG" src={props.group.coverphoto} />
-    <h2>Group Name </h2>
-    <h4>{props.group.name}</h4>
-    <h2>Group theme </h2>
-    <h4>{props.group.theme}</h4>
-    <h2>Group Super Admin </h2>
-    <h4>{props.group.superadmin.name}</h4>
-    <h4>
-      <Link to={"/group/enter-group/" + props.group._id}>Group Link</Link>
-    </h4>
+    <div>
+      <Avatar alt="Group IMG" src={props.group.coverphoto} />
 
+      <h3>{props.group.name}</h3>
+
+      <h5>Group Theme {props.group.theme}</h5>
+
+      <p>
+        <u>You are the super admin of this group</u>
+      </p>
+
+      <h4>
+        <Link to={"/group/enter-group/" + props.group._id}>
+          <mark> ==> Group Link </mark>
+        </Link>
+      </h4>
+    </div>
     <div>
       {" "}
       <Button
@@ -92,7 +98,9 @@ export default class Allgroups extends Component {
           {" "}
           <Row>
             <Link to={"/group/add-group/"}>
-              <Button type="primary">Create a group</Button>
+              <Button variant="contained" color="primary" disableElevation>
+                Create a group
+              </Button>
             </Link>
           </Row>
         </div>
@@ -100,7 +108,7 @@ export default class Allgroups extends Component {
           {" "}
           <Row>
             <Col span={24}>
-              <ContainerHeader title="All groups" />
+              <ContainerHeader title="My groups" />
             </Col>
             <Col span={24}>{this.groupList()} </Col>
           </Row>
@@ -112,7 +120,9 @@ export default class Allgroups extends Component {
 
 const InfoContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: 100px;
-  flex-wrap: wrap;
+  width: 250px;
+  height: 250px;
+  flex-wrap: column nowrap;
+
+  align-content: space-between;
 `;
