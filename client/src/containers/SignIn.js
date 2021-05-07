@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./bg_register.css";
 import { Col, Row } from "antd";
 import land from "../assets/images/landing.jpg";
+import { getFollowers, getFollowings } from "appRedux/actions/profile";
 import {
   hideMessage,
   showAuthLoader,
@@ -36,6 +37,8 @@ class SignIn extends React.Component {
       if (!err) {
         this.props.showAuthLoader();
         this.props.fetchUser(values);
+        this.props.getFollowers();
+        this.props.getFollowings();
       }
     });
   };
@@ -74,6 +77,7 @@ class SignIn extends React.Component {
                   className="gx-app-login-container"
                   style={{
                     width: "fit-content",
+
                     marginRight: "auto"
                   }}
                 >
@@ -245,5 +249,7 @@ export default connect(mapStateToProps, {
   userFacebookSignIn,
   userGoogleSignIn,
   userGithubSignIn,
-  userTwitterSignIn
+  userTwitterSignIn,
+  getFollowers,
+  getFollowings
 })(WrappedNormalLoginForm);

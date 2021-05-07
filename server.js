@@ -6,8 +6,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const config = require('./config/twilio');
-
+// Connect Database
+connectDB();
 // CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -22,15 +22,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//app.use(cors());
 app.use(express.json());
 
-// Connect Database
-connectDB();
 var corsOptions = {
   origin: '*',
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 app.use(cors(corsOptions));
 // init midlleware
@@ -55,12 +53,14 @@ const Jobtype = require('./routes/job_type.routes');
 const Postedon = require('./routes/posted_on.routes');
 const Job = require('./routes/job.routes');
 const Schedule = require('./routes/schedule.routes');
+const PdfRouter = require('./routes/pdf.routes');
 
 app.use('/company', CompanyRouter);
 app.use('/jobtype', Jobtype);
 app.use('/postedon', Postedon);
 app.use('/job', Job);
 app.use('/schedule', Schedule);
+app.use('/pdf', PdfRouter);
 
 /*
 app.post("sms",Twilio.webhook(config.twilio),function(req,res){
@@ -85,7 +85,6 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 
 const port = process.env.PORT || 5000;
-
 //routes
 
 const QuestionsRouter = require('./routes/apiContent/question');

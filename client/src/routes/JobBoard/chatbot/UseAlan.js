@@ -34,12 +34,8 @@ const UseAlan = () => {
 				bottom: '30px',
 				right: '100px',
 				key: '89e122f239610b33e1b7aedc19b5eb0d2e956eca572e1d8b807a3e2338fdd0dc/stage',
-				onCommand: ({ command, jobs }) => {
-					if(command === 'newHeadlines') {
-						console.log(jobs)
-					}
-					//window.dispatchEvent(new CustomEvent(command, { detail: payload }));
-					
+				onCommand: ({ command, payload }) => {
+					window.dispatchEvent(new CustomEvent(command, { detail: payload }));
 				}
 			})
 		);

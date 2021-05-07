@@ -4,14 +4,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { followUser } from "../../../appRedux/actions/Auth";
 
-import { getProfileById } from "../../../appRedux/actions/profile";
-const profilebyIDheader = ({
-  followUser,
-  profile: { profile, loader },
-
-  social
-}) => {
-  const user = profile.user;
+const profilebyIDheader = ({ profile }) => {
+  const { user, social } = profile;
+  //const user = profile.user;
+  console.log("aazeaeaze");
+  console.log(profile);
   return (
     <div className="gx-profile-banner">
       <div className="gx-profile-container">
@@ -67,7 +64,7 @@ const profilebyIDheader = ({
               <Link to="/profile/profiles" className="gx-link">
                 <li>
                   <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                    2k+
+                    {user.followers.length}
                   </span>
                   <span className="gx-fs-sm">Followers</span>
                 </li>
@@ -75,7 +72,7 @@ const profilebyIDheader = ({
 
               <li>
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                  847
+                  {user.following.length}
                 </span>
                 <span className="gx-fs-sm">Following</span>
               </li>
@@ -90,11 +87,8 @@ const profilebyIDheader = ({
   );
 };
 const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile,
-
-  social: state.profile.profile.social
+  // auth: state.auth,
+  // profile: state.profile,
+  //social: state.profile.profile.social
 });
-export default connect(mapStateToProps, { getProfileById, followUser })(
-  profilebyIDheader
-);
+export default connect(null, { followUser })(profilebyIDheader);

@@ -4,20 +4,23 @@ import { ChatEngine } from "react-chat-engine";
 import { ChatFeed } from "./components/ChatFeed";
 import { connect } from "react-redux";
 import { getProfiles } from "../../../appRedux/actions/profile";
+import { get } from "lodash";
 
 const projectID = "6b91339d-4064-4527-9c33-23ddc1f95ce9";
 
 const App = ({ getProfiles, profile: { profiles } }) => {
   useEffect(() => {
+
     getProfiles();
   }, []);
-  console.log(profiles);
+  console.log(getProfiles)
+  console.log(localStorage.getItem('email'))
   return (
     <ChatEngine
       height="100vh"
       projectID={projectID}
-      userName="youzarsif"
-      userSecret="B967C73C"
+      userName={localStorage.getItem('email')}
+      userSecret={localStorage.getItem('email')}
       onNewMessage={() =>
         new Audio(
           "https://chat-engine-assets.s3.amazonaws.com/click.mp3"

@@ -9,6 +9,8 @@ import {
 const ProfileHeader = ({
   deleteAccount,
   getCurrentProfile,
+  listfollowers,
+  listfollowings,
   auth: { authUser, user },
   profile: { profile, loader },
   social
@@ -87,7 +89,7 @@ const ProfileHeader = ({
               <Link to="/profile/profiles" className="gx-link">
                 <li>
                   <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                    2k+
+                    {listfollowers.length}
                   </span>
                   <span className="gx-fs-sm">Followers</span>
                 </li>
@@ -95,7 +97,7 @@ const ProfileHeader = ({
 
               <li>
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                  847
+                  {listfollowings.length}
                 </span>
                 <span className="gx-fs-sm">Following</span>
               </li>
@@ -112,6 +114,8 @@ const ProfileHeader = ({
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
+  listfollowers: state.profile.followers,
+  listfollowings: state.profile.followings,
 
   social: state.profile.profile.social
 });

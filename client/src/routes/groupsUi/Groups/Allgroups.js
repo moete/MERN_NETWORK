@@ -1,44 +1,43 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import ContainerHeader from "components/ContainerHeader/index";
 import { Link } from "react-router-dom";
-
+import styled from "styled-components";
+import Button from "@material-ui/core/Button";
+import { Avatar } from "@material-ui/core";
 const Group = props => (
-  <tr>
-    <th scope="row">Group Name | </th>
-    <td>{props.group.name}</td>
-    <th scope="row">Group Theme |</th>
-    <td>{props.group.theme}</td>
-    <th scope="row">Group Super Admin |</th>
-    <td>{props.group.superadmin.name}</td>
-    <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>{" "}
-    <br></br> <br></br> <br></br>
-    <td>
-      <span>
-        {" "}
-        <Link to={"/group/enter-group/" + props.group._id}>
-          <p>
-            {" "}
-            <mark>Group Link</mark>
-          </p>
-        </Link>
-      </span>
-    </td>
-    <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>{" "}
-    <br></br> <br></br> <br></br>
-    <td>
-      <Link to={"/edit/" + props.group._id}>Join</Link> |{" "}
-      <a
+  <InfoContainer>
+    <Avatar alt="Group IMG" src={props.group.coverphoto} />
+
+    <h3>{props.group.name}</h3>
+
+    <h1>Group Theme {props.group.theme}</h1>
+
+    <p>
+      <u>You are the super admin of this group</u>
+    </p>
+
+    <h4>
+      <Link to={"/group/enter-group/" + props.group._id}>
+        <mark> ==> Group Link </mark>
+      </Link>
+    </h4>
+
+    <div>
+      {" "}
+      <Button
+        variant="contained"
+        color="primary"
         href="#"
         onClick={() => {
           props.deleteGroup(props.group._id);
         }}
       >
-        |Delete|
-      </a>
-    </td>
-  </tr>
+        Delete
+      </Button>
+    </div>
+  </InfoContainer>
 );
 
 export default class Allgroups extends Component {
@@ -48,7 +47,8 @@ export default class Allgroups extends Component {
 
     this.state = {
       groups: [],
-      superadmin: ""
+      superadmin: "",
+      username: localStorage.getItem("name")
     };
   }
   componentDidMount() {
@@ -56,6 +56,12 @@ export default class Allgroups extends Component {
       .get("http://localhost:5000/group/")
       .then(response => {
         this.setState({ groups: response.data });
+        this.setState({
+          groups: this.state.groups.filter(
+            gp => gp.superadmin.name === localStorage.getItem("name")
+          )
+        });
+        console.log(this.state.groups);
       })
       .catch(error => {
         console.log(error);
@@ -91,7 +97,9 @@ export default class Allgroups extends Component {
           {" "}
           <Row>
             <Link to={"/group/add-group/"}>
-              <Button type="primary">Create a group</Button>
+              <Button variant="contained" color="primary" disableElevation>
+                Create a group
+              </Button>
             </Link>
           </Row>
         </div>
@@ -99,7 +107,7 @@ export default class Allgroups extends Component {
           {" "}
           <Row>
             <Col span={24}>
-              <ContainerHeader title="All groups" />
+              <ContainerHeader title="My groups" />
             </Col>
             <Col span={24}>{this.groupList()} </Col>
           </Row>
@@ -108,3 +116,13 @@ export default class Allgroups extends Component {
     );
   }
 }
+
+const InfoContainer = styled.div`
+  display: flex;
+  width: 500px;
+  height: 500px;
+  flex-wrap: nowrap;
+
+  align-content: space-between;
+  flex-direction: column;
+`;

@@ -3,65 +3,65 @@ const router = express.Router();
 
 const Company = require('../models/Company');
 
-
-
 // @route GET api/company/showcompanies
 // @description Get all companies
 // @access Public
 const getAllCompanies = async (req, res) => {
-
-  
   //console.log(rech)
-    Company.find()
-     .populate("company_id",{company_name : 1})
-      .then(companys => res.json(companys))
-      .catch(err => res.status(404).json({ nocompaniesfound: 'No companyies found' }));
-  };
+  Company.find()
+    .populate('company_id', { company_name: 1 })
+    .then((companys) => res.json(companys))
+    .catch((err) =>
+      res.status(404).json({ nocompaniesfound: 'No companyies found' })
+    );
+};
 
-
-  // @route GET pi/company/:id
+// @route GET pi/company/:id
 // @description Get single book by id
 // @access Public
 const getCompanyById = async (req, res) => {
-    Company.findById(req.params.id)
-      .then(companys => res.json(companys))
-      .catch(err => res.status(404).json({ nocompaniesfound: 'No companys found' }));
-  };
-
+  Company.findById(req.params.id)
+    .then((companys) => res.json(companys))
+    .catch((err) =>
+      res.status(404).json({ nocompaniesfound: 'No companys found' })
+    );
+};
 
 // @route GET api/company
 // @description api/company/addcomp
 // @access Public
 const createCompany = async (req, res) => {
-    Company.create(req.body)
-      .then(companys => res.json({ msg: 'Company added successfully' }))
-      .catch(err => res.status(400).json({ error: 'Unable to add this Company' }));
-  };
+  Company.create(req.body)
+    .then((companys) => res.json({ msg: 'Company added successfully' }))
+    .catch((err) =>
+      res.status(400).json({ error: 'Unable to add this Company' })
+    );
+};
 
-  // @route GET api/books/:id
+// @route GET api/books/:id
 // @description Update book
 // @access Public
-const updateCompanyById = async(req, res) => {
-    Company.findByIdAndUpdate(req.params.id, req.body)
-      .then(companys => res.json({ msg: 'Updated successfully' }))
-      .catch(err =>
-        res.status(400).json({ error: 'Unable to update the Database' })
-      );
-  };
-  
-  // @route GET api/books/:id
-  // @description Delete book by id
-  // @access Public
-  const deleteCompany = async (req, res) => {
-    Company.findByIdAndRemove(req.params.id, req.body)
-      .then(companys => res.json({ mgs: 'company entry deleted successfully' }))
-      .catch(err => res.status(404).json({ error: 'No such a book' }));
-  };
+const updateCompanyById = async (req, res) => {
+  Company.findByIdAndUpdate(req.params.id, req.body)
+    .then((companys) => res.json({ msg: 'Updated successfully' }))
+    .catch((err) =>
+      res.status(400).json({ error: 'Unable to update the Database' })
+    );
+};
 
-  module.exports = {
-    getAllCompanies,
-    getCompanyById,
-    createCompany,
-    deleteCompany,
-    updateCompanyById
-  };
+// @route GET api/books/:id
+// @description Delete book by id
+// @access Public
+const deleteCompany = async (req, res) => {
+  Company.findByIdAndRemove(req.params.id, req.body)
+    .then((companys) => res.json({ mgs: 'company entry deleted successfully' }))
+    .catch((err) => res.status(404).json({ error: 'No such a book' }));
+};
+
+module.exports = {
+  getAllCompanies,
+  getCompanyById,
+  createCompany,
+  deleteCompany,
+  updateCompanyById,
+};

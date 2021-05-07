@@ -92,6 +92,7 @@ class HorizontalNav extends Component {
             </Link>
           </Menu.Item>
         </SubMenu>
+
         <SubMenu
           className={this.getNavStyleSubMenuClass(navStyle)}
           key="extraComponents"
@@ -112,12 +113,38 @@ class HorizontalNav extends Component {
             </Link>
           </Menu.Item>
         </SubMenu>
-        <Menu.Item key="job-board">
-          <Link to="/job-board/all-jobs">Jobs</Link>
-        </Menu.Item>
-        <Menu.Item key="job-board">
-          <Link to="/job-board/all">Chat</Link>
-        </Menu.Item>
+
+        <SubMenu
+          className={this.getNavStyleSubMenuClass(navStyle)}
+          key="JobBoard"
+          title={"JobBoard"}
+        >
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all-jobs">
+              <i className="icon icon-alert" />
+              <IntlMessages id="Jobs for you" />
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all-saved">
+              <i className="icon icon-alert" />
+              <IntlMessages id="You already applied jobs " />
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all-stats">
+              <i className="icon icon-alert" />
+              <IntlMessages id="View Networky stats Before your search" />
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="job-board">
+            <Link to="/job-board/all">
+              <i className="  icon icon-chat-bubble -flex-column-reverse" />
+              <IntlMessages id="Chat with networky community " />
+            </Link>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
     );
   }

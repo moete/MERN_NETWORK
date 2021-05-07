@@ -11,8 +11,8 @@ const router = new express.Router();
 
 router.post("/", createPostedon);
 router.get("/showpostedon", getAllPostedon);
-router.get("/showjobtypebyId/:id", getPostedonById);
-router.patch("/updatejobtype/:id", updatePostedonById);
-router.delete("/deletejobtype/:id", deletePostedon);
+router.get("/showpostedonbyId/:id", getPostedonById);
+router.patch("/updatepostedon/:id", updatePostedonById);
+router.delete("/deletepostedon", deletePostedon);
 
 module.exports = router;

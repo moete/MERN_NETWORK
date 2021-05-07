@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage });
-
+ 
 //multiple files
 var Filesstorage = multer.diskStorage({
   destination: (req, file, cb) => {

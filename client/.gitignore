@@ -2,7 +2,6 @@
 .git/
 .vscode/
 .idea/
-yarn.lock
 
 node_modules/
 /nbproject/private/
