@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Input,
-  Card,
-  Form,
-  Icon,
-  Upload
-} from "antd";
+import { Button, Input, Card, Form, Icon, Upload } from "antd";
 import axios from "axios";
 import "./";
 
@@ -19,10 +12,11 @@ export class AddCourse extends Component {
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeRequirments = this.onChangeRequirments.bind(this);
-    this.onChangeChapters = this.onChangeChapters.bind(this);
+    this.onChangeLanguage = this.onChangeLanguage.bind(this);
     this.onChangeTechnologies = this.onChangeTechnologies.bind(this);
     this.onChangeFile = this.onChangeFile.bind(this);
     this.onSubmit = this.handleSubmit.bind(this);
+    
 
     this.state = {
       title: "",
@@ -30,7 +24,8 @@ export class AddCourse extends Component {
       requirements: "",
       chapters: "",
       technologies: "",
-      originalname: ""
+      originalname: "",
+      language:"",
     };
   }
 
@@ -49,11 +44,6 @@ export class AddCourse extends Component {
       requirements: e.target.value
     });
   }
-  onChangeChapters(e) {
-    this.setState({
-      chapters: e.target.value
-    });
-  }
   onChangeTechnologies(e) {
     this.setState({
       technologies: e.target.value
@@ -62,6 +52,11 @@ export class AddCourse extends Component {
   onChangeFile(e) {
     this.setState({
       originalname: e.target.files[0]
+    });
+  }
+  onChangeLanguage(e) {
+    this.setState({
+      language: e.target.value
     });
   }
   handleSubmit = e => {
@@ -75,6 +70,7 @@ export class AddCourse extends Component {
         formData.append("description", this.state.description);
         formData.append("requirements", this.state.requirements);
         formData.append("technologies", this.state.technologies);
+        formData.append("language", this.state.language);
         formData.append("image", this.state.originalname);
 
         console.log(formData);
@@ -84,11 +80,11 @@ export class AddCourse extends Component {
           }
         };
         axios
-          .post("http://localhost:5000/course/addCourse", formData, config)
+          .post("http://localhost:5000/course/add", formData, config)
           .then(res => console.log(res.data));
-          this.props.history.push("/courses/courses-list")
+        this.props.history.push("/courses/courses-list");
 
-     //   window.location = "/courses/courses-list";
+        //   window.location = "/courses/courses-list";
       }
     });
   };
@@ -146,7 +142,6 @@ export class AddCourse extends Component {
                 <TextArea rows={6} placeholder="Description .." id="success" />
               )}
             </FormItem>
-
             <FormItem
               {...formItemLayout}
               label="requirements"
@@ -163,8 +158,6 @@ export class AddCourse extends Component {
                 ]
               })(<Input placeholder="requirments" />)}
             </FormItem>
-         
-
             <FormItem
               {...formItemLayout}
               label="technologies"
@@ -181,7 +174,22 @@ export class AddCourse extends Component {
                 ]
               })(<Input placeholder="technologies" />)}
             </FormItem>
-
+            <FormItem
+              {...formItemLayout}
+              label="Language"
+              hasFeedback
+              value={this.state.language}
+              onChange={this.onChangeLanguage}
+            >
+              {getFieldDecorator("language", {
+                rules: [
+                  {
+                    required: true,
+                    message: "language is missing !"
+                  }
+                ]
+              })(<Input placeholder="language .." />)}
+            </FormItem>
             <FormItem
               {...formItemLayout}
               label="Image"
@@ -197,7 +205,11 @@ export class AddCourse extends Component {
               })(
                 <div className="dropbox">
                   {
-                    <Upload.Dragger name="files" action="/upload.do" listType="picture">
+                    <Upload.Dragger
+                      name="files"
+                      action="/upload.do"
+                      listType="picture"
+                    >
                       <p className="ant-upload-drag-icon">
                         <Icon type="inbox" />
                       </p>

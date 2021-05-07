@@ -132,7 +132,7 @@ class MyPosts extends Component {
       );
     } else {
       return this.state.questions.map(currentquestion => {
-        if (currentquestion.owner.user === this.props.profile.profile.user._id)
+        if (currentquestion.owner.user ===this.props.auth.user._id)
         {
           this.props.getCurrentProfile();
           return <Question questions={currentquestion} deleteQuestion={this.deleteQuestion} key={currentquestion._id}/>;
