@@ -1,0 +1,1 @@
+{"version":3,"sources":["css ./node_modules/css-loader??ref--6-oneOf-7-1!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js??ref--6-oneOf-7-3!./src/routes/components/dataEntry/InputNumber/size.less"],"names":[],"mappings":"AAAA,kBACA,iBACA","file":"37.f3c06f98.chunk.css","sourcesContent":[".ant-input-number {\n  margin-right: 10px;\n}\n"]}
