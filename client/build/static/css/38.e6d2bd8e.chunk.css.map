@@ -1,1 +1,0 @@
-{"version":3,"sources":["css ./node_modules/css-loader??ref--6-oneOf-7-1!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js??ref--6-oneOf-7-3!./src/routes/components/feedback/Alert/basic.less"],"names":[],"mappings":"AAAA,WACA,kBACA","file":"38.e6d2bd8e.chunk.css","sourcesContent":[".ant-alert {\n  margin-bottom: 16px;\n}\n"]}

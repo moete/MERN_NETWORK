@@ -1,1 +1,0 @@
-{"version":3,"sources":["css ./node_modules/css-loader??ref--6-oneOf-7-1!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js??ref--6-oneOf-7-3!./src/routes/components/dataDisplay/Collapse/basic.less"],"names":[],"mappings":"AAAA,EACA,QACA","file":"53.a05af54a.chunk.css","sourcesContent":["p {\n  margin: 0;\n}\n"]}
