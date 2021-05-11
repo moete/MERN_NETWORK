@@ -7,7 +7,7 @@ import { saveAs } from 'file-saver';
 export default function Saved({ job, count }) {
 
 
-    const BASE_URL = 'http://localhost:5000/pdf/create-pdf';
+    const BASE_URL = '/pdf/create-pdf';
 
     const [open, setOpen] = useState(false)
     const openNotification = () => {
@@ -22,7 +22,7 @@ export default function Saved({ job, count }) {
         });
     };
     const deleteJob = async (postedon) => {
-        await axios.delete('http://localhost:5000/postedon/deletepostedon', {
+        await axios.delete('/postedon/deletepostedon', {
             data: {
                 id: postedon
             }
