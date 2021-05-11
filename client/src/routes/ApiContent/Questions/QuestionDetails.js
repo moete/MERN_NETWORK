@@ -24,24 +24,23 @@ const Answer = props => (
       src={props.answer.avatar}
       class="gx-avatar-img gx-avatar-img-lg gx-border-0"
     />
-            <div class="gx-description">
-
-    <Card
-      id="components-back-top-demo-custom"
-      className="gx-card"
-      style={{ width: 700 }}
-      title={props.answer.name}
-    >
-      <div>{props.answer.contentAnswer}</div>
-      <div>
-        <Card style={{ backgroundColor: "#CBD4D6", width: 500 }}>
-          {" "}
-          {props.answer.contentCode}
-        </Card>
-      </div>
-      <div> Answred :{props.answer.answer_date.substr(0, 10)}</div>
-    </Card>
-  </div>
+    <div class="gx-description">
+      <Card
+        id="components-back-top-demo-custom"
+        className="gx-card"
+        style={{ width: 700 }}
+        title={props.answer.name}
+      >
+        <div>{props.answer.contentAnswer}</div>
+        <div>
+          <Card style={{ backgroundColor: "#CBD4D6", width: 500 }}>
+            {" "}
+            {props.answer.contentCode}
+          </Card>
+        </div>
+        <div> Answred :{props.answer.answer_date.substr(0, 10)}</div>
+      </Card>
+    </div>
   </div>
 );
 export class QuestionDetails extends Component {
@@ -61,13 +60,13 @@ export class QuestionDetails extends Component {
       contentCode: "",
       contentAnswer: "",
       question_date: "",
-      image:""
+      image: ""
     };
   }
 
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/question/6088cba2862c12d08d0f97ad`)
+      .get(`/question/6088cba2862c12d08d0f97ad`)
       .then(response => {
         this.setState({
           title: response.data.title,
@@ -122,10 +121,7 @@ export class QuestionDetails extends Component {
 
         console.log(answer);
         axios
-          .post(
-            "http://localhost:5000/question/addAnswer/6088cba2862c12d08d0f97ad",
-            answer
-          )
+          .post("/question/addAnswer/6088cba2862c12d08d0f97ad", answer)
           .then(res => console.log(res.data));
         this.props.history.push(
           "/question/question-details/6088cba2862c12d08d0f97ad"
@@ -160,20 +156,20 @@ export class QuestionDetails extends Component {
           >
             <div class="gx-mb-1"> {this.state.contentText}</div>
             <Col>
-          <div className="gx-wall-medialist">
-            <div className="gx-gallery-grid gx-gallery-2">
-              <div className="gx-gallery-item">
-                <img
-                  class="gx-img-fluid"
-                  src={`/uploads/Posts/Screenshot-Post--${this.state.image}`}
-                  alt="post"
-                ></img>
+              <div className="gx-wall-medialist">
+                <div className="gx-gallery-grid gx-gallery-2">
+                  <div className="gx-gallery-item">
+                    <img
+                      class="gx-img-fluid"
+                      src={`/uploads/Posts/Screenshot-Post--${this.state.image}`}
+                      alt="post"
+                    ></img>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          </Col>
+            </Col>
           </Card>
-         
+
           <ul class="gx-list-inline gx-btn-list">
             <li>
               <span class="gx-link gx-meta-like">

@@ -53,7 +53,7 @@ export default class Allgroups extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/group/")
+      .get("/group/")
       .then(response => {
         this.setState({ groups: response.data });
         this.setState({
@@ -69,7 +69,7 @@ export default class Allgroups extends Component {
   }
 
   deleteGroup(id) {
-    axios.delete("http://localhost:5000/group/" + id).then(response => {
+    axios.delete("/group/" + id).then(response => {
       console.log(response.data);
     });
 

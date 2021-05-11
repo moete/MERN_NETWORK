@@ -14,7 +14,7 @@ const NotificationItem = ({ notification }) => {
   }, [result]);
   function AcceptInvitation() {
     axios
-      .post(`http://localhost:5000/invitation/Add/${result._id}`, result)
+      .post(`/invitation/Add/${result._id}`, result)
       .then(
         res =>
           (window.location = `http://localhost:3000/group/enter-group/${res.data._id}`)
@@ -23,7 +23,7 @@ const NotificationItem = ({ notification }) => {
   }
   function CancelInvitation() {
     axios
-      .delete(`http://localhost:5000/invitation/${result._id}`)
+      .delete(`/invitation/${result._id}`)
       .then(res => console.log(res))
       .catch(err => console.log(err));
     window.location.reload();

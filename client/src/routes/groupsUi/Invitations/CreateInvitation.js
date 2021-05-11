@@ -66,7 +66,7 @@ export class CreateInvitation extends Component {
     });
     this.props.getProfiles();
     axios
-      .get("http://localhost:5000/group")
+      .get("/group")
       .then(res => {
         this.setState({
           admins: [],
@@ -131,7 +131,7 @@ export class CreateInvitation extends Component {
     console.log(invitation);
 
     axios
-      .post("http://localhost:5000/invitation/add", invitation)
+      .post("/invitation/add", invitation)
       .then(res => console.log(res.data));
     window.location = "/invitation/invitation-list";
   }

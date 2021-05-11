@@ -1,13 +1,10 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import ReactFC from "react-fusioncharts";
 import FusionCharts from "fusioncharts";
 import Column2D from "fusioncharts/fusioncharts.charts";
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
-import axios from 'axios';
+import axios from "axios";
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
-
-
 
 export default function Chart() {
   const [data, setData] = useState([]);
@@ -38,23 +35,16 @@ export default function Chart() {
   };
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(
-        'http://localhost:5000/job/stat/',
-      );
-      if (result)
-        setData(result.data);
+      const result = await axios.get("/job/stat/");
+      if (result) setData(result.data);
     }
     fetchData();
-    
-  },[]);
-  console.log(setData)
+  }, []);
+  console.log(setData);
 
   return (
     <div>
       <ReactFC {...chartConfigs} />
-
     </div>
-  )
+  );
 }
-
-

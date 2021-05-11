@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Input,
-  Card,
-  Form,
-  Icon,
-  Upload
-} from "antd";
+import { Button, Input, Card, Form, Icon, Upload } from "antd";
 import axios from "axios";
 import "./";
 
@@ -84,11 +77,11 @@ export class AddCourse extends Component {
           }
         };
         axios
-          .post("http://localhost:5000/course/addCourse", formData, config)
+          .post("/course/addCourse", formData, config)
           .then(res => console.log(res.data));
-          this.props.history.push("/courses/courses-list")
+        this.props.history.push("/courses/courses-list");
 
-     //   window.location = "/courses/courses-list";
+        //   window.location = "/courses/courses-list";
       }
     });
   };
@@ -163,7 +156,6 @@ export class AddCourse extends Component {
                 ]
               })(<Input placeholder="requirments" />)}
             </FormItem>
-         
 
             <FormItem
               {...formItemLayout}
@@ -197,7 +189,11 @@ export class AddCourse extends Component {
               })(
                 <div className="dropbox">
                   {
-                    <Upload.Dragger name="files" action="/upload.do" listType="picture">
+                    <Upload.Dragger
+                      name="files"
+                      action="/upload.do"
+                      listType="picture"
+                    >
                       <p className="ant-upload-drag-icon">
                         <Icon type="inbox" />
                       </p>
