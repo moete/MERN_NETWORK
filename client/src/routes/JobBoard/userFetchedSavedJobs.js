@@ -7,7 +7,7 @@ const ACTIONS = {
     ERROR : 'error',
 
 }
-const BASE_URL = 'http://localhost:5000/postedon/showpostedon'
+const BASE_URL = '/postedon/showpostedon'
 
 
 function reducer(state, action) {

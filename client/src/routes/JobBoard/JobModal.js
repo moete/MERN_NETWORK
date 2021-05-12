@@ -14,7 +14,7 @@ export default function JobModal ( {open,job,handleClose}) {
    console.log(localStorage.getItem("user_id"))
 
    const handleSubmit = async (e) => {
-    await axios.post('http://localhost:5000/postedon', data);        
+    await axios.post('/postedon', data);        
 };
 
   if(!job.title) {
