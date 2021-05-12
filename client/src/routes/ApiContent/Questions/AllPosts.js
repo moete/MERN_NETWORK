@@ -168,7 +168,6 @@ const User = ({ profile }) => (
           </ul>
         </div>
       </div>
-     
     </div>
   </div>
 );
@@ -274,7 +273,9 @@ export class AllPosts extends Component {
       });
     } else {
       if (this.state.search === "") {
-        return <div>search</div>;
+        return  <div className="gx-loader-view">
+        <CircularProgress />
+      </div>
       }
       let filtredPosts = this.state.posts.items.filter(currentPost => {
         return (
@@ -382,6 +383,10 @@ export class AllPosts extends Component {
                       </Link>
                       <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-2 gx-d-inline-flex gx-vertical-align-middle"></i>
                     </span>
+                  </div>
+                  <div className="gx-entry-title ">
+                    <h3>Join a Group</h3>
+                    <span className="gx-text-primary gx-fs-md gx-pointer gx-ml-auto gx-d-none gx-d-sm-block"></span>
                   </div>
                   {this.GroupList()}
                 </div>

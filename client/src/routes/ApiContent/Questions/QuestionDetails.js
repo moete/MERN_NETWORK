@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Form, Input, Card, Tag, Button, Icon, Col, Row } from "antd";
+import { Form, Input, Card, Tag, Button, Icon, Col } from "antd";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -21,27 +21,26 @@ const Answer = props => (
   <div className="gx-user-list">
     <img
       alt="avatar"
-      className={props.answer.avatar}
-      class="gx-avatar-img gx-avatar-img-lg gx-border-0"
+      src={props.answer.avatar}
+      className="gx-avatar-img gx-avatar-img-lg gx-border-0"
     />
-            <div className="gx-description">
-
-    <Card
-      id="components-back-top-demo-custom"
-      className="gx-card"
-      style={{ width: 700 }}
-      title={props.answer.name}
-    >
-      <div>{props.answer.contentAnswer}</div>
-      <div>
-        <Card style={{ backgroundColor: "#CBD4D6", width: 500 }}>
-          {" "}
-          {props.answer.contentCode}
-        </Card>
-      </div>
-      <div> Answred :{props.answer.answer_date.substr(0, 10)}</div>
-    </Card>
-  </div>
+    <div className="gx-description">
+      <Card
+        id="components-back-top-demo-custom"
+        className="gx-card"
+        style={{ width: 700 }}
+        title={props.answer.name}
+      >
+        <div>{props.answer.contentAnswer}</div>
+        <div>
+          <Card style={{ backgroundColor: "#CBD4D6", width: 500 }}>
+            {" "}
+            {props.answer.contentCode}
+          </Card>
+        </div>
+        <div> Answred :{props.answer.answer_date.substr(0, 10)}</div>
+      </Card>
+    </div>
   </div>
 );
 export class QuestionDetails extends Component {
@@ -61,8 +60,8 @@ export class QuestionDetails extends Component {
       contentCode: "",
       contentAnswer: "",
       question_date: "",
-      image:"",
-      id : this.props.id,
+      image: "",
+      _id: this.props.id
     };
   }
 
@@ -71,6 +70,7 @@ export class QuestionDetails extends Component {
       .get(`http://localhost:5000/question/6088ce6c3b8c49362820b24d`)
       .then(response => {
         this.setState({
+          _id: response.data._id,
           title: response.data.title,
           contentText: response.data.contentText,
           tags: response.data.tags,
@@ -125,12 +125,12 @@ export class QuestionDetails extends Component {
         console.log(answer);
         axios
           .post(
-            `http://localhost:5000/question/addAnswer/6088ce6c3b8c49362820b24d`,
+            `http://localhost:5000/question/addAnswer/${this.state._id}`,
             answer
           )
           .then(res => console.log(res.data));
         this.props.history.push(
-          "/question/question-details/6088ce6c3b8c49362820b24d"
+          `/question/question-details/${this.state._id}`
         );
       }
     });
@@ -162,20 +162,20 @@ export class QuestionDetails extends Component {
           >
             <div className="gx-mb-1"> {this.state.contentText}</div>
             <Col>
-          <div className="gx-wall-medialist">
-            <div className="gx-gallery-grid gx-gallery-2">
-              <div className="gx-gallery-item">
-                <img
-                  className="gx-img-fluid"
-                  src={`/uploads/Posts/Screenshot-Post--${this.state.image}`}
-                  alt="post"
-                ></img>
+              <div className="gx-wall-medialist">
+                <div className="gx-gallery-grid gx-gallery-2">
+                  <div className="gx-gallery-item">
+                    <img
+                      className="gx-img-fluid"
+                      src={`/uploads/Posts/Screenshot-Post--${this.state.image}`}
+                      alt="post"
+                    ></img>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          </Col>
+            </Col>
           </Card>
-         
+
           <ul className="gx-list-inline gx-btn-list">
             <li>
               <span className="gx-link gx-meta-like">
