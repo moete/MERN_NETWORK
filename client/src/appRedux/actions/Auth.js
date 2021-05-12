@@ -36,7 +36,7 @@ import {
 const setUser = payload => ({ type: "SIGNIN_USER_SUCCESS", payload });
 //follow user
 export const followUser = id => async dispatch => {
-  fetch("/api/users/follow", {
+  fetch("http://localhost:5000/api/users/follow", {
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -126,7 +126,11 @@ export const signUserUp = userInfo => async dispatch => {
   };
   const body = JSON.stringify(userInfo);
   try {
-    const res = await axios.post("/api/users", body, config);
+    const res = await axios.post(
+      "http://localhost:5000/api/users",
+      body,
+      config
+    );
     dispatch({
       type: SIGNUP_USER_SUCCESS,
       payload: res.data

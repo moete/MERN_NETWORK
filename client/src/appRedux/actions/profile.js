@@ -23,7 +23,7 @@ import setAuthToken from "../../util/setAuthToken";
 export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get("/api/profile");
+    const res = await axios.get("http://localhost:5000/api/profile");
     dispatch({
       type: GET_PROFILES,
       payload: res.data
@@ -39,7 +39,9 @@ export const getProfiles = () => async dispatch => {
 //Get profile by ID
 export const getProfileById = userId => async dispatch => {
   try {
-    const res = await axios.get(`/api/profile/user/${userId}`);
+    const res = await axios.get(
+      `http://localhost:5000/api/profile/user/${userId}`
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -57,7 +59,7 @@ export const getCurrentProfile = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/profile/me");
+    const res = await axios.get("http://localhost:5000/api/profile/me");
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -78,7 +80,7 @@ export const createProfile = (
 ) => async dispatch => {
   try {
     console.log(formData);
-    const res = await axios.post("/api/profile", formData);
+    const res = await axios.post("http://localhost:5000/api/profile", formData);
 
     dispatch({
       type: GET_PROFILE,
@@ -114,7 +116,10 @@ export const createProfile = (
 export const addExperience = formData => async dispatch => {
   try {
     console.log(formData);
-    const res = await axios.put("/api/profile/experience", formData);
+    const res = await axios.put(
+      "http://localhost:5000/api/profile/experience",
+      formData
+    );
 
     dispatch({
       type: UPD_PROF,
@@ -135,7 +140,10 @@ export const addExperience = formData => async dispatch => {
 export const addEducation = formData => async dispatch => {
   try {
     console.log(formData);
-    const res = await axios.put("/api/profile/education", formData);
+    const res = await axios.put(
+      "http://localhost:5000/api/profile/education",
+      formData
+    );
 
     dispatch({
       type: UPD_PROF,
@@ -157,7 +165,9 @@ export const addEducation = formData => async dispatch => {
 
 export const deleteExperience = id => async dispatch => {
   try {
-    const res = await axios.delete(`/api/profile/experience/${id}`);
+    const res = await axios.delete(
+      `http://localhost:5000/api/profile/experience/${id}`
+    );
     dispatch({
       type: UPD_PROF,
       payload: res.data
@@ -173,7 +183,9 @@ export const deleteExperience = id => async dispatch => {
 
 export const deleteEducation = id => async dispatch => {
   try {
-    const res = await axios.delete(`/api/profile/education/${id}`);
+    const res = await axios.delete(
+      `http://localhost:5000/api/profile/education/${id}`
+    );
     dispatch({
       type: UPD_PROF,
       payload: res.data
@@ -189,7 +201,7 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm("Are you sure ? This can NOT be undone!")) {
     try {
-      const res = await axios.delete("/api/profile");
+      const res = await axios.delete("http://localhost:5000/api/profile");
       dispatch({
         type: CLEAR_PROFILE
       });
@@ -206,7 +218,9 @@ export const deleteAccount = () => async dispatch => {
 };
 export const getGithubRepos = username => async dispatch => {
   try {
-    const res = await axios.get(`/api/profile/github/${username}`);
+    const res = await axios.get(
+      `http://localhost:5000/api/profile/github/${username}`
+    );
 
     dispatch({
       type: GET_REPOS,
@@ -240,7 +254,7 @@ export const getFollowings = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/users/getfollowing");
+    const res = await axios.get("http://localhost:5000/api/users/getfollowing");
 
     dispatch({
       type: GET_FOLLOWINGS,
@@ -253,7 +267,7 @@ export const getFollowers = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/users/getfollowers");
+    const res = await axios.get("http://localhost:5000/api/users/getfollowers");
 
     dispatch({
       type: GET_FOLLOWERS,

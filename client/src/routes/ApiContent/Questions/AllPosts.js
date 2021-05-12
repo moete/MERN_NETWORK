@@ -361,7 +361,7 @@ export class AllPosts extends Component {
   }
   componentDidMount() {
     axios
-      .get("/question/")
+      .get("http://localhost:5000/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
@@ -369,7 +369,7 @@ export class AllPosts extends Component {
         console.log(error);
       });
     axios
-      .get("/group/")
+      .get("http://localhost:5000/group/")
       .then(response => {
         this.setState({ groups: response.data });
         console.log(response.data);
@@ -379,7 +379,7 @@ export class AllPosts extends Component {
         console.log(error);
       });
     axios
-      .get("/course/find3")
+      .get("http://localhost:5000/course/find3")
       .then(response => {
         this.setState({ courses: response.data });
       })

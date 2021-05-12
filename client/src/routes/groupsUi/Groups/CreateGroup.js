@@ -112,7 +112,9 @@ export class CreateGroup extends Component {
 
     console.log(group);
 
-    axios.post("/group/add", group).then(res => console.log(res.data));
+    axios
+      .post("http://localhost:5000/group/add", group)
+      .then(res => console.log(res.data));
 
     window.location = "/group/group-list";
   }
