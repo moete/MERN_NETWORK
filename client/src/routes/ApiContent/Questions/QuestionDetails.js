@@ -18,13 +18,13 @@ const formItemLayout = {
   }
 };
 const Answer = props => (
-  <div class="gx-user-list">
+  <div className="gx-user-list">
     <img
       alt="avatar"
-      src={props.answer.avatar}
+      className={props.answer.avatar}
       class="gx-avatar-img gx-avatar-img-lg gx-border-0"
     />
-            <div class="gx-description">
+            <div className="gx-description">
 
     <Card
       id="components-back-top-demo-custom"
@@ -61,13 +61,14 @@ export class QuestionDetails extends Component {
       contentCode: "",
       contentAnswer: "",
       question_date: "",
-      image:""
+      image:"",
+      id : this.props.id,
     };
   }
 
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/question/6088cba2862c12d08d0f97ad`)
+      .get(`http://localhost:5000/question/6088ce6c3b8c49362820b24d`)
       .then(response => {
         this.setState({
           title: response.data.title,
@@ -79,6 +80,7 @@ export class QuestionDetails extends Component {
           question_date: response.data.question_date,
           image: response.data.image
         });
+        console.log(response.data);
       })
       .catch(function(error) {
         console.log(error);
@@ -123,12 +125,12 @@ export class QuestionDetails extends Component {
         console.log(answer);
         axios
           .post(
-            "http://localhost:5000/question/addAnswer/6088cba2862c12d08d0f97ad",
+            `http://localhost:5000/question/addAnswer/6088ce6c3b8c49362820b24d`,
             answer
           )
           .then(res => console.log(res.data));
         this.props.history.push(
-          "/question/question-details/6088cba2862c12d08d0f97ad"
+          "/question/question-details/6088ce6c3b8c49362820b24d"
         );
       }
     });
@@ -136,13 +138,13 @@ export class QuestionDetails extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div class="gx-user-list">
+      <div className="gx-user-list">
         <img
           alt="avatar"
           src={this.state.owner.avatar}
-          class="gx-avatar-img gx-avatar-img-lg gx-border-0"
+          className="gx-avatar-img gx-avatar-img-lg gx-border-0"
         />
-        <div class="gx-description">
+        <div className="gx-description">
           <span>
             {" "}
             <Link to={"/question/question-details/"}>
@@ -151,20 +153,20 @@ export class QuestionDetails extends Component {
             </Link>
           </span>
           <h5>
-            By <span class="gx-link">{this.state.owner.name}</span>
+            By <span className="gx-link">{this.state.owner.name}</span>
           </h5>
           <Tag color="#87d068">{this.state.tags}</Tag>
           <Card
             title={this.state.question_date.substring(0, 10)}
             bordered={false}
           >
-            <div class="gx-mb-1"> {this.state.contentText}</div>
+            <div className="gx-mb-1"> {this.state.contentText}</div>
             <Col>
           <div className="gx-wall-medialist">
             <div className="gx-gallery-grid gx-gallery-2">
               <div className="gx-gallery-item">
                 <img
-                  class="gx-img-fluid"
+                  className="gx-img-fluid"
                   src={`/uploads/Posts/Screenshot-Post--${this.state.image}`}
                   alt="post"
                 ></img>
@@ -174,16 +176,16 @@ export class QuestionDetails extends Component {
           </Col>
           </Card>
          
-          <ul class="gx-list-inline gx-btn-list">
+          <ul className="gx-list-inline gx-btn-list">
             <li>
-              <span class="gx-link gx-meta-like">
-                <i class="icon icon-like-o gx-text-red"></i>
+              <span className="gx-link gx-meta-like">
+                <i className="icon icon-like-o gx-text-red"></i>
                 {this.state.votes} votes
               </span>
             </li>
             <li>
-              <span class="gx-link gx-meta-comment">
-                <i class="icon icon-chat-new"></i>
+              <span className="gx-link gx-meta-comment">
+                <i className="icon icon-chat-new"></i>
                 {this.state.answers.length} answers
               </span>
             </li>
