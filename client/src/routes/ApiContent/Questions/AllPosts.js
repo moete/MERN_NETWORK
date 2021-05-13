@@ -411,7 +411,7 @@ export class AllPosts extends Component {
     if (this.state.isLoading) {
       setTimeout(() => {
         this.setState({ isLoading: false });
-      }, 5000);
+      }, 1000);
     }
   }
   onSearch(event) {

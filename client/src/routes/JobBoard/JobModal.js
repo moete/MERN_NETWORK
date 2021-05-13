@@ -13,7 +13,7 @@ export default function JobModal({ open, job, handleClose }) {
   console.log(localStorage.getItem("user_id"));
 
   const handleSubmit = async e => {
-    await axios.post("/postedon", data);
+    await axios.post("https://networkymern.herokuapp.com/postedon", data);
   };
 
   if (!job.title) {
