@@ -34,7 +34,7 @@ const Profiles = ({
   /*if (user && user.following !== undefined) {
     const array = user.following;
     const promises = array.map(n =>
-      fetch(`http://localhost:5000/api/profile/user/${n}`)
+      fetch(`https://networkymern.herokuapp.com//api/profile/user/${n}`)
         .then(response => response.json())
         .then(user => {
           following.push(user);

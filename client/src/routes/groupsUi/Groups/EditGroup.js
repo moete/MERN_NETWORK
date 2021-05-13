@@ -18,7 +18,10 @@ export default class EditGroup extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/group/" + this.props.match.params.id)
+      .get(
+        "https://networkymern.herokuapp.com//group/" +
+          this.props.match.params.id
+      )
       .then(response => {
         this.setState({
           name: response.data.name,

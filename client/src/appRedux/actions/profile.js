@@ -23,7 +23,9 @@ import setAuthToken from "../../util/setAuthToken";
 export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get("http://localhost:5000/api/profile");
+    const res = await axios.get(
+      "https://networkymern.herokuapp.com//api/profile"
+    );
     dispatch({
       type: GET_PROFILES,
       payload: res.data
@@ -40,7 +42,7 @@ export const getProfiles = () => async dispatch => {
 export const getProfileById = userId => async dispatch => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/profile/user/${userId}`
+      `https://networkymern.herokuapp.com//api/profile/user/${userId}`
     );
     dispatch({
       type: GET_PROFILE,
@@ -59,7 +61,9 @@ export const getCurrentProfile = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("http://localhost:5000/api/profile/me");
+    const res = await axios.get(
+      "https://networkymern.herokuapp.com//api/profile/me"
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -80,7 +84,10 @@ export const createProfile = (
 ) => async dispatch => {
   try {
     console.log(formData);
-    const res = await axios.post("http://localhost:5000/api/profile", formData);
+    const res = await axios.post(
+      "https://networkymern.herokuapp.com//api/profile",
+      formData
+    );
 
     dispatch({
       type: GET_PROFILE,
@@ -117,7 +124,7 @@ export const addExperience = formData => async dispatch => {
   try {
     console.log(formData);
     const res = await axios.put(
-      "http://localhost:5000/api/profile/experience",
+      "https://networkymern.herokuapp.com//api/profile/experience",
       formData
     );
 
@@ -141,7 +148,7 @@ export const addEducation = formData => async dispatch => {
   try {
     console.log(formData);
     const res = await axios.put(
-      "http://localhost:5000/api/profile/education",
+      "https://networkymern.herokuapp.com//api/profile/education",
       formData
     );
 
@@ -166,7 +173,7 @@ export const addEducation = formData => async dispatch => {
 export const deleteExperience = id => async dispatch => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/profile/experience/${id}`
+      `https://networkymern.herokuapp.com//api/profile/experience/${id}`
     );
     dispatch({
       type: UPD_PROF,
@@ -184,7 +191,7 @@ export const deleteExperience = id => async dispatch => {
 export const deleteEducation = id => async dispatch => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/profile/education/${id}`
+      `https://networkymern.herokuapp.com//api/profile/education/${id}`
     );
     dispatch({
       type: UPD_PROF,
@@ -201,7 +208,9 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm("Are you sure ? This can NOT be undone!")) {
     try {
-      const res = await axios.delete("http://localhost:5000/api/profile");
+      const res = await axios.delete(
+        "https://networkymern.herokuapp.com//api/profile"
+      );
       dispatch({
         type: CLEAR_PROFILE
       });
@@ -219,7 +228,7 @@ export const deleteAccount = () => async dispatch => {
 export const getGithubRepos = username => async dispatch => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/profile/github/${username}`
+      `https://networkymern.herokuapp.com//api/profile/github/${username}`
     );
 
     dispatch({
@@ -254,7 +263,9 @@ export const getFollowings = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("http://localhost:5000/api/users/getfollowing");
+    const res = await axios.get(
+      "https://networkymern.herokuapp.com//api/users/getfollowing"
+    );
 
     dispatch({
       type: GET_FOLLOWINGS,
@@ -267,7 +278,9 @@ export const getFollowers = () => async dispatch => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("http://localhost:5000/api/users/getfollowers");
+    const res = await axios.get(
+      "https://networkymern.herokuapp.com//api/users/getfollowers"
+    );
 
     dispatch({
       type: GET_FOLLOWERS,
