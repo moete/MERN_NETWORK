@@ -24,7 +24,7 @@ export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get(
-      "https://networkymern.herokuapp.com//api/profile"
+      "https://networkymern.herokuapp.com/api/profile"
     );
     dispatch({
       type: GET_PROFILES,
@@ -42,7 +42,7 @@ export const getProfiles = () => async dispatch => {
 export const getProfileById = userId => async dispatch => {
   try {
     const res = await axios.get(
-      `https://networkymern.herokuapp.com//api/profile/user/${userId}`
+      `https://networkymern.herokuapp.com/api/profile/user/${userId}`
     );
     dispatch({
       type: GET_PROFILE,
@@ -62,7 +62,7 @@ export const getCurrentProfile = () => async dispatch => {
   }
   try {
     const res = await axios.get(
-      "https://networkymern.herokuapp.com//api/profile/me"
+      "https://networkymern.herokuapp.com/api/profile/me"
     );
     dispatch({
       type: GET_PROFILE,
@@ -85,7 +85,7 @@ export const createProfile = (
   try {
     console.log(formData);
     const res = await axios.post(
-      "https://networkymern.herokuapp.com//api/profile",
+      "https://networkymern.herokuapp.com/api/profile",
       formData
     );
 
@@ -124,7 +124,7 @@ export const addExperience = formData => async dispatch => {
   try {
     console.log(formData);
     const res = await axios.put(
-      "https://networkymern.herokuapp.com//api/profile/experience",
+      "https://networkymern.herokuapp.com/api/profile/experience",
       formData
     );
 
@@ -148,7 +148,7 @@ export const addEducation = formData => async dispatch => {
   try {
     console.log(formData);
     const res = await axios.put(
-      "https://networkymern.herokuapp.com//api/profile/education",
+      "https://networkymern.herokuapp.com/api/profile/education",
       formData
     );
 
@@ -173,7 +173,7 @@ export const addEducation = formData => async dispatch => {
 export const deleteExperience = id => async dispatch => {
   try {
     const res = await axios.delete(
-      `https://networkymern.herokuapp.com//api/profile/experience/${id}`
+      `https://networkymern.herokuapp.com/api/profile/experience/${id}`
     );
     dispatch({
       type: UPD_PROF,
@@ -191,7 +191,7 @@ export const deleteExperience = id => async dispatch => {
 export const deleteEducation = id => async dispatch => {
   try {
     const res = await axios.delete(
-      `https://networkymern.herokuapp.com//api/profile/education/${id}`
+      `https://networkymern.herokuapp.com/api/profile/education/${id}`
     );
     dispatch({
       type: UPD_PROF,
@@ -209,7 +209,7 @@ export const deleteAccount = () => async dispatch => {
   if (window.confirm("Are you sure ? This can NOT be undone!")) {
     try {
       const res = await axios.delete(
-        "https://networkymern.herokuapp.com//api/profile"
+        "https://networkymern.herokuapp.com/api/profile"
       );
       dispatch({
         type: CLEAR_PROFILE
@@ -228,7 +228,7 @@ export const deleteAccount = () => async dispatch => {
 export const getGithubRepos = username => async dispatch => {
   try {
     const res = await axios.get(
-      `https://networkymern.herokuapp.com//api/profile/github/${username}`
+      `https://networkymern.herokuapp.com/api/profile/github/${username}`
     );
 
     dispatch({
@@ -264,7 +264,7 @@ export const getFollowings = () => async dispatch => {
   }
   try {
     const res = await axios.get(
-      "https://networkymern.herokuapp.com//api/users/getfollowing"
+      "https://networkymern.herokuapp.com/api/users/getfollowing"
     );
 
     dispatch({
@@ -279,7 +279,7 @@ export const getFollowers = () => async dispatch => {
   }
   try {
     const res = await axios.get(
-      "https://networkymern.herokuapp.com//api/users/getfollowers"
+      "https://networkymern.herokuapp.com/api/users/getfollowers"
     );
 
     dispatch({

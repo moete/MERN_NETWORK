@@ -16,7 +16,7 @@ const AppNotification = () => {
       })
       .catch(err => console.log(err));
     axios
-      .get("https://networkymern.herokuapp.com//api/profile/me")
+      .get("https://networkymern.herokuapp.com/api/profile/me")
       .then(res => localStorage.setItem("name", res.data.user.name))
       .catch(err => console.log(err));
   }, []);

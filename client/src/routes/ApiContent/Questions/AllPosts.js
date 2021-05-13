@@ -361,7 +361,7 @@ export class AllPosts extends Component {
   }
   componentDidMount() {
     axios
-      .get("https://networkymern.herokuapp.com//question/")
+      .get("https://networkymern.herokuapp.com/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
@@ -369,7 +369,7 @@ export class AllPosts extends Component {
         console.log(error);
       });
     axios
-      .get("https://networkymern.herokuapp.com//group/")
+      .get("https://networkymern.herokuapp.com/group/")
       .then(response => {
         this.setState({ groups: response.data });
         console.log(response.data);
@@ -379,7 +379,7 @@ export class AllPosts extends Component {
         console.log(error);
       });
     axios
-      .get("https://networkymern.herokuapp.com//course/find3")
+      .get("https://networkymern.herokuapp.com/course/find3")
       .then(response => {
         this.setState({ courses: response.data });
       })
