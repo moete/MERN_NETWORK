@@ -15,7 +15,7 @@ export default function JobModal({ open, job, handleClose }) {
   console.log(job.skill);
   //if(!job.skill)
   const handleSubmit = async e => {
-    await axios.post("http://localhost:5000/postedon", data);
+    await axios.post("https://networkymern.herokuapp.com/postedon", data);
   };
 
   if (!job.title) {

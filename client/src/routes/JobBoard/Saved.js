@@ -26,11 +26,14 @@ export default function Saved({ job, count }) {
     }, 500);
   };
   const deleteJob = async postedon => {
-    await axios.delete("http://localhost:5000/postedon/deletepostedon", {
-      data: {
-        id: postedon
+    await axios.delete(
+      "https://networkymern.herokuapp.com/postedon/deletepostedon",
+      {
+        data: {
+          id: postedon
+        }
       }
-    });
+    );
   };
 
   return (

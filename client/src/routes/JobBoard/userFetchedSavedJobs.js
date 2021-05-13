@@ -6,7 +6,7 @@ const ACTIONS = {
   GET_DATA: "get-data",
   ERROR: "error"
 };
-const BASE_URL = "/postedon/showpostedon";
+const BASE_URL = "https://networkymern.herokuapp.com/postedon/showpostedon";
 
 function reducer(state, action) {
   switch (action.type) {

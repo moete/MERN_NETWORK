@@ -12,7 +12,7 @@ export default function Job({ job, onClick }) {
     posted_date: job.posted_date
   };
 
-  const BASE_URL = "/pdf/create-pdf";
+  const BASE_URL = "https://networkymern.herokuapp.com/pdf/create-pdf";
 
   const [open, setOpen] = useState(false);
   const openNotification = () => {
@@ -29,7 +29,11 @@ export default function Job({ job, onClick }) {
   const createAndDownloadPdf = () => {
     axios
       .post(BASE_URL, pdfData)
-      .then(() => axios.get("/pdf/fetch-pdf", { responseType: "blob" }))
+      .then(() =>
+        axios.get("https://networkymern.herokuapp.com/pdf/fetch-pdf", {
+          responseType: "blob"
+        })
+      )
       .then(res => {
         const pdfBlob = new Blob([res.data], { type: "application/pdf" });
 
