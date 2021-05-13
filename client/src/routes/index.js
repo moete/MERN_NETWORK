@@ -20,6 +20,8 @@ import profileById from "../components/profile/profiles/ProfilebyID";
 import editprofile from "../components/profile/profile_forms/EditProfile";
 import ProfilebyID from "../components/profile/profiles/ProfilebyID";
 import news from "../routes/groupsUi/externpAPi/NewsCard";
+import JOB from "./JobBoard";
+
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -32,7 +34,7 @@ const App = ({ match }) => (
         component={ExtraComponents}
       />
       {/*<Route path={`${match.url}job-board`} component={JOB} />*/}
-      <Route path={`${match.url}job-board`} component={App} />
+      <Route path={`${match.url}job-board`} component={JOB} />
 
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
       <Route path={`${match.url}social-apps`} component={SocialApps} />

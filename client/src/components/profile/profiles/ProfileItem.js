@@ -15,27 +15,27 @@ const ProfileItem = ({ followUser, unfollowUser, profile }) => {
   const { Meta } = Card;
   function confirm(e) {
     console.log(_id);
-    unfollowUser(_id);
+    followUser(_id);
 
-    message.success("you unfollowed  ");
+    message.success("you just followed  ");
   }
   console.log(_id);
   function cancel(e) {
     console.log(e);
-    message.error("you still following   ");
+    message.error("you refused to follow   ");
   }
   return (
     <Col style={{ width: "auto" }} xl={8} lg={12} md={12} sm={24} xs={24}>
       <Card
         actions={[
           <Popconfirm
-            title="you are about to unfollow the selected user hit no to cancel"
+            title="you are about to follow the selected user hit no to cancel"
             onConfirm={confirm}
             onCancel={cancel}
             okText="Yes"
             cancelText="No"
           >
-            <Icon type="user-delete" key="edit" />
+            <Icon type="user-add" key="edit" />
           </Popconfirm>,
           <Icon type="ellipsis" key="ellipsis" />
         ]}

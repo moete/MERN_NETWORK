@@ -36,7 +36,7 @@ import {
 const setUser = payload => ({ type: "SIGNIN_USER_SUCCESS", payload });
 //follow user
 export const followUser = id => async dispatch => {
-  fetch("http://localhost:5000/api/users/follow", {
+  fetch("https://networkymern.herokuapp.com/api/users/follow", {
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const followUser = id => async dispatch => {
 };
 //unfollow user
 export const unfollowUser = id => async dispatch => {
-  fetch("http://localhost:5000/api/users/unfollow", {
+  fetch("https://networkymern.herokuapp.com/api/users/unfollow", {
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export const loadUser = () => async dispatch => {
   } else {
   }
   try {
-    const res = await axios.get("http://localhost:5000/api/auth");
+    const res = await axios.get("https://networkymern.herokuapp.com/api/auth");
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -96,7 +96,7 @@ export const fetchUser = userInfo => async dispatch => {
   const body = JSON.stringify(userInfo);
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/auth",
+      "https://networkymern.herokuapp.com/api/auth",
       body,
       config
     );
@@ -131,7 +131,7 @@ export const signUserUp = userInfo => async dispatch => {
   const body = JSON.stringify(userInfo);
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/users",
+      "https://networkymern.herokuapp.com/api/users",
       body,
       config
     );

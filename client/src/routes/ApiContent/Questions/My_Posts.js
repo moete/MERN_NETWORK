@@ -16,19 +16,15 @@ const Question = props => (
   <div className="gx-contact-item">
     <div className="gx-module-list-icon">
       <div className="gx-d-none gx-d-sm-flex">
-      {
-            (props.questions.confirm) === "true" ? 
-            <div className="gx-icon-views">
-            <i className="icon icon-check-cricle"/>
-           
+        {props.questions.confirm === "true" ? (
+          <div className="gx-icon-views">
+            <i className="icon icon-check-cricle" />
           </div>
-            :
-
-            <div className="gx-icon-views">
-            <i className="icon icon-close-circle"/>
-           
+        ) : (
+          <div className="gx-icon-views">
+            <i className="icon icon-close-circle" />
           </div>
-            }
+        )}
       </div>
       <div className="gx-ml-2 gx-d-none gx-d-sm-flex"></div>
     </div>
@@ -41,9 +37,7 @@ const Question = props => (
           </span>
           <span className="gx-toolbar-separator"></span>
           <span className="gx-text-truncate gx-job-title">
-          <i className="icon icon-alert">
-            {    props.questions.tags}</i>
-           
+            <i className="icon icon-alert">{props.questions.tags}</i>
           </span>
         </p>
 
@@ -61,12 +55,16 @@ const Question = props => (
         </div>
       </div>
       <div className="gx-module-contact-right">
-      <a onClick={() => 
-        { props.deleteQuestion(props.questions._id) }}>Delete</a>
-
+        <a
+          onClick={() => {
+            props.deleteQuestion(props.questions._id);
+          }}
+        >
+          Delete
+        </a>
       </div>
       <div className="gx-module-contact-right">
-      <Link to={"/question/edit-question/"+props.questions._id}>Edit</Link>
+        <Link to={"/question/edit-question/" + props.questions._id}>Edit</Link>
       </div>
     </div>
   </div>
@@ -94,36 +92,36 @@ class MyPosts extends Component {
       filterOption: "My posts",
       questions: [],
       isLoading: true,
-      owner:[]
-
+      owner: []
     };
   }
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/question/")
+      .get("/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
       .catch(error => {
         console.log(error);
       });
-      this.props.getCurrentProfile();
-      if (this.state.isLoading) {
-        setTimeout(() => {
-          this.setState({ isLoading: false });
-        }, 5000);
-      }
+    this.props.getCurrentProfile();
+    if (this.state.isLoading) {
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+      }, 5000);
+    }
   }
   deleteQuestion(id) {
-    axios.delete('http://localhost:5000/question/'+id)
-      .then(response => { console.log(response.data)});
+    axios.delete("/question/" + id).then(response => {
+      console.log(response.data);
+    });
 
     this.setState({
       questions: this.state.questions.filter(el => el._id !== id)
-    })
+    });
   }
-  questionList ( profile ){
+  questionList(profile) {
     if (this.state.isLoading) {
       return (
         <div className="gx-loader-view">
@@ -135,12 +133,16 @@ class MyPosts extends Component {
         if (currentquestion.owner.user ===this.props.auth.user._id)
         {
           this.props.getCurrentProfile();
-          return <Question questions={currentquestion} deleteQuestion={this.deleteQuestion} key={currentquestion._id}/>;
-
+          return (
+            <Question
+              questions={currentquestion}
+              deleteQuestion={this.deleteQuestion}
+              key={currentquestion._id}
+            />
+          );
         }
       });
     }
-    
   }
 
   SideBar = user => {
@@ -236,20 +238,18 @@ class MyPosts extends Component {
       <div className="gx-main-content">
         <div className="gx-app-module">
           <div className="gx-module-sidenav gx-d-none gx-d-lg-flex">
-            
             {this.SideBar(user)}
           </div>
-         
+
           <div className="gx-module-box">
             <div className="gx-module-box-header">
-
               <AppModuleHeader
                 placeholder="Search posts"
                 notification={false}
                 apps={false}
                 user={this.state.user}
                 onChange={this.onSearch.bind(this)}
-               value={this.state.searchUser}
+                value={this.state.searchUser}
               />
             </div>
             <div className="gx-module-box-content">
@@ -260,11 +260,9 @@ class MyPosts extends Component {
                     {noContentFoundMessage}
                   </div>
                 ) : (
-                  
                   this.questionList()
                 )}
               </CustomScrollbars>
-             
             </div>
           </div>
         </div>

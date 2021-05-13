@@ -68,7 +68,7 @@ export class ShowAllCourses extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/course/")
+      .get("/course/")
       .then(response => {
         this.setState({ courses: response.data });
       })

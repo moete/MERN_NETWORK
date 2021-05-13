@@ -3,7 +3,7 @@ import { Col, Card, Row, Input } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Question = props => (
-  <Col span={9}  >
+  <Col span={9}>
     <Card
       title={<i class="icon icon-alert">{props.question.tags} </i>}
       extra={
@@ -61,14 +61,13 @@ export class FiltreByTags extends Component {
 
     this.state = {
       questions: [],
-      search: ''
+      search: ""
     };
-   
   }
-   
+
   componentDidMount() {
     axios
-      .get("http://localhost:5000/question/")
+      .get("/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
@@ -76,14 +75,15 @@ export class FiltreByTags extends Component {
         console.log(error);
       });
   }
-  
+
   questionList() {
-    let filtredPosts = this.state.questions.filter(
-      (currentquestion) => {
-        return currentquestion.tags.toLowerCase().indexOf(
-          this.state.search.toLowerCase()) !== -1;
-      }
-    );
+    let filtredPosts = this.state.questions.filter(currentquestion => {
+      return (
+        currentquestion.tags
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
     return filtredPosts.map(currentquestion => {
       return <Question question={currentquestion} />;
     });
@@ -96,17 +96,16 @@ export class FiltreByTags extends Component {
   render() {
     return (
       <>
-      <Col>
-      <Search placeholder="tap a tag ..."
-      value={this.state.search}
-      onChange= {this.onSearch.bind(this)} />
-      </Col>
-      <Row gutter={[32, 48]}>
-      {this.questionList()}
-      </Row>
+        <Col>
+          <Search
+            placeholder="tap a tag ..."
+            value={this.state.search}
+            onChange={this.onSearch.bind(this)}
+          />
+        </Col>
+        <Row gutter={[32, 48]}>{this.questionList()}</Row>
       </>
     );
-  
   }
 }
 

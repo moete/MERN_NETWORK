@@ -31,12 +31,12 @@ export class UpdateQuestion extends Component {
       title: "",
       contentText: "",
       tags: "",
-      originalname: "",
-        };
+      originalname: ""
+    };
   }
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/question/${this.props.match.params.id}`)
+      .get(`/question/${this.props.match.params.id}`)
       .then(response => {
         this.setState({
           title: response.data.title,
@@ -86,48 +86,45 @@ export class UpdateQuestion extends Component {
       }
     };
     axios
-      .post(
-        `http://localhost:5000/question/update/${this.props.match.params.id}`,
-        formData,
-        config
-      )
+      .post(`/question/update/${this.props.match.params.id}`, formData, config)
       .then(res => console.log(res.data));
     window.location = "/question/my-posts";
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {title, contentText, tags } = this.state;
+    const { title, contentText, tags } = this.state;
     return (
       <>
-      
         <Card className="gx-card" title="Ask a question">
           <Form onSubmit={this.onSubmit} encType="multipart/form-data">
-          <FormItem
+            <FormItem
               {...formItemLayout}
-             
               label="Title"
               hasFeedback
               value={this.state.title}
               onChange={this.onChangeTitle}
-            >  {getFieldDecorator("title", {
-              initialValue:title,
-              rules: [
-                {
-                  required: true,
-                  message: "Title is missing !"
-                }
-              ]
-            })(
-              <Input
-              required
-               value={this.state.title}
-               onChange={this.onChangeTitle}
-               />)}
+            >
+              {" "}
+              {getFieldDecorator("title", {
+                initialValue: title,
+                rules: [
+                  {
+                    required: true,
+                    message: "Title is missing !"
+                  }
+                ]
+              })(
+                <Input
+                  required
+                  value={this.state.title}
+                  onChange={this.onChangeTitle}
+                />
+              )}
             </FormItem>
             <FormItem {...formItemLayout} label="Body" hasFeedback>
               {getFieldDecorator("Body", {
-                 initialValue:contentText,
+                initialValue: contentText,
                 rules: [
                   {
                     required: true,
@@ -147,7 +144,7 @@ export class UpdateQuestion extends Component {
             </FormItem>
             <FormItem {...formItemLayout} label="Tags" hasFeedback>
               {getFieldDecorator("tags", {
-               initialValue:tags,
+                initialValue: tags,
                 rules: [
                   {
                     required: true,
@@ -196,7 +193,7 @@ export class UpdateQuestion extends Component {
           </Form>
 
           <Button type="primary" htmlType="submit" onClick={this.onSubmit}>
-           Edit
+            Edit
           </Button>
         </Card>
       </>

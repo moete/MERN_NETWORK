@@ -192,7 +192,7 @@ export class AllPosts extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/question/")
+      .get("https://networkymern.herokuapp.com/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
@@ -200,7 +200,7 @@ export class AllPosts extends Component {
         console.log(error);
       });
     axios
-      .get("http://localhost:5000/group/")
+      .get("https://networkymern.herokuapp.com/group/")
       .then(response => {
         this.setState({ groups: response.data });
         console.log(response.data);
@@ -210,7 +210,7 @@ export class AllPosts extends Component {
         console.log(error);
       });
     axios
-      .get("http://localhost:5000/course/find3")
+      .get("https://networkymern.herokuapp.com/course/find3")
       .then(response => {
         this.setState({ courses: response.data });
       })
@@ -242,7 +242,7 @@ export class AllPosts extends Component {
     if (this.state.isLoading) {
       setTimeout(() => {
         this.setState({ isLoading: false });
-      }, 5000);
+      }, 1000);
     }
   }
   onSearch(event) {

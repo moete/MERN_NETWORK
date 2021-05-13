@@ -13,7 +13,8 @@ const App = ({ getProfiles, profile: { profiles } }) => {
 
     getProfiles();
   }, []);
-  console.log(getProfiles)
+  const data = profiles ;
+  console.log(data)
   console.log(localStorage.getItem('email'))
   return (
     <ChatEngine
