@@ -49,7 +49,7 @@ const jobs = ({ match }) => {
 
         return <Job key={job._id}
           job={job}
-          onClick={() => {
+            onClick={() => {
             console.log('clicked');
             handleClickOpen();
             setselectedJob(job)

@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
+
+// Step 2 - Include the react-fusioncharts component
 import ReactFC from "react-fusioncharts";
+
+// Step 3 - Include the fusioncharts library
 import FusionCharts from "fusioncharts";
-import Column2D from "fusioncharts/fusioncharts.charts";
+
+// Step 4 - Include the chart type
+import Column3D from "fusioncharts/fusioncharts.charts";
+
+// Step 5 - Include the theme as fusion
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 import axios from "axios";
-ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
+// Step 6 - Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(FusionCharts, Column3D, FusionTheme);
 
 export default function Chart() {
   const [data, setData] = useState([]);
@@ -15,18 +24,14 @@ export default function Chart() {
     height: "700", // Height of the chart
     dataFormat: "json", // Data type
     dataSource: {
-      // Chart Configuration
       chart: {
-        //Set the chart caption
-        caption: "Most Searched jobs by location",
-        //Set the chart subcaption
-        subCaption: "networky_stats",
-        //Set the x-axis name
-        xAxisName: "Country",
-        //Set the y-axis name
-        yAxisName: "Job",
-        numberSuffix: "K",
-        //Set the theme for your chart
+        caption: "Most posted jobs by your prefered job type",
+        subcaption: "jobs",
+        enablesmartlabels: "1",
+        showlabels: "1",
+        numbersuffix: " ",
+        usedataplotcolorforlabels: "1",
+        plottooltext: "$label, <b>$value</b> ",
         theme: "fusion"
       },
       // Chart Data

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Badge, Button, Collapse } from "react-bootstrap";
-import { notification } from "antd";
+import { notification, message } from "antd";
 import axios from "axios";
 import { saveAs } from "file-saver";
 
@@ -8,6 +8,8 @@ export default function Saved({ job, count }) {
   const BASE_URL = "/pdf/create-pdf";
 
   const [open, setOpen] = useState(false);
+  const key = "updatable";
+
   const openNotification = () => {
     notification.open({
       message: `Your job ${job.job_id.title} is saved to pdf File`,
@@ -17,15 +19,18 @@ export default function Saved({ job, count }) {
       }
     });
   };
+  const openMessage = () => {
+    message.loading({ content: "Loading...", key });
+    setTimeout(() => {
+      message.success({ content: "Deleted!", key, duration: 2 });
+    }, 500);
+  };
   const deleteJob = async postedon => {
-    await axios.delete(
-      "https://networkymern.herokuapp.com/postedon/deletepostedon",
-      {
-        data: {
-          id: postedon
-        }
+    await axios.delete("http://localhost:5000/postedon/deletepostedon", {
+      data: {
+        id: postedon
       }
-    );
+    });
   };
 
   return (
@@ -62,7 +67,7 @@ export default function Saved({ job, count }) {
             variant="primary"
             onClick={() => {
               console.log("clicked");
-              openNotification();
+              openMessage();
               deleteJob(job._id);
               count();
               //   createAndDownloadPdf();

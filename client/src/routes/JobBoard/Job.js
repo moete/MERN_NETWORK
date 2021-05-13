@@ -59,7 +59,13 @@ export default function Job({ job, onClick }) {
             <Badge variant="secondary" className="mr-2">
               {job.job_type}
             </Badge>
-            <Badge variant="secondary">{job.location}</Badge>
+            <Badge variant="secondary" className="mr-2">
+              {job.location}
+            </Badge>
+            <Badge variant="secondary" className="mr-2">
+              {job.skill}
+            </Badge>
+
             <div style={{ wordBreak: "break-all" }}></div>
           </div>
           <img
