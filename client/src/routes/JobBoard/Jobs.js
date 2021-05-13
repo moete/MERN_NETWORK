@@ -24,8 +24,9 @@ const jobs = ({ match }) => {
 
   const [params, setParams] = useState({});
   const [page, setPage] = useState(1);
+  console.log("aaaaaaaa");
   const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page);
-  console.log("aaaaaaaaaaaaaaaaaaa");
+  console.log("bbbbbbbbbbbbbbbb");
   function handleParamChange(e) {
     const param = e.target.name;
     const value = e.target.value;
