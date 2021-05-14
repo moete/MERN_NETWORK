@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const multer = require("multer");
-const path = require("path")
+const path = require("path");
 
 const { check, validationResult } = require("express-validator/check");
 const { validateFile } = require("../../middleware/validator");
 
 const Course = require("../../models/course.model");
-const Chapter = require ("../../models/chapter.model")
 const { route } = require("./question");
+const auth = require("../../middleware/auth");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -28,19 +28,20 @@ var Filesstorage = multer.diskStorage({
     cb(null, "./client/public/uploads/courses/chapters/");
   },
   filename: (req, file, cb) => {
-    cb(null, "--" + file.originalname);
+    cb(null, "Chapter--" + file.originalname);
   },
 });
 
 var MultipuleUpload = multer({ storage: Filesstorage });
-var files = MultipuleUpload.fields ([
+var files = MultipuleUpload.fields([
   {
-  name: 'field1'
-},
-{
-  name: 'field2', maxCount: 3
-}
-])
+    name: "field1",
+  },
+  {
+    name: "field2",
+    maxCount: 3,
+  },
+]);
 
 // @route GET api/course
 // @description Get all courses
@@ -66,92 +67,66 @@ router.get("/find3", (req, res) => {
 // @description Get all courses
 // @access Public
 
-router.post("/add",
-   upload.single("image"), 
-   validateFile,
-   [
-    check('title', 'title is required').not().isEmpty(),
-    check('description', 'description is required').not().isEmpty(),
-    check('description', 'description must have 6+ characters long').isLength({ min: 6 }),
-    check('requirments', 'requirments is required').not().isEmpty(),
-    check('chapters', 'chapters is required').not().isEmpty(),
-    check('technologies', 'technologies is required').not().isEmpty()
-    
-   ] 
-   , async (req, res) => {
+router.post(
+  "/add",
+  upload.single("image"),
+  validateFile,
+  auth,
+
+  [
+    check("title", "title is required").not().isEmpty(),
+    check("description", "description is required").not().isEmpty(),
+    check("description", "description must have 6+ characters long").isLength({
+      min: 6,
+    }),
+    check("requirements", "requirements is required").not().isEmpty(),
+    check("technologies", "technologies is required").not().isEmpty(),
+  ],
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    const newCourse = new Course({
+    try {
+      const user = await User.findById(req.user.id);
+      const newCourse = new Course({
         title: req.body.title,
-        creation_date : new Date (),
-        description : req.body.description,
-        requirments : req.body.requirments,
-        chapters : req.body.chapters,
-        technologies : req.body.technologies,
+        creation_date: new Date(),
+        description: req.body.description,
+        requirements: req.body.requirements,
+        language: req.body.language,
+        technologies: req.body.technologies,
         image: req.file.originalname,
-    });
-  
-    newCourse.save()
-    .then(() => res.json('Course added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-  });
-  
-router.post("/addCourse", upload.single("image"), (req, res, next) => {
-  var newCourse = new Course({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
-    description: req.body.description,
-    creation_date: new Date(),
-    image: req.file.originalname,
-    requirements: req.body.requirements,
-    language: req.body.language,
-    field: req.body.field,
-    technologies: req.body.technologies,
-  });
-  newCourse
-    .save()
-    .then(() => res.json({ mesage: "Successfully created a new Course" }))
-    .catch((err) => {
-      return res.status(400).json({ message: err });
-    });
-});
+        owner: { user: req.user.id, name: user.name, avatar: user.avatar },
+      });
+      const course = await newCourse.save();
+      res.json(course);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
 // add a chapter
-router.post("/addChapter/:id",files, (req, res, next) => {
-  var newChapter = new Chapter({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
-    creation_date: new Date(),
-    update_date: new Date(),
-    release_date: new Date(),
-    deadline_date: new Date(),
-  // source : req.files.originalname
-  });
-  Course
-    .findByIdAndUpdate(
-      { _id: req.params.id},
-      { $push: { chapters: newChapter } }
-    )
-    .then((result) => {
-      return res
-        .status(200)
-        .json({ mesage: "successfully created a new chapter" });
-    })
-    .catch((err) => {
-      return res.status(400).json({ message: err });
+router.post(
+  "/addChapter/:id",
+  MultipuleUpload.single("source"),
+  (req, res, next) => {
+    Course.findByIdAndUpdate(req.params.id, req.body).then((course) => {
+      course.chapters.push({
+        ChapterTitle: req.body.ChapterTitle,
+        source: req.file,
+        creation_date: new Date(),
+      });
+
+      course
+        .save()
+        .then(() => res.json('chapter added !'))
+        .catch((err) => res.status(400).json('Error: ' + err));
     });
-  /*    courseModel
-         .findByIdAndUpdate({ _id: req.body.id }, { $push: { chapters: newChapter } })
-         .then((result) => {
-             return res
-                 .status(200)
-                 .json({ mesage: "successfully created a new chapter" });
-         })
-         .catch((err) => {
-             return res.status(400).json({ message: err });
-         }); */
-});
+  }
+);
 // @route GET api/couse/:id
 // @description Get single couse by id
 // @access Public

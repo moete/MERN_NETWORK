@@ -67,7 +67,7 @@ export class FiltreByTags extends Component {
 
   componentDidMount() {
     axios
-      .get("/question/")
+      .get("http://localhost:5000/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })

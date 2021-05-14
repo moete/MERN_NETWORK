@@ -98,7 +98,7 @@ class MyPosts extends Component {
 
   componentDidMount() {
     axios
-      .get("/question/")
+      .get("http://localhost:5000/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
@@ -113,7 +113,7 @@ class MyPosts extends Component {
     }
   }
   deleteQuestion(id) {
-    axios.delete("/question/" + id).then(response => {
+    axios.delete("http://localhost:5000/question/" + id).then(response => {
       console.log(response.data);
     });
 
@@ -130,9 +130,8 @@ class MyPosts extends Component {
       );
     } else {
       return this.state.questions.map(currentquestion => {
-        if (
-          currentquestion.owner.user === this.props.profile.profile.user._id
-        ) {
+        if (currentquestion.owner.user ===this.props.auth.user._id)
+        {
           this.props.getCurrentProfile();
           return (
             <Question
