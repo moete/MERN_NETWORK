@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Col } from "antd";
 import { Link } from "react-router-dom";
+import parse from 'html-react-parser';
 
 const PostsList = (props) => {
     return (
@@ -32,7 +33,7 @@ const PostsList = (props) => {
                     <p className="gx-text-grey gx-fs-sm gx-mb-0">
                       {props.question.question_date.substring(0, 10)}
                     </p>
-                    <p className="gx-mt-2">{props.question.contentText}</p>
+                    <p className="gx-mt-2">{parse(props.question.contentText)}</p>
                   </div>
                 </div>
               </div>
