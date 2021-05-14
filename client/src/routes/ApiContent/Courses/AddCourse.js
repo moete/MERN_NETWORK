@@ -82,9 +82,9 @@ export class AddCourse extends Component {
         axios
           .post("http://localhost:5000/course/add", formData, config)
           .then(res => console.log(res.data));
-        this.props.history.push("/courses/courses-list");
+      //  this.props.history.push("/courses/courses-list");
 
-        //   window.location = "/courses/courses-list";
+          window.location = "/courses/courses-list";
       }
     });
   };

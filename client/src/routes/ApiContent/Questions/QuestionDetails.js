@@ -43,6 +43,8 @@ const Answer = props => (
     </div>
   </div>
 );
+
+const BASE_URL = "http://localhost:5000/question/";
 export class QuestionDetails extends Component {
   constructor(props) {
     super(props);
@@ -64,10 +66,13 @@ export class QuestionDetails extends Component {
       _id: this.props.id
     };
   }
-
+getCurrentItem(){
+  
+}
   componentDidMount() {
+  
     axios
-      .get(`http://localhost:5000/question/6088ce6c3b8c49362820b24d`)
+      .get (BASE_URL+  "6091a6f31bbf5227b499de70")
       .then(response => {
         this.setState({
           _id: response.data._id,
@@ -99,7 +104,7 @@ export class QuestionDetails extends Component {
   }
   AnswersList() {
     return this.state.answers.map(currentanswer => {
-      return <Answer answer={currentanswer} />;
+      return <Answer answer={currentanswer} key= {currentanswer._id}/>;
     });
   }
   myFunction = () => {
