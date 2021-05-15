@@ -33,7 +33,9 @@ const Question = props => (
       <div className="gx-module-contact-content">
         <p className="gx-mb-1">
           <span className="gx-text-truncate gx-contact-name">
+          <Link to={"/question/question-details/" + props.questions._id}>
             {props.questions.title}
+            </Link>
           </span>
           <span className="gx-toolbar-separator"></span>
           <span className="gx-text-truncate gx-job-title">
