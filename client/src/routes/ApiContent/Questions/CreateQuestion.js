@@ -21,7 +21,7 @@ const formItemLayout = {
 const headers = {
   "Content-type": "multipart/form-data; boundary=-------------573cf973d5228"
 };
-export class CreateQuestion extends Component {
+ class CreateQuestion extends Component {
   constructor(props) {
     super(props);
 

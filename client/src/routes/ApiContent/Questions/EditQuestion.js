@@ -17,7 +17,7 @@ const formItemLayout = {
   }
 };
 
-export class UpdateQuestion extends Component {
+class EditQuestion extends Component {
   constructor(props) {
     super(props);
 
@@ -36,17 +36,19 @@ export class UpdateQuestion extends Component {
   }
   componentDidMount() {
     axios
-      .get(`/question/${this.props.match.params.id}`)
+    .get ("http://localhost:5000/question/"+ "6091a6f31bbf5227b499de70")
       .then(response => {
         this.setState({
+          _id: response.data._id,
           title: response.data.title,
           contentText: response.data.contentText,
           tags: response.data.tags,
           originalname: response.data.originalname
         });
+        console.log(response.data);
       })
       .catch(function(error) {
-        console.log("ERROR IS " + error);
+        console.log(error);
       });
   }
   onChangeTitle(e) {
@@ -86,23 +88,22 @@ export class UpdateQuestion extends Component {
       }
     };
     axios
-      .post(`/question/update/${this.props.match.params.id}`, formData, config)
+      .post("http://localhost:5000/question/update/"+ this.state._id, formData, config)
       .then(res => console.log(res.data));
     window.location = "/question/my-posts";
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { title, contentText, tags } = this.state;
+    const { title, contentText, tags, originalname } = this.state;
     return (
       <>
-        <Card className="gx-card" title="Ask a question">
+        <Card className="gx-card" title="Edit Post">
           <Form onSubmit={this.onSubmit} encType="multipart/form-data">
             <FormItem
               {...formItemLayout}
               label="Title"
               hasFeedback
-              value={this.state.title}
               onChange={this.onChangeTitle}
             >
               {" "}
@@ -117,12 +118,14 @@ export class UpdateQuestion extends Component {
               })(
                 <Input
                   required
-                  value={this.state.title}
                   onChange={this.onChangeTitle}
                 />
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="Body" hasFeedback>
+            <FormItem 
+            {...formItemLayout} 
+            label="Body"
+             hasFeedback>
               {getFieldDecorator("Body", {
                 initialValue: contentText,
                 rules: [
@@ -136,13 +139,14 @@ export class UpdateQuestion extends Component {
               })(
                 <TextArea
                   rows={6}
-                  value={this.state.contentText}
                   onChange={this.onChangeContentText}
                   id="success"
                 />
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label="Tags" hasFeedback>
+            <FormItem 
+            {...formItemLayout} 
+            label="Tags" hasFeedback>
               {getFieldDecorator("tags", {
                 initialValue: tags,
                 rules: [
@@ -152,7 +156,9 @@ export class UpdateQuestion extends Component {
                   }
                 ]
               })(
-                <Input value={this.state.tags} onChange={this.onChangeTags} />
+                <Input 
+                //value={this.state.tags}
+                 onChange={this.onChangeTags} />
               )}
             </FormItem>
 
@@ -162,6 +168,7 @@ export class UpdateQuestion extends Component {
               onChange={this.onChangeFile}
             >
               {getFieldDecorator("image", {
+                 initialValue: originalname,
                 rules: [
                   {
                     required: true,
@@ -201,4 +208,4 @@ export class UpdateQuestion extends Component {
   }
 }
 
-export default Form.create()(UpdateQuestion);
+export default Form.create()(EditQuestion);

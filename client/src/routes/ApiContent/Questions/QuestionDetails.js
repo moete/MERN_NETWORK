@@ -44,8 +44,7 @@ const Answer = props => (
   </div>
 );
 
-const BASE_URL = "http://localhost:5000/question/";
-export class QuestionDetails extends Component {
+class QuestionDetails extends Component {
   constructor(props) {
     super(props);
     this.onChangeContentCode = this.onChangeContentCode.bind(this);
@@ -66,13 +65,10 @@ export class QuestionDetails extends Component {
       _id: this.props.id
     };
   }
-getCurrentItem(){
-  
-}
   componentDidMount() {
   
     axios
-      .get (BASE_URL+  "6091a6f31bbf5227b499de70")
+      .get ("http://localhost:5000/question/"+  this.props.match.params.id)
       .then(response => {
         this.setState({
           _id: response.data._id,

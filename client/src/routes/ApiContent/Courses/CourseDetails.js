@@ -31,7 +31,7 @@ const Chapter = props => (
   </Card>
   
 );
-export class CourseDetals extends Component {
+class CourseDetals extends Component {
   constructor(props) {
     super(props);
     this.onChangeChapterTitle = this.onChangeChapterTitle.bind(this);
@@ -54,9 +54,10 @@ export class CourseDetals extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/course/60948a27b7c6321d34f8bf03`)
+      .get(`http://localhost:5000/course/${"60948a27b7c6321d34f8bf03"}`  )
       .then(response => {
         this.setState({
+          _id: response.data._id,
           title: response.data.title,
           description: response.data.description,
           requirements: response.data.requirements,
@@ -67,6 +68,7 @@ export class CourseDetals extends Component {
           image: response.data.image,
           chapters: response.data.chapters
         });
+        console.log(response.data);
       })
       .catch(function(error) {
         console.log(error);
@@ -84,7 +86,7 @@ export class CourseDetals extends Component {
   }
   ChaptersList() {
     return this.state.chapters.map(currentchapter => {
-      return <Chapter chapter={currentchapter} />;
+      return <Chapter chapter={currentchapter} key= {currentchapter._id} />;
     });
   }
   myFunction = () => {
@@ -115,11 +117,11 @@ export class CourseDetals extends Component {
           };
           axios
           .post(
-            "http://localhost:5000/course/addChapter/60948a27b7c6321d34f8bf03",
+            "http://localhost:5000/course/addChapter/"+ this.state._id,
             formData, config)
             .then(res => console.log(res.data))
           
-        this.props.history.push("/courses/course-details/60948a27b7c6321d34f8bf03" );
+        this.props.history.push("/courses/course-details/" + this.state._id );
       }
     });
   };

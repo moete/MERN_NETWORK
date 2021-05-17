@@ -5,7 +5,7 @@ import "./";
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
-export class AddCourse extends Component {
+class AddCourse extends Component {
   constructor(props) {
     super(props);
 

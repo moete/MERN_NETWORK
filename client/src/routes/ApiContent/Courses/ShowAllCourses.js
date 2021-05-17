@@ -58,7 +58,7 @@ const Course = props => (
   </Col>
 );
 
-export class ShowAllCourses extends Component {
+ class ShowAllCourses extends Component {
   constructor(props) {
     super(props);
 

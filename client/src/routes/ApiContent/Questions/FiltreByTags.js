@@ -55,7 +55,7 @@ const Question = props => (
 );
 const { Search } = Input;
 
-export class FiltreByTags extends Component {
+ class FiltreByTags extends Component {
   constructor(props) {
     super(props);
 

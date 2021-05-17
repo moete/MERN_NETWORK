@@ -173,7 +173,7 @@ const User = ({ profile }) => (
 );
 const { Search } = Input;
 
-export class AllPosts extends Component {
+class AllPosts extends Component {
   constructor(props) {
     super(props);
 
