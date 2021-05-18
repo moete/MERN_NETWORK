@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Form, Input, Button, Upload, Icon } from "antd";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -19,7 +21,7 @@ const formItemLayout = {
 const headers = {
   "Content-type": "multipart/form-data; boundary=-------------573cf973d5228"
 };
-export class CreateQuestion extends Component {
+ class CreateQuestion extends Component {
   constructor(props) {
     super(props);
 
@@ -46,9 +48,10 @@ export class CreateQuestion extends Component {
       title: e.target.value
     });
   }
-  onChangeContentText(e) {
+  onChangeContentText= data => {
+    console.log("Called");
     this.setState({
-      contentText: e.target.value
+      contentText:  data.getData()
     });
   }
   onChangeTags(e) {
@@ -75,10 +78,10 @@ export class CreateQuestion extends Component {
           }
         };
         axios
-          .post("/question/add", formData, config)
+          .post("http://localhost:5000/question/add", formData, config)
           .then(res => console.log(res.data));
-        //this.props.history.push("/question/my-posts");
-        window.location = "/question/my-posts";
+       this.props.history.push("/question/my-posts");
+        //window.location = "/question/my-posts";
       }
     });
   }
@@ -117,16 +120,29 @@ export class CreateQuestion extends Component {
                   {
                     required: true,
                     message: "content text is missing !",
-                    min: 6,
-                    message: "contentText must have 6+ characters long"
+                   
                   }
                 ]
               })(
-                <TextArea
-                  rows={6}
-                  placeholder="I'm the content text"
-                  id="success"
-                />
+                <CKEditor
+                editor={ClassicEditor}
+                data="<p></p>"
+                onReady={editor => {
+                  // You can store the "editor" and use when it is needed.
+                  console.log("Editor is ready to use!", editor);
+                }}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  this.onChangeContentText(editor);
+                  console.log({ event, editor, data });
+                }}
+                onBlur={(event, editor) => {
+                  console.log("Blur.", editor);
+                }}
+                onFocus={(event, editor) => {
+                  console.log("Focus.", editor);
+                }}
+              />
               )}
             </FormItem>
             <FormItem

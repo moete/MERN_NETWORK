@@ -5,7 +5,7 @@ import { Avatar } from "antd";
 import { Link } from "react-router-dom";
 const Course = props => (
   <Col xl={8} lg={24} md={8} xs={24}>
-    <Link to="/courses/course-details">
+    <Link to={"/courses/course-details/" + props.course._id}>
       <div class="gx-package">
         <div class="gx-package-header border-radius: 50%">
           <Avatar
@@ -35,7 +35,7 @@ const Course = props => (
               <h5>
                 <i className="icon icon-attachment" />
 
-                <span>Requirments : {props.course.requirments} </span>
+                <span>Requirments : {props.course.requirements} </span>
               </h5>
             </li>
             <li>
@@ -58,7 +58,7 @@ const Course = props => (
   </Col>
 );
 
-export class ShowAllCourses extends Component {
+ class ShowAllCourses extends Component {
   constructor(props) {
     super(props);
 
@@ -68,7 +68,7 @@ export class ShowAllCourses extends Component {
   }
   componentDidMount() {
     axios
-      .get("/course/")
+      .get("http://localhost:5000/course/")
       .then(response => {
         this.setState({ courses: response.data });
       })

@@ -55,7 +55,7 @@ const Question = props => (
 );
 const { Search } = Input;
 
-export class FiltreByTags extends Component {
+ class FiltreByTags extends Component {
   constructor(props) {
     super(props);
 
@@ -67,7 +67,7 @@ export class FiltreByTags extends Component {
 
   componentDidMount() {
     axios
-      .get("/question/")
+      .get("http://localhost:5000/question/")
       .then(response => {
         this.setState({ questions: response.data });
       })
