@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Form, Input, Card, Tag, Button, Icon, Col } from "antd";
+import parse from 'html-react-parser';
 
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -161,7 +162,7 @@ class QuestionDetails extends Component {
             title={this.state.question_date.substring(0, 10)}
             bordered={false}
           >
-            <div className="gx-mb-1"> {this.state.contentText}</div>
+            <div className="gx-mb-1"> {parse(this.state.contentText)}</div>
             <Col>
               <div className="gx-wall-medialist">
                 <div className="gx-gallery-grid gx-gallery-2">
